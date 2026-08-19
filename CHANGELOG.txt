@@ -1,0 +1,12 @@
+CHANGELOG
+
+Ver.1.0.0
+・Music Quiz Trainerから独立した別アプリとして新規構築
+・アプリ名を「Composer Card Quest」に変更
+・保存データをMusic Quiz Trainerと完全分離
+・クイズ、MP、作曲家ガチャ、カード図鑑、育成、進化を統合
+・作曲家カード150枚を収録
+・Lv.1〜10のカード育成を搭載
+・Lv.10でEVOLVEDへ自動進化
+・進化カードの関連クイズ正解MPボーナスを搭載
+・GitHub Pages向けの単体index.html構成
