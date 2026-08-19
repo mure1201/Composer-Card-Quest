@@ -194,6 +194,210 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
   font-weight:800;
 }
 
+
+/* ===== Ver.1.1.0 SSR図案 ===== */
+.cardArt{display:flex;align-items:center;justify-content:center;margin:8px auto 6px}
+.cardArt svg{width:76px;height:76px;display:block}
+.cardTile .cardArt svg{width:64px;height:64px}
+.cardTile.SSR .cardArt svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,.12))}
+.cardTile.SSR{background:linear-gradient(160deg,rgba(201,167,77,.10),rgba(127,127,127,.03))}
+.cardDetail .cardArt svg{width:132px;height:132px}
+.ssrFrame{fill:none;stroke:currentColor;stroke-width:2.6;opacity:.8}
+.ssrSoft{opacity:.25}
+.ssrLine{stroke:currentColor;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ssrThin{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ssrFill{fill:currentColor;opacity:.9}
+.ssrLight{fill:currentColor;opacity:.18}
+.ssrText{font-size:10px;font-weight:900;letter-spacing:.18em;fill:currentColor;opacity:.82}
+
+
+/* ===== Ver.1.2.0 SR図案 ===== */
+.cardTile.SR .cardArt svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,.10))}
+.cardTile.SR{background:linear-gradient(160deg,rgba(122,74,163,.08),rgba(127,127,127,.025))}
+.srHalo{fill:currentColor;opacity:.08}
+.srLine{stroke:currentColor;stroke-width:2.6;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.srThin{stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.srFill{fill:currentColor;opacity:.88}
+.srSoft{fill:currentColor;opacity:.16}
+
+
+/* ===== Ver.1.3.0 R図案 ===== */
+.cardTile.R .cardArt svg{filter:drop-shadow(0 1px 3px rgba(0,0,0,.08))}
+.cardTile.R{background:linear-gradient(160deg,rgba(45,106,163,.065),rgba(127,127,127,.02))}
+.rHalo{fill:currentColor;opacity:.055}
+.rLine{stroke:currentColor;stroke-width:2.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.rThin{stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.rFill{fill:currentColor;opacity:.84}
+.rSoft{fill:currentColor;opacity:.12}
+
+
+/* ===== Ver.1.4.0 N図案 ===== */
+.cardTile.N .cardArt svg{filter:drop-shadow(0 1px 2px rgba(0,0,0,.06))}
+.cardTile.N{background:linear-gradient(160deg,rgba(95,95,95,.045),rgba(127,127,127,.012))}
+.nHalo{fill:currentColor;opacity:.04}
+.nLine{stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nThin{stroke:currentColor;stroke-width:1.35;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.nFill{fill:currentColor;opacity:.78}
+.nSoft{fill:currentColor;opacity:.10}
+
+
+/* ===== Ver.1.5.0 カード演出 ===== */
+.gachaStage{
+  position:relative;
+  padding:14px 12px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  margin-top:12px;
+  min-height:78px;
+  background:linear-gradient(180deg,rgba(127,127,127,.03),rgba(127,127,127,.01));
+  overflow:hidden;
+}
+.gachaStage.hidden{display:none}
+.gachaOrb{
+  width:52px;height:52px;border-radius:999px;margin:0 auto 8px auto;
+  border:2px solid rgba(127,127,127,.25);
+  position:relative;
+  animation:orbFloat 1.5s ease-in-out infinite;
+  background:radial-gradient(circle at 35% 35%, rgba(255,255,255,.85), rgba(127,127,127,.12) 55%, rgba(127,127,127,.04) 75%);
+}
+.gachaOrb::before,.gachaOrb::after{
+  content:"";position:absolute;inset:-8px;border-radius:999px;border:2px solid rgba(127,127,127,.12);
+}
+.gachaOrb::after{inset:-16px;border-style:dashed;animation:orbSpin 3.2s linear infinite}
+.gachaStage.summoning .gachaOrb{
+  animation:orbFloat .8s ease-in-out infinite, summonPulse .7s ease-in-out infinite;
+}
+.gachaStage.summoning.rarity-r .gachaOrb{box-shadow:0 0 18px rgba(45,106,163,.35)}
+.gachaStage.summoning.rarity-sr .gachaOrb{box-shadow:0 0 22px rgba(122,74,163,.45)}
+.gachaStage.summoning.rarity-ssr .gachaOrb{box-shadow:0 0 28px rgba(201,167,77,.55)}
+.gachaStageText{font-size:13px;font-weight:800;text-align:center}
+.gachaStageSub{font-size:11px;color:var(--muted);text-align:center;margin-top:4px}
+.gachaResultGrid.revealing{pointer-events:none}
+.revealWrap{position:relative}
+.revealCard{
+  animation:revealDrop .5s cubic-bezier(.2,.9,.18,1) both;
+  transform-origin:center top;
+}
+.revealCard.rarity-r{animation-name:revealDropR}
+.revealCard.rarity-sr{animation-name:revealDropSR}
+.revealCard.rarity-ssr{animation-name:revealDropSSR}
+.revealCard::before{
+  content:"";position:absolute;inset:-4px;border-radius:16px;pointer-events:none;opacity:0;z-index:0;
+}
+.revealCard.rarity-r::before{
+  background:radial-gradient(circle, rgba(45,106,163,.22), transparent 65%);
+  animation:flashR .8s ease;
+}
+.revealCard.rarity-sr::before{
+  background:radial-gradient(circle, rgba(122,74,163,.28), transparent 65%);
+  animation:flashSR .95s ease;
+}
+.revealCard.rarity-ssr::before{
+  background:radial-gradient(circle, rgba(201,167,77,.34), transparent 65%);
+  animation:flashSSR 1.2s ease;
+}
+.cardTile{position:relative;transition:transform .18s ease, box-shadow .18s ease}
+.cardTile:hover{transform:translateY(-2px)}
+.cardTile.rarity-r{box-shadow:0 2px 10px rgba(45,106,163,.10)}
+.cardTile.rarity-sr{box-shadow:0 2px 14px rgba(122,74,163,.12)}
+.cardTile.rarity-ssr{box-shadow:0 4px 18px rgba(201,167,77,.18)}
+.cardBurst{
+  position:absolute;top:6px;left:6px;z-index:2;
+  font-size:10px;font-weight:900;letter-spacing:.08em;
+  padding:3px 7px;border-radius:999px;border:1px solid var(--line);
+  background:rgba(255,255,255,.82);backdrop-filter:blur(3px);
+}
+.cardTile.rarity-r .cardBurst{color:#2d6aa3}
+.cardTile.rarity-sr .cardBurst{color:#7a4aa3}
+.cardTile.rarity-ssr .cardBurst{color:#a66b00}
+.evolved{
+  animation:evolvedPulse 2.4s ease-in-out infinite;
+}
+.evolved .evolvedBadge{
+  box-shadow:0 0 0 0 rgba(120,90,180,.28);
+  animation:evoBadgePulse 1.8s ease-in-out infinite;
+}
+.bigCardStage{
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+}
+.bigCardStage.rarity-r{background:linear-gradient(180deg, rgba(45,106,163,.06), transparent)}
+.bigCardStage.rarity-sr{background:linear-gradient(180deg, rgba(122,74,163,.08), transparent)}
+.bigCardStage.rarity-ssr{background:linear-gradient(180deg, rgba(201,167,77,.10), transparent)}
+.bigCardStage::before{
+  content:"";position:absolute;inset:-25%;
+  background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,.35) 50%, transparent 65%);
+  transform:translateX(-120%) rotate(8deg);
+  animation:shineSweep 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+.detailRarityRibbon{
+  display:inline-block;padding:4px 10px;border:1px solid var(--line);border-radius:999px;
+  font-size:11px;font-weight:900;letter-spacing:.08em;margin-bottom:8px
+}
+.revealDoneMsg{font-size:12px;color:var(--muted);text-align:center;margin-top:8px}
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+@keyframes orbSpin{
+  0%{transform:rotate(0deg)}
+  100%{transform:rotate(360deg)}
+}
+@keyframes summonPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.08)}
+}
+@keyframes revealDrop{
+  0%{transform:translateY(-24px) scale(.92);opacity:0}
+  65%{transform:translateY(4px) scale(1.03);opacity:1}
+  100%{transform:translateY(0) scale(1);opacity:1}
+}
+@keyframes revealDropR{
+  0%{transform:translateY(-24px) scale(.92);opacity:0}
+  65%{transform:translateY(4px) scale(1.04) rotate(-1deg);opacity:1}
+  100%{transform:translateY(0) scale(1);opacity:1}
+}
+@keyframes revealDropSR{
+  0%{transform:translateY(-28px) scale(.88);opacity:0}
+  65%{transform:translateY(3px) scale(1.06) rotate(-2deg);opacity:1}
+  100%{transform:translateY(0) scale(1);opacity:1}
+}
+@keyframes revealDropSSR{
+  0%{transform:translateY(-34px) scale(.84);opacity:0}
+  50%{transform:translateY(6px) scale(1.08) rotate(-2deg);opacity:1}
+  80%{transform:translateY(-2px) scale(1.03) rotate(1deg);opacity:1}
+  100%{transform:translateY(0) scale(1);opacity:1}
+}
+@keyframes flashR{
+  0%{opacity:0;transform:scale(.7)}
+  35%{opacity:1;transform:scale(1.12)}
+  100%{opacity:0;transform:scale(1.35)}
+}
+@keyframes flashSR{
+  0%{opacity:0;transform:scale(.7)}
+  35%{opacity:1;transform:scale(1.16)}
+  100%{opacity:0;transform:scale(1.42)}
+}
+@keyframes flashSSR{
+  0%{opacity:0;transform:scale(.62)}
+  30%{opacity:1;transform:scale(1.18)}
+  100%{opacity:0;transform:scale(1.55)}
+}
+@keyframes evolvedPulse{
+  0%,100%{box-shadow:inset 0 0 0 2px rgba(120,90,180,.35),0 4px 16px rgba(0,0,0,.08)}
+  50%{box-shadow:inset 0 0 0 2px rgba(120,90,180,.50),0 6px 18px rgba(120,90,180,.18)}
+}
+@keyframes evoBadgePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(120,90,180,.24)}
+  50%{box-shadow:0 0 0 7px rgba(120,90,180,0)}
+}
+@keyframes shineSweep{
+  0%{transform:translateX(-120%) rotate(8deg)}
+  40%,100%{transform:translateX(160%) rotate(8deg)}
+}
+
 </style>
 </head>
 <body>
@@ -203,7 +407,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成</div>
     <div class="small">クイズでMPを集め、作曲家カードを育てて進化させる音楽クイズゲーム</div>
   </div>
-  <span class="version">Ver. 1.0.0</span>
+  <span class="version">Ver. 1.5.0</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -299,7 +503,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <div class="pity" id="pityInfo"></div>
     <div class="rewardNote">排出率：N 60% / R 28% / SR 10% / SSR 2%。30回以内にSR以上、100回以内にSSRが必ず出ます。</div>
   </div>
+  <div id="gachaStage" class="gachaStage hidden">
+    <div class="gachaOrb"></div>
+    <div class="gachaStageText" id="gachaStageText">ガチャ演出</div>
+    <div class="gachaStageSub" id="gachaStageSub">カードを生成中…</div>
+  </div>
   <div id="gachaResult" class="gachaResultGrid"></div>
+  <div id="gachaResultDone" class="revealDoneMsg"></div>
 </section>
 
 <section class="card hidden" id="collectionCard">
@@ -504,6 +714,617 @@ const keyDefs=[
 {sig:-6,major:"変ト長調（G♭ major）",minor:"変ホ短調（E♭ minor）",level:3},
 {sig:-7,major:"変ハ長調（C♭ major）",minor:"変イ短調（A♭ minor）",level:3}
 ];
+
+
+function artWrap(inner,label=""){
+  return `<div class="cardArt" aria-label="${label}"><svg viewBox="0 0 100 100" role="img">${inner}</svg></div>`;
+}
+function artStars(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M50 18l4 12h13l-10 7 4 12-11-8-11 8 4-12-10-7h13z"/><circle class="ssrFill" cx="23" cy="28" r="3"/><circle class="ssrFill" cx="78" cy="25" r="2.5"/><circle class="ssrFill" cx="74" cy="74" r="2.5"/>';
+}
+function artChoir(){
+  return '<circle class="ssrFill" cx="34" cy="40" r="8"/><circle class="ssrFill" cx="50" cy="34" r="9"/><circle class="ssrFill" cx="66" cy="40" r="8"/><path class="ssrLine" d="M24 64c5-9 17-12 26-12s21 3 26 12"/><path class="ssrThin" d="M18 74h64"/>';
+}
+function artMoonWave(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M62 24a18 18 0 1 0 8 32 20 20 0 1 1-8-32z"/><path class="ssrLine" d="M18 68c8-4 12-4 20 0s12 4 20 0 12-4 24 0"/><path class="ssrThin" d="M18 76c8-4 12-4 20 0s12 4 20 0 12-4 24 0"/>';
+}
+function artOrgan(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><rect class="ssrFill" x="22" y="25" width="7" height="38" rx="2"/><rect class="ssrFill" x="32" y="20" width="7" height="43" rx="2"/><rect class="ssrFill" x="42" y="14" width="7" height="49" rx="2"/><rect class="ssrFill" x="52" y="18" width="7" height="45" rx="2"/><rect class="ssrFill" x="62" y="24" width="7" height="39" rx="2"/><path class="ssrThin" d="M20 71h60"/>';
+}
+function artCrossGlow(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M46 20h8v20h18v8H54v28h-8V48H28v-8h18z"/><path class="ssrThin" d="M20 82c18-10 42-10 60 0"/>';
+}
+function artMountain(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M17 74l20-26 12 14 12-20 22 32z"/><path class="ssrThin" d="M54 42l7 10h-13z"/><path class="ssrThin" d="M18 76h64"/>';
+}
+function artBellNight(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M50 24c-9 0-16 7-16 16v9l-5 10h42l-5-10v-9c0-9-7-16-16-16z"/><circle class="ssrFill" cx="50" cy="62" r="4"/><circle class="ssrFill" cx="73" cy="26" r="2.5"/><circle class="ssrFill" cx="24" cy="22" r="2"/><circle class="ssrFill" cx="80" cy="40" r="2"/>';
+}
+function artGeometry(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrLine" d="M18 62l14-24 18 10 18-28 14 42"/><path class="ssrThin" d="M18 74l18-10 14 8 14-14 18 16"/><circle class="ssrFill" cx="32" cy="38" r="3"/><circle class="ssrFill" cx="50" cy="48" r="3"/><circle class="ssrFill" cx="68" cy="20" r="3"/>';
+}
+function artWaterLife(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrFill" d="M50 18c10 14 16 24 16 34a16 16 0 1 1-32 0c0-10 6-20 16-34z"/><path class="ssrThin" d="M22 73c8-4 12-4 20 0s12 4 20 0 12-4 16 0"/>';
+}
+function artOrbit(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><circle class="ssrFill" cx="50" cy="50" r="6"/><ellipse class="ssrThin" cx="50" cy="50" rx="30" ry="14"/><ellipse class="ssrThin" cx="50" cy="50" rx="14" ry="30"/><circle class="ssrFill" cx="76" cy="46" r="3"/><circle class="ssrFill" cx="44" cy="20" r="3"/><circle class="ssrFill" cx="31" cy="60" r="3"/>';
+}
+function artFlowerBook(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrThin" d="M26 66h48v10H26z"/><path class="ssrLine" d="M50 66V30"/><circle class="ssrFill" cx="50" cy="28" r="7"/><circle class="ssrFill" cx="38" cy="33" r="6"/><circle class="ssrFill" cx="62" cy="33" r="6"/><circle class="ssrFill" cx="42" cy="20" r="5"/><circle class="ssrFill" cx="58" cy="20" r="5"/>';
+}
+function artSkyVoice(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrLine" d="M20 66c7-17 19-30 30-42 8 11 22 24 30 42"/><path class="ssrThin" d="M26 72c11-5 17-5 24 0s13 5 24 0"/><path class="ssrThin" d="M50 26v44"/>';
+}
+function artPoetMoon(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><path class="ssrThin" d="M24 64c8-4 12-4 20 0s12 4 20 0 12-4 12 0"/><path class="ssrLine" d="M26 58c8-10 18-18 28-24"/><path class="ssrFill" d="M70 22a12 12 0 1 0 6 22 13 13 0 1 1-6-22z"/><path class="ssrThin" d="M28 38h18v14H28z"/><path class="ssrThin" d="M30 42h14M30 46h14M30 50h10"/>';
+}
+function artFrogGrass(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><circle class="ssrFill" cx="38" cy="34" r="5"/><circle class="ssrFill" cx="62" cy="34" r="5"/><ellipse class="ssrFill" cx="50" cy="48" rx="18" ry="12"/><path class="ssrThin" d="M34 64l-10 10M66 64l10 10M40 60l-6 12M60 60l6 12"/><path class="ssrThin" d="M16 76c8-4 12-4 20 0s12 4 20 0 12-4 28 0"/>';
+}
+function artChoirWorld(){
+  return '<circle class="ssrLight" cx="50" cy="50" r="38"/><circle class="ssrThin" cx="50" cy="40" r="16"/><path class="ssrThin" d="M34 40h32M50 24c5 4 8 10 8 16s-3 12-8 16c-5-4-8-10-8-16s3-12 8-16z"/><path class="ssrLine" d="M24 74c5-8 15-11 26-11s21 3 26 11"/>';
+}
+
+function srBase(inner,label=""){
+  return artWrap(`<circle class="srHalo" cx="50" cy="50" r="38"/>${inner}`,label);
+}
+function srMusic(){
+  return '<path class="srLine" d="M34 24v38c0 8-14 9-14 1 0-6 8-10 14-7V34l28-7v30c0 8-14 9-14 1 0-6 8-10 14-7V20z"/>';
+}
+function srBook(){
+  return '<path class="srLine" d="M22 28c10-4 18-2 28 4v40c-10-6-18-8-28-4zM78 28c-10-4-18-2-28 4v40c10-6 18-8 28-4z"/><path class="srThin" d="M50 32v40"/>';
+}
+function srMountain(){
+  return '<path class="srFill" d="M14 74l22-28 11 13 14-24 25 39z"/><path class="srThin" d="M52 35l9 12-8-3-7 4z"/>';
+}
+function srWave(){
+  return '<path class="srLine" d="M14 60c9-5 15-5 24 0s15 5 24 0 15-5 24 0"/><path class="srThin" d="M16 72c8-4 14-4 22 0s14 4 22 0 14-4 24 0"/>';
+}
+function srFlower(){
+  return '<circle class="srFill" cx="50" cy="44" r="6"/><circle class="srFill" cx="39" cy="44" r="7"/><circle class="srFill" cx="61" cy="44" r="7"/><circle class="srFill" cx="44" cy="34" r="7"/><circle class="srFill" cx="56" cy="34" r="7"/><path class="srLine" d="M50 50v25"/>';
+}
+function srRain(){
+  return '<path class="srLine" d="M28 24l-7 14M48 20l-7 14M68 24l-7 14M36 46l-7 14M60 46l-7 14"/><ellipse class="srThin" cx="50" cy="72" rx="27" ry="7"/>';
+}
+function srFire(){
+  return '<path class="srFill" d="M52 16c4 13-2 16 5 24 5-8 11-10 10-21 11 12 15 24 7 39-7 14-21 19-31 14-17-8-20-29-8-41 0 10 4 15 9 18-1-12 3-21 8-33z"/>';
+}
+function srStars(){
+  return '<circle class="srFill" cx="26" cy="32" r="3"/><circle class="srFill" cx="42" cy="26" r="2.6"/><circle class="srFill" cx="58" cy="30" r="3"/><circle class="srFill" cx="72" cy="24" r="2.5"/><circle class="srFill" cx="78" cy="38" r="2.4"/><circle class="srFill" cx="68" cy="50" r="2.6"/><path class="srThin" d="M26 32l16-6 16 4 14-6 6 14-10 12"/>';
+}
+function srChoir(){
+  return '<circle class="srFill" cx="35" cy="40" r="7"/><circle class="srFill" cx="50" cy="34" r="8"/><circle class="srFill" cx="65" cy="40" r="7"/><path class="srLine" d="M22 68c7-11 18-15 28-15s21 4 28 15"/>';
+}
+function srCity(){
+  return '<path class="srLine" d="M18 72V44h12v28M34 72V34h12v38M50 72V48h12v24M66 72V28h16v44"/><circle class="srFill" cx="70" cy="20" r="7"/>';
+}
+function srFrog(){
+  return '<circle class="srFill" cx="39" cy="34" r="5"/><circle class="srFill" cx="61" cy="34" r="5"/><ellipse class="srFill" cx="50" cy="49" rx="17" ry="12"/><path class="srThin" d="M34 62l-11 12M66 62l11 12M42 61l-6 14M58 61l6 14"/>';
+}
+function srSnow(){
+  return '<path class="srLine" d="M50 20v60M24 35l52 30M24 65l52-30M32 26l18 10 18-10M32 74l18-10 18 10"/>';
+}
+function srInk(){
+  return '<path class="srFill" d="M28 28c15-9 33-5 42 5-7 1-13 4-15 9 8 1 14 7 16 15-8-2-14 0-17 6-8 14-24 12-31 2-10-14-7-29 5-37z"/><path class="srThin" d="M63 20c-2 13-1 25 4 36"/>';
+}
+function srWillow(){
+  return '<path class="srLine" d="M48 18v58M48 28c-11 4-17 12-20 25M50 31c12 4 19 12 22 25M46 40c-10 5-14 12-15 21M52 44c9 4 13 10 14 18"/><path class="srThin" d="M20 76c10-4 18-4 28 0s18 4 32 0"/>';
+}
+function srRoad(){
+  return '<circle class="srSoft" cx="70" cy="27" r="10"/><path class="srLine" d="M28 78c8-17 15-30 22-42 8 12 15 25 22 42"/><path class="srThin" d="M18 78h64"/>';
+}
+function srBirdFlower(){
+  return '<path class="srLine" d="M20 58c10-7 20-8 29-1 7-12 19-14 31-9-8 2-14 6-18 12 6 3 12 7 16 13-10-5-20-5-29 0-8-8-18-13-29-15z"/><circle class="srFill" cx="26" cy="29" r="5"/><circle class="srFill" cx="17" cy="29" r="5"/><circle class="srFill" cx="22" cy="21" r="5"/>';
+}
+function srMoon(){
+  return '<path class="srFill" d="M61 20a18 18 0 1 0 9 33 20 20 0 1 1-9-33z"/><path class="srThin" d="M18 70c10-5 16-5 26 0s16 5 38 0"/>';
+}
+function srMaskDrum(){
+  return '<path class="srLine" d="M26 28c7-8 17-8 24 0v28c-7 10-17 10-24 0z"/><circle class="srFill" cx="33" cy="39" r="2.5"/><circle class="srFill" cx="43" cy="39" r="2.5"/><path class="srThin" d="M32 49c4 3 8 3 12 0"/><ellipse class="srLine" cx="68" cy="52" rx="10" ry="22"/>';
+}
+function srGeometry2(){
+  return '<path class="srLine" d="M20 68l15-34 15 18 16-30 14 46"/><circle class="srFill" cx="35" cy="34" r="3"/><circle class="srFill" cx="50" cy="52" r="3"/><circle class="srFill" cx="66" cy="22" r="3"/>';
+}
+function srArc(){
+  return '<path class="srLine" d="M20 68c5-25 20-38 30-38s25 13 30 38"/><path class="srThin" d="M26 70c10-12 18-18 24-18s14 6 24 18"/>';
+}
+function srForestRain(){
+  return '<path class="srLine" d="M28 70V34M50 70V24M72 70V38"/><path class="srThin" d="M20 46l8-12 8 12M40 39l10-15 10 15M64 49l8-11 8 11"/><path class="srThin" d="M22 22l-5 10M66 18l-5 10M84 28l-5 10"/>';
+}
+function srSpaceVoice(){
+  return '<circle class="srFill" cx="50" cy="50" r="5"/><ellipse class="srThin" cx="50" cy="50" rx="30" ry="12"/><ellipse class="srThin" cx="50" cy="50" rx="12" ry="30"/><path class="srLine" d="M20 72c10-6 20-6 30 0s20 6 30 0"/>';
+}
+function srWindFlower(){
+  return srFlower()+'<path class="srThin" d="M18 58c12-8 22-8 34 0s22 8 32 0"/>';
+}
+function srGlobeChoir(){
+  return '<circle class="srThin" cx="50" cy="40" r="16"/><path class="srThin" d="M34 40h32M50 24c6 5 9 10 9 16s-3 11-9 16c-6-5-9-10-9-16s3-11 9-16z"/>'+srChoir();
+}
+function srMaleChoirBook(){
+  return srChoir()+srBook();
+}
+function srShellWave(){
+  return srWave()+'<path class="srLine" d="M48 57c0-11 9-20 20-20 4 0 8 1 11 4-13 0-22 6-22 16 0 5 3 10 8 13-10 0-17-5-17-13z"/>';
+}
+function srFirework(){
+  return srSnow()+'<circle class="srFill" cx="72" cy="28" r="3"/><path class="srThin" d="M72 12v9M72 35v9M56 28h9M79 28h9M61 17l6 6M77 33l6 6M83 17l-6 6M67 33l-6 6"/>';
+}
+function srBlizzard(){
+  return '<path class="srLine" d="M15 30c15-9 28-8 43 1s25 10 31 8M12 50c17-7 31-5 45 3s23 7 31 2M16 70c13-5 26-3 39 3s21 5 31 0"/><path class="srThin" d="M70 30v42M63 72h14"/>';
+}
+function srPaperBook(){
+  return srBook()+'<path class="srThin" d="M18 20h64M18 80h64"/>';
+}
+
+
+function rBase(inner,label=""){
+  return artWrap(`<circle class="rHalo" cx="50" cy="50" r="38"/>${inner}`,label);
+}
+function rCross(){
+  return '<path class="rFill" d="M46 18h8v21h19v8H54v31h-8V47H27v-8h19z"/>';
+}
+function rBook(){
+  return '<path class="rLine" d="M22 30c10-4 19-2 28 4v38c-9-6-18-8-28-4zM78 30c-10-4-19-2-28 4v38c9-6 18-8 28-4z"/><path class="rThin" d="M50 34v38"/>';
+}
+function rKeyboard(){
+  return '<path class="rLine" d="M18 38h64v30H18z"/><path class="rThin" d="M28 38v30M38 38v30M48 38v30M58 38v30M68 38v30"/><path class="rFill" d="M25 38h6v16h-6zM35 38h6v16h-6zM55 38h6v16h-6zM65 38h6v16h-6z"/>';
+}
+function rMask(){
+  return '<path class="rLine" d="M25 26c8-6 17-6 25 0v30c-7 10-18 10-25 0zM50 26c8-6 17-6 25 0v30c-7 10-18 10-25 0z"/><circle class="rFill" cx="34" cy="39" r="2.5"/><circle class="rFill" cx="59" cy="39" r="2.5"/>';
+}
+function rLightning(){
+  return '<path class="rFill" d="M57 16L32 51h17l-8 31 28-41H52z"/>';
+}
+function rSunMoon(){
+  return '<circle class="rFill" cx="34" cy="38" r="11"/><path class="rThin" d="M34 18v8M34 50v8M14 38h8M46 38h8M20 24l6 6M42 46l6 6M48 24l-6 6M26 46l-6 6"/><path class="rFill" d="M69 29a13 13 0 1 0 7 24 14 14 0 1 1-7-24z"/>';
+}
+function rHorseNight(){
+  return '<path class="rLine" d="M22 63c10-10 19-18 30-19 8-1 16 2 24 8"/><path class="rThin" d="M42 44l8-15 9 12M52 57l-6 18M62 57l7 18"/><circle class="rFill" cx="75" cy="24" r="7"/>';
+}
+function rFeather(){
+  return '<path class="rLine" d="M27 72c16-22 26-38 46-48-3 18-14 33-35 45"/><path class="rThin" d="M35 62l29-25M39 54l-10-2M47 47l-10-3M55 39l-9-3"/>';
+}
+function rHeartPiano(){
+  return rKeyboard()+'<path class="rFill" d="M50 22c-7-10-22-2-16 9 4 7 10 10 16 15 6-5 12-8 16-15 6-11-9-19-16-9z"/>';
+}
+function rFlameScore(){
+  return '<path class="rFill" d="M50 17c8 12 12 20 8 29 7-4 12-10 11-18 10 12 10 28 1 38-10 11-28 12-39 1-9-9-9-24-1-34 1 9 6 13 11 16-2-11 2-21 9-32z"/><path class="rThin" d="M21 76h58"/>';
+}
+function rRing(){
+  return '<circle class="rLine" cx="50" cy="48" r="22"/><circle class="rThin" cx="50" cy="48" r="13"/><path class="rThin" d="M28 72h44"/>';
+}
+function rTearsCross(){
+  return rCross()+'<path class="rLine" d="M25 60c5 7 7 10 7 14a7 7 0 1 1-14 0c0-4 2-7 7-14z"/>';
+}
+function rChoirChurch(){
+  return '<path class="rLine" d="M22 70V38l28-18 28 18v32M38 70V50h24v20"/>'+srChoir();
+}
+function rWaveMoon(){
+  return '<path class="rFill" d="M66 20a17 17 0 1 0 8 31 18 18 0 1 1-8-31z"/><path class="rLine" d="M17 67c9-5 14-5 23 0s14 5 23 0 14-5 23 0"/>';
+}
+function rOrchestra(){
+  return '<circle class="rLine" cx="50" cy="50" r="27"/><path class="rThin" d="M50 23v54M23 50h54M31 31l38 38M69 31L31 69"/><circle class="rFill" cx="50" cy="50" r="4"/>';
+}
+function rTwelve(){
+  let s='';
+  const pts=[[50,18],[65,22],[77,34],[82,50],[77,66],[65,78],[50,82],[35,78],[23,66],[18,50],[23,34],[35,22]];
+  for(const [x,y] of pts) s+=`<circle class="rFill" cx="${x}" cy="${y}" r="2.7"/>`;
+  s+='<path class="rThin" d="M50 18L77 34L65 78L23 66L35 22L82 50L35 78L23 34L65 22L77 66L18 50L50 82"/>';
+  return s;
+}
+function rBirdFire(){
+  return '<path class="rLine" d="M20 62c14-17 26-24 39-19 8 3 14 10 22 17-11-4-20-3-27 2-8 5-18 5-34 0z"/><path class="rFill" d="M58 24l8 13 11-9-4 16 12 4-16 4"/>';
+}
+function rFolkStrings(){
+  return '<path class="rLine" d="M30 22c-8 10-9 23-3 33 5 9 5 16-1 23M70 22c8 10 9 23 3 33-5 9-5 16 1 23"/><path class="rThin" d="M36 28h28M36 40h28M36 52h28M36 64h28"/>';
+}
+function rMarchPiano(){
+  return rKeyboard()+'<path class="rLine" d="M20 24h60M28 17v14M50 17v14M72 17v14"/>';
+}
+function rSharpStar(){
+  return '<path class="rLine" d="M28 18v64M48 18v64M18 40h42M16 58h42"/><path class="rFill" d="M73 22l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>';
+}
+function rGear(){
+  return '<circle class="rLine" cx="50" cy="50" r="18"/><circle class="rThin" cx="50" cy="50" r="7"/><path class="rFill" d="M46 17h8l2 10 9 4 8-6 6 6-6 8 4 9 10 2v8l-10 2-4 9 6 8-6 6-8-6-9 4-2 10h-8l-2-10-9-4-8 6-6-6 6-8-4-9-10-2v-8l10-2 4-9-6-8 6-6 8 6 9-4z" opacity=".22"/>';
+}
+function rBirdRainbow(){
+  return '<path class="rLine" d="M18 58c12-14 24-18 36-10 8-12 18-15 29-9-9 3-15 8-19 15 6 2 12 7 16 13-10-5-20-5-29 0-9-7-20-10-33-9z"/><path class="rThin" d="M22 30c12-10 24-10 36 0M28 24c10-8 20-8 30 0"/>';
+}
+function rCrossFlower(){
+  return rCross()+srFlower();
+}
+function rSeaChoir(){
+  return srWave()+srChoir();
+}
+function rHandsFolk(){
+  return '<path class="rLine" d="M24 65c7-18 11-27 15-26 5 1 1 13 7 13 4 0 4-18 9-18 6 0 4 20 9 20 5 0 7-12 11-10 4 3-2 19-8 29"/><path class="rThin" d="M18 76h64"/>';
+}
+function rWheelFlame(){
+  return '<circle class="rLine" cx="50" cy="50" r="26"/><path class="rThin" d="M50 24v52M24 50h52M31 31l38 38M69 31L31 69"/><path class="rFill" d="M50 13c6 9 9 15 6 21 5-3 8-7 8-13 6 8 6 18 0 25-7 7-18 8-25 1-6-6-6-15-1-22 0 6 3 9 7 11-1-8 1-15 5-23z"/>';
+}
+function rStringTear(){
+  return '<path class="rLine" d="M28 20c-8 16-8 44 0 60M50 20c-8 16-8 44 0 60M72 20c-8 16-8 44 0 60"/><path class="rFill" d="M50 34c7 10 11 17 11 25a11 11 0 1 1-22 0c0-8 4-15 11-25z"/>';
+}
+function rCityLight(){
+  return '<path class="rLine" d="M18 72V48h12v24M34 72V35h14v37M52 72V42h12v30M68 72V29h14v43"/><path class="rFill" d="M50 14l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>';
+}
+function rBellCross(){
+  return '<path class="rFill" d="M50 22c-9 0-15 7-15 15v10l-6 11h42l-6-11V37c0-8-6-15-15-15z"/><circle class="rFill" cx="50" cy="63" r="4"/>'+rCross();
+}
+function rAurora(){
+  return '<path class="rLine" d="M18 64c10-24 20-34 31-26 8 6 12 17 18 16 7-1 10-13 15-24"/><path class="rThin" d="M16 72c13-9 25-10 37-3 11 7 20 6 31-2"/>';
+}
+function rCloudLight(){
+  return '<path class="rLine" d="M22 58c0-8 7-14 15-14 3-10 14-15 23-10 5 3 8 7 9 12 8 0 14 5 14 12 0 8-6 13-15 13H36c-8 0-14-5-14-13z"/><path class="rThin" d="M38 78l6-9M55 78l6-9M69 78l5-8"/>';
+}
+function rMooravian(){
+  return '<path class="rLine" d="M20 28l15 15-15 15 15 15 15-15-15-15 15-15 15 15 15-15"/><path class="rThin" d="M20 76h60"/>';
+}
+function rOrganOld(){
+  return '<rect class="rFill" x="24" y="30" width="7" height="34" rx="2"/><rect class="rFill" x="35" y="24" width="7" height="40" rx="2"/><rect class="rFill" x="46" y="18" width="7" height="46" rx="2"/><rect class="rFill" x="57" y="25" width="7" height="39" rx="2"/><rect class="rFill" x="68" y="31" width="7" height="33" rx="2"/><path class="rLine" d="M20 72h60"/>';
+}
+
+
+function nBase(inner,label=""){
+  return artWrap(`<circle class="nHalo" cx="50" cy="50" r="38"/>${inner}`,label);
+}
+function nCrossScroll(){
+  return '<path class="nFill" d="M46 18h8v19h17v7H54v31h-8V44H29v-7h17z"/><path class="nLine" d="M20 70c12-5 23-5 34 0s21 5 30 0"/>';
+}
+function nArches(){
+  return '<path class="nLine" d="M22 74V48c0-15 11-26 28-26s28 11 28 26v26M35 74V51c0-8 6-14 15-14s15 6 15 14v23"/>';
+}
+function nPolyphony(lines=3){
+  let s='';
+  for(let i=0;i<lines;i++){
+    const y=34+i*12;
+    s+=`<path class="nThin" d="M18 ${y}c10-7 18-7 28 0s18 7 36 0"/>`;
+    s+=`<circle class="nFill" cx="${30+i*12}" cy="${y-2}" r="3"/>`;
+  }
+  return s;
+}
+function nQuill(){
+  return '<path class="nLine" d="M26 74c13-20 26-39 48-50-4 19-17 36-39 47"/><path class="nThin" d="M34 63l31-26M43 53l-11-2M53 44l-10-3"/>';
+}
+function nChapel(){
+  return '<path class="nLine" d="M23 74V42l27-20 27 20v32M39 74V52h22v22"/><circle class="nFill" cx="50" cy="39" r="4"/>';
+}
+function nLowNote(){
+  return '<path class="nLine" d="M40 24v40c0 9-16 10-16 1 0-7 9-11 16-8M62 30v34c0 9-16 10-16 1 0-7 9-11 16-8"/><path class="nThin" d="M18 76h64"/>';
+}
+function nChoir(){
+  return '<circle class="nFill" cx="35" cy="40" r="6"/><circle class="nFill" cx="50" cy="34" r="7"/><circle class="nFill" cx="65" cy="40" r="6"/><path class="nLine" d="M23 68c7-10 17-14 27-14s20 4 27 14"/>';
+}
+function nOrgan(){
+  return '<rect class="nFill" x="24" y="30" width="7" height="34" rx="2"/><rect class="nFill" x="35" y="24" width="7" height="40" rx="2"/><rect class="nFill" x="46" y="18" width="7" height="46" rx="2"/><rect class="nFill" x="57" y="25" width="7" height="39" rx="2"/><rect class="nFill" x="68" y="31" width="7" height="33" rx="2"/><path class="nLine" d="M20 72h60"/>';
+}
+function nMask(){
+  return '<path class="nLine" d="M25 28c8-6 17-6 25 0v28c-7 9-18 9-25 0zM50 28c8-6 17-6 25 0v28c-7 9-18 9-25 0z"/><circle class="nFill" cx="34" cy="40" r="2.2"/><circle class="nFill" cx="59" cy="40" r="2.2"/>';
+}
+function nViolin(){
+  return '<path class="nLine" d="M50 19v18c-8 4-10 10-6 17-7 4-8 12-2 18 5 5 11 4 16 0 6-6 5-14-2-18 4-7 2-13-6-17"/><path class="nThin" d="M47 20h6M39 76h22M54 20l14-7"/>';
+}
+function nWind(){
+  return '<path class="nLine" d="M18 38c16-9 27-9 42 0 10 6 17 5 25 0M15 53c13-7 25-7 38 0 12 7 22 7 32 0M20 68c12-6 23-5 35 1 9 5 18 5 27 0"/>';
+}
+function nCrown(){
+  return '<path class="nFill" d="M22 58l8-27 17 15 13-20 12 20 10-15 6 27z"/><path class="nLine" d="M24 64h62"/>';
+}
+function nHarpsichord(){
+  return '<path class="nLine" d="M18 40h64v28H18z"/><path class="nThin" d="M28 40v28M38 40v28M48 40v28M58 40v28M68 40v28"/><path class="nFill" d="M25 40h6v14h-6zM35 40h6v14h-6zM55 40h6v14h-6zM65 40h6v14h-6z"/>';
+}
+function nDance(){
+  return '<path class="nLine" d="M24 70c8-17 16-27 26-27s18 10 26 27"/><path class="nThin" d="M32 36c7 7 13 8 18 4 5-4 11-3 18 4"/><circle class="nFill" cx="31" cy="30" r="5"/><circle class="nFill" cx="69" cy="30" r="5"/>';
+}
+function nKeyboard(){
+  return nHarpsichord();
+}
+function nStarQuill(){
+  return nQuill()+'<path class="nFill" d="M69 18l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>';
+}
+function nLightning(){
+  return '<path class="nFill" d="M58 15L31 52h18l-8 32 29-43H52z"/>';
+}
+function nHornForest(){
+  return '<path class="nLine" d="M31 24v50M50 34v40M69 27v47"/><path class="nThin" d="M24 40l7-16 7 16M42 49l8-15 8 15M61 43l8-16 8 16"/><path class="nLine" d="M22 72c14-10 25-11 38-5 8 4 14 4 20 2"/>';
+}
+function nSongFountain(){
+  return '<path class="nLine" d="M50 22c-12 15-12 25 0 36 12-11 12-21 0-36zM34 70c10-8 22-8 32 0"/><path class="nThin" d="M20 78h60"/>';
+}
+function nBookPiano(){
+  return '<path class="nLine" d="M22 30c10-4 19-2 28 4v38c-9-6-18-8-28-4zM78 30c-10-4-19-2-28 4v38c9-6 18-8 28-4z"/>'+nHarpsichord();
+}
+function nFlowerPiano(){
+  return nHarpsichord()+'<circle class="nFill" cx="50" cy="24" r="5"/><circle class="nFill" cx="42" cy="24" r="5"/><circle class="nFill" cx="58" cy="24" r="5"/><circle class="nFill" cx="50" cy="16" r="5"/>';
+}
+function nArcKeys(){
+  return '<path class="nLine" d="M18 70c8-25 20-38 32-38s24 13 32 38"/>'+nHarpsichord();
+}
+function nFlame(){
+  return '<path class="nFill" d="M50 16c7 12 10 20 6 28 6-3 10-9 9-17 9 11 10 25 2 36-9 12-27 14-38 3-9-9-10-23-3-34 1 9 5 14 10 17-1-12 4-22 14-33z"/>';
+}
+function nLeaves(){
+  return '<path class="nLine" d="M50 20v58"/><path class="nFill" d="M47 34c-13-8-22-4-25 7 12 3 21 0 25-7zM53 44c13-8 22-4 25 7-12 3-21 0-25-7zM47 55c-12-7-20-3-23 7 11 3 19 0 23-7z"/>';
+}
+function nRingStage(){
+  return '<circle class="nLine" cx="50" cy="48" r="21"/><circle class="nThin" cx="50" cy="48" r="12"/><path class="nLine" d="M20 74h60"/><path class="nThin" d="M24 27c8-8 17-11 26-11s18 3 26 11"/>';
+}
+function nOpera(){
+  return nMask()+'<path class="nLine" d="M18 74h64"/>';
+}
+function nCathedral(){
+  return '<path class="nLine" d="M23 74V42l27-22 27 22v32M38 74V48h24v26M50 20v-8"/>'+nOrgan();
+}
+function nSwanKeys(){
+  return '<path class="nLine" d="M22 60c11-12 19-14 28-7 6-12 13-18 21-18 3 0 6 1 9 3-11 2-15 7-16 15 0 8 5 14 14 18-16 2-29-2-38-10-6-5-12-5-18-1z"/>'+nHarpsichord();
+}
+function nRoseCurtain(){
+  return '<path class="nLine" d="M20 22v52M80 22v52M20 22c10 10 20 14 30 14s20-4 30-14"/><circle class="nFill" cx="50" cy="56" r="7"/><circle class="nFill" cx="41" cy="56" r="6"/><circle class="nFill" cx="59" cy="56" r="6"/>';
+}
+function nStainedGlass(){
+  return '<circle class="nLine" cx="50" cy="42" r="22"/><path class="nThin" d="M50 20v44M28 42h44M34 26l32 32M66 26L34 58"/>'+nOrgan();
+}
+function nBalletSnow(){
+  return '<path class="nLine" d="M38 70c4-20 7-32 12-32s8 12 12 32M34 74h32"/><path class="nThin" d="M23 25l12 12M35 25L23 37M29 19v24M18 31h22"/>';
+}
+function nTrainStar(){
+  return '<path class="nLine" d="M18 59h52v14H18zM26 45h30v14H26zM56 50h13l9 9"/><circle class="nFill" cx="30" cy="76" r="4"/><circle class="nFill" cx="61" cy="76" r="4"/><path class="nFill" d="M76 18l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z"/>';
+}
+function nMountainWave(){
+  return '<path class="nFill" d="M14 66l20-24 12 13 13-19 27 30z"/><path class="nLine" d="M15 75c9-4 15-4 24 0s15 4 24 0 15-4 22 0"/>';
+}
+function nShipSea(){
+  return '<path class="nLine" d="M50 22v33M50 27l22 18H50M50 31L30 46h20"/><path class="nFill" d="M25 55h50l-8 13H33z"/><path class="nThin" d="M18 76c10-5 16-5 26 0s16 5 38 0"/>';
+}
+function nCastleBell(){
+  return '<path class="nLine" d="M22 72V42h12v-9h10v9h12v-9h10v9h12v30"/><path class="nFill" d="M50 22c-7 0-12 5-12 12v7l-4 8h32l-4-8v-7c0-7-5-12-12-12z"/>';
+}
+function nMountainRoad(){
+  return '<path class="nFill" d="M14 64l20-24 10 12 14-20 28 32z"/><path class="nLine" d="M35 77c8-16 12-25 15-25s7 9 15 25"/>';
+}
+function nHornRise(){
+  return '<path class="nLine" d="M22 66c17-3 27-12 31-26 3-11 10-17 25-18-7 6-10 12-9 19 2 10 7 18 15 25-16-5-27-4-34 4-8 9-17 10-28-4z"/><path class="nThin" d="M23 76h55"/>';
+}
+function nMoonWave(){
+  return '<path class="nFill" d="M65 20a17 17 0 1 0 8 31 18 18 0 1 1-8-31z"/><path class="nLine" d="M17 67c9-5 14-5 23 0s14 5 23 0 14-5 23 0"/>';
+}
+function nClock(){
+  return '<circle class="nLine" cx="50" cy="48" r="27"/><path class="nLine" d="M50 48V30M50 48l14 9"/><circle class="nFill" cx="50" cy="48" r="3"/>';
+}
+function nForestSwan(){
+  return '<path class="nLine" d="M25 70V34M42 70V27M59 70V38"/><path class="nThin" d="M18 45l7-11 7 11M34 39l8-12 8 12M51 49l8-11 8 11"/><path class="nLine" d="M58 59c8-8 14-9 20-4-7 1-10 4-10 8 0 4 3 7 8 9-9 1-16-1-21-6"/>';
+}
+function nRoseOpera(){
+  return nRoseCurtain();
+}
+function nBellNight(){
+  return '<path class="nFill" d="M50 22c-9 0-15 7-15 15v10l-6 11h42l-6-11V37c0-8-6-15-15-15z"/><circle class="nFill" cx="50" cy="63" r="4"/><circle class="nFill" cx="73" cy="24" r="2.5"/><circle class="nFill" cx="26" cy="20" r="2"/>';
+}
+function nMysticFlame(){
+  return nFlame()+'<circle class="nThin" cx="50" cy="49" r="25"/><circle class="nFill" cx="73" cy="24" r="2.6"/><circle class="nFill" cx="26" cy="26" r="2.2"/>';
+}
+function nPlanets(){
+  return '<circle class="nFill" cx="50" cy="50" r="6"/><ellipse class="nThin" cx="50" cy="50" rx="30" ry="13"/><ellipse class="nThin" cx="50" cy="50" rx="13" ry="30"/><circle class="nFill" cx="76" cy="46" r="3"/><circle class="nFill" cx="44" cy="21" r="3"/>';
+}
+function nHills(){
+  return '<path class="nLine" d="M14 66c14-17 25-22 36-14 11-10 23-10 36 3"/><path class="nThin" d="M16 76c10-4 16-4 26 0s16 4 40 0"/>';
+}
+function nThinMoonPiano(){
+  return '<path class="nFill" d="M64 19a16 16 0 1 0 8 29 17 17 0 1 1-8-29z"/>'+nHarpsichord();
+}
+function nFlagLaurel(){
+  return '<path class="nLine" d="M28 18v58M28 22h34l-8 10 8 10H28"/><path class="nThin" d="M65 50c8 5 12 12 13 22M69 55c4-2 8-2 11 0M71 62c4-1 7 0 9 2"/>';
+}
+function nLaurelScore(){
+  return '<path class="nThin" d="M23 70c-7-17-5-31 6-43M77 70c7-17 5-31-6-43"/><path class="nLine" d="M31 34h38M31 45h38M31 56h38"/><circle class="nFill" cx="42" cy="32" r="3"/><circle class="nFill" cx="57" cy="43" r="3"/>';
+}
+function nTrumpetCrown(){
+  return '<path class="nLine" d="M20 54h28l24-14v28L48 54"/><path class="nThin" d="M26 46v16M33 46v16"/>'+nCrown();
+}
+function nEmotionKeys(){
+  return nHarpsichord()+'<path class="nLine" d="M20 26c8-7 14-7 22 0s14 7 22 0 14-7 18 0"/>';
+}
+function nDramaLaurel(){
+  return nMask()+'<path class="nThin" d="M18 75c6-14 13-21 20-22M82 75c-6-14-13-21-20-22"/>';
+}
+function nSunSymphony(){
+  return '<circle class="nFill" cx="50" cy="38" r="12"/><path class="nThin" d="M50 18v8M50 50v8M30 38h8M62 38h8M36 24l6 6M58 46l6 6M64 24l-6 6M42 46l-6 6"/><path class="nLine" d="M24 72h52"/>';
+}
+function nForestHorn(){
+  return nHornForest();
+}
+function nRose(){
+  return '<circle class="nFill" cx="50" cy="42" r="8"/><circle class="nFill" cx="41" cy="42" r="7"/><circle class="nFill" cx="59" cy="42" r="7"/><circle class="nFill" cx="46" cy="33" r="7"/><circle class="nFill" cx="54" cy="33" r="7"/><path class="nLine" d="M50 50v27"/>';
+}
+function nSnow(){
+  return '<path class="nLine" d="M50 20v60M24 35l52 30M24 65l52-30"/>';
+}
+
+function nWave(){ return '<path class="nLine" d="M17 67c9-5 14-5 23 0s14 5 23 0 14-5 23 0"/>'; }
+function getNArt(card){
+  const name=card.name;
+  const map={
+    "グレゴリオ聖歌": nBase(nCrossScroll(),"グレゴリオ聖歌"),
+    "レオニヌス": nBase(nArches()+nPolyphony(2),"レオニヌス"),
+    "ペロティヌス": nBase(nArches()+nPolyphony(4),"ペロティヌス"),
+    "ギヨーム・ド・マショー": nBase(nQuill()+nPolyphony(2),"ギヨーム・ド・マショー"),
+    "デュファイ": nBase(nChapel()+nPolyphony(2),"デュファイ"),
+    "オケゲム": nBase(nLowNote(),"オケゲム"),
+    "ジョスカン・デ・プレ": nBase(nPolyphony(3),"ジョスカン・デ・プレ"),
+    "パレストリーナ": nBase(nChapel()+nCrossScroll(),"パレストリーナ"),
+    "オルランド・ディ・ラッソ": nBase(nChoir()+nPolyphony(2),"オルランド・ディ・ラッソ"),
+    "トマス・タリス": nBase(nArches()+nChoir(),"トマス・タリス"),
+    "ウィリアム・バード": nBase(nQuill()+nHarpsichord(),"ウィリアム・バード"),
+    "モンテヴェルディ": nBase(nMask()+nPolyphony(2),"モンテヴェルディ"),
+    "コレッリ": nBase(nViolin()+nPolyphony(2),"コレッリ"),
+    "ヴィヴァルディ": nBase(nViolin()+nWind(),"ヴィヴァルディ"),
+    "テレマン": nBase(nQuill()+nWind(),"テレマン"),
+    "パーセル": nBase(nCrown()+nHarpsichord(),"パーセル"),
+    "クープラン": nBase(nHarpsichord()+nRose(),"クープラン"),
+    "ラモー": nBase(nDance()+nHarpsichord(),"ラモー"),
+    "D.スカルラッティ": nBase(nHarpsichord()+nDance(),"D.スカルラッティ"),
+    "J.S.バッハ": nBase(nOrgan()+nPolyphony(3),"J.S.バッハ"),
+    "ヘンデル": nBase(nTrumpetCrown(),"ヘンデル"),
+    "C.P.E.バッハ": nBase(nEmotionKeys(),"C.P.E.バッハ"),
+    "グルック": nBase(nDramaLaurel(),"グルック"),
+    "ハイドン": nBase(nSunSymphony(),"ハイドン"),
+    "モーツァルト": nBase(nStarQuill()+nHarpsichord(),"モーツァルト"),
+    "ベートーヴェン": nBase(nLightning()+nPolyphony(2),"ベートーヴェン"),
+    "クレメンティ": nBase(nHarpsichord()+nArcKeys(),"クレメンティ"),
+    "ケルビーニ": nBase(nLaurelScore(),"ケルビーニ"),
+    "ウェーバー": nBase(nForestHorn(),"ウェーバー"),
+    "シューベルト": nBase(nSongFountain()+nPolyphony(2),"シューベルト"),
+    "メンデルスゾーン": nBase(nQuill()+nChapel(),"メンデルスゾーン"),
+    "シューマン": nBase(nBookPiano(),"シューマン"),
+    "ショパン": nBase(nFlowerPiano(),"ショパン"),
+    "リスト": nBase(nArcKeys(),"リスト"),
+    "ベルリオーズ": nBase(nFlame()+nPolyphony(2),"ベルリオーズ"),
+    "ブラームス": nBase(nLeaves()+nPolyphony(3),"ブラームス"),
+    "ワーグナー": nBase(nRingStage(),"ワーグナー"),
+    "ヴェルディ": nBase(nOpera()+nLaurelScore(),"ヴェルディ"),
+    "ブルックナー": nBase(nCathedral(),"ブルックナー"),
+    "サン＝サーンス": nBase(nSwanKeys(),"サン＝サーンス"),
+    "ビゼー": nBase(nDance()+nRose(),"ビゼー"),
+    "フォーレ": nBase(nCrossScroll()+nWave(),"フォーレ"),
+    "フランク": nBase(nStainedGlass(),"フランク"),
+    "チャイコフスキー": nBase(nBalletSnow(),"チャイコフスキー"),
+    "ドヴォルザーク": nBase(nTrainStar(),"ドヴォルザーク"),
+    "グリーグ": nBase(nMountainWave(),"グリーグ"),
+    "リムスキー＝コルサコフ": nBase(nShipSea(),"リムスキー＝コルサコフ"),
+    "ムソルグスキー": nBase(nCastleBell(),"ムソルグスキー"),
+    "マーラー": nBase(nMountainRoad(),"マーラー"),
+    "R.シュトラウス": nBase(nHornRise(),"R.シュトラウス"),
+    "ドビュッシー": nBase(nMoonWave(),"ドビュッシー"),
+    "ラヴェル": nBase(nClock(),"ラヴェル"),
+    "シベリウス": nBase(nForestSwan(),"シベリウス"),
+    "プッチーニ": nBase(nRoseOpera(),"プッチーニ"),
+    "ラフマニノフ": nBase(nBellNight(),"ラフマニノフ"),
+    "スクリャービン": nBase(nMysticFlame(),"スクリャービン"),
+    "ホルスト": nBase(nPlanets(),"ホルスト"),
+    "ヴォーン・ウィリアムズ": nBase(nHills(),"ヴォーン・ウィリアムズ"),
+    "サティ": nBase(nThinMoonPiano(),"サティ"),
+    "エルガー": nBase(nFlagLaurel(),"エルガー")
+  };
+  return map[name]||"";
+}
+
+function getRArt(card){
+  const name=card.name;
+  const map={
+    "J.S.バッハ ― カンタータ": rBase(rChoirChurch(),"J.S.バッハ カンタータ"),
+    "J.S.バッハ ― 受難曲": rBase(rTearsCross(),"J.S.バッハ 受難曲"),
+    "ヘンデル ― 《メサイア》": rBase('<path class="rLine" d="M20 62h60M32 62V35M68 62V35"/>'+rCross(),"ヘンデル メサイア"),
+    "モーツァルト ― 神童": rBase(rKeyboard()+artStars(),"モーツァルト 神童"),
+    "モーツァルト ― オペラ": rBase(rMask(),"モーツァルト オペラ"),
+    "モーツァルト ― 《レクイエム》": rBase(rCross()+'<path class="rLine" d="M28 76h44"/>',"モーツァルト レクイエム"),
+    "ハイドン ― 交響曲の父": rBase('<path class="rLine" d="M50 18v64M25 50h50"/><circle class="rFill" cx="50" cy="50" r="6"/>',"ハイドン 交響曲の父"),
+    "ハイドン ― 《天地創造》": rBase(rSunMoon(),"ハイドン 天地創造"),
+    "ベートーヴェン ― 《運命》": rBase(rLightning(),"ベートーヴェン 運命"),
+    "ベートーヴェン ― 《第九》": rBase(srChoir()+'<path class="rThin" d="M18 22h64"/>',"ベートーヴェン 第九"),
+    "シューベルト ― 歌曲王": rBase(rFeather()+srWave(),"シューベルト 歌曲王"),
+    "シューベルト ― 《魔王》": rBase(rHorseNight(),"シューベルト 魔王"),
+    "メンデルスゾーン ― 《エリヤ》": rBase(rFlameScore()+rCross(),"メンデルスゾーン エリヤ"),
+    "シューマン ― 詩人の恋": rBase(rHeartPiano(),"シューマン 詩人の恋"),
+    "ショパン ― ピアノの詩人": rBase(rKeyboard()+srFlower(),"ショパン ピアノの詩人"),
+    "リスト ― 交響詩": rBase(rFlameScore(),"リスト 交響詩"),
+    "ブラームス ― 《ドイツ・レクイエム》": rBase(rTearsCross(),"ブラームス ドイツ・レクイエム"),
+    "ワーグナー ― 楽劇": rBase(rRing()+rMask(),"ワーグナー 楽劇"),
+    "ヴェルディ ― 《レクイエム》": rBase(rFlameScore()+rCross(),"ヴェルディ レクイエム"),
+    "ブルックナー ― モテット": rBase(rChoirChurch(),"ブルックナー モテット"),
+    "フォーレ ― 《レクイエム》": rBase(rCross()+'<path class="rLine" d="M22 48c8-13 16-20 28-20s20 7 28 20"/>',"フォーレ レクイエム"),
+    "ドヴォルザーク ― 《スターバト・マーテル》": rBase(rTearsCross(),"ドヴォルザーク スターバト・マーテル"),
+    "マーラー ― 《復活》": rBase('<path class="rLine" d="M26 70h48M34 70V48h32v22"/><path class="rFill" d="M50 16l5 14h15l-12 9 5 14-13-9-13 9 5-14-12-9h15z"/>',"マーラー 復活"),
+    "ドビュッシー ― 印象主義": rBase(rWaveMoon(),"ドビュッシー 印象主義"),
+    "ラヴェル ― 管弦楽法": rBase(rOrchestra(),"ラヴェル 管弦楽法"),
+    "ラフマニノフ ― 《晩祷》": rBase(rBellCross(),"ラフマニノフ 晩祷"),
+    "シェーンベルク": rBase(rTwelve(),"シェーンベルク"),
+    "ストラヴィンスキー": rBase(rBirdFire(),"ストラヴィンスキー"),
+    "バルトーク": rBase(rFolkStrings(),"バルトーク"),
+    "プロコフィエフ": rBase(rMarchPiano(),"プロコフィエフ"),
+    "ショスタコーヴィチ": rBase(rSharpStar(),"ショスタコーヴィチ"),
+    "ヒンデミット": rBase(rGear(),"ヒンデミット"),
+    "メシアン": rBase(rBirdRainbow(),"メシアン"),
+    "プーランク": rBase(rCrossFlower(),"プーランク"),
+    "ブリテン": rBase(rSeaChoir(),"ブリテン"),
+    "コダーイ": rBase(rHandsFolk(),"コダーイ"),
+    "オルフ": rBase(rWheelFlame(),"オルフ"),
+    "バーバー": rBase(rStringTear(),"バーバー"),
+    "バーンスタイン": rBase(rCityLight(),"バーンスタイン"),
+    "ペルト": rBase(rBellCross(),"ペルト"),
+    "ラウタヴァーラ": rBase(rAurora()+'<path class="rThin" d="M22 58c10-10 20-12 31-6"/>',"ラウタヴァーラ"),
+    "ラウリゼン": rBase(rCloudLight()+'<circle class="rFill" cx="75" cy="22" r="3"/>',"ラウリゼン"),
+    "エリック・ウィテカー": rBase(rCloudLight(),"エリック・ウィテカー"),
+    "ヤナーチェク": rBase(rMooravian(),"ヤナーチェク"),
+    "スヴェーリンク": rBase(rOrganOld(),"スヴェーリンク")
+  };
+  return map[name]||"";
+}
+
+function getSRArt(card){
+  const name=card.name;
+  const map={
+    "瀧廉太郎": srBase(srMountain()+srMusic(),"瀧廉太郎"),
+    "山田耕筰": srBase(srFlower()+srMusic(),"山田耕筰"),
+    "信時潔": srBase(srBook()+srMusic(),"信時潔"),
+    "清水脩": srBase(srMountain()+srMusic(),"清水脩"),
+    "高田三郎": srBase('<path class="srFill" d="M50 20c10 14 15 23 15 33a15 15 0 1 1-30 0c0-10 5-19 15-33z"/><path class="srThin" d="M20 76h60"/>',"高田三郎"),
+    "間宮芳生": srBase(srMaskDrum(),"間宮芳生"),
+    "三善晃": srBase(srGeometry2(),"三善晃"),
+    "池辺晋一郎": srBase(srArc(),"池辺晋一郎"),
+    "武満徹": srBase(srForestRain(),"武満徹"),
+    "新実徳英": srBase(srSpaceVoice(),"新実徳英"),
+    "木下牧子": srBase(srWindFlower(),"木下牧子"),
+    "千原英喜": srBase(srFire()+"<path class='srThin' d='M18 78h64'/>","千原英喜"),
+    "松下耕": srBase(srGlobeChoir(),"松下耕"),
+    "信長貴富": srBase(srSkyVoice(),"信長貴富"),
+    "多田武彦": srBase(srMaleChoirBook(),"多田武彦"),
+    "多田武彦 ― 《柳河風俗詩》": srBase(srWillow(),"多田武彦 柳河風俗詩"),
+    "多田武彦 ― 《富士山》": srBase(srMountain(),"多田武彦 富士山"),
+    "多田武彦 ― 《中勘助の詩から》": srBase(srPaperBook(),"多田武彦 中勘助の詩から"),
+    "多田武彦 ― 《雪と花火》": srBase(srFirework(),"多田武彦 雪と花火"),
+    "多田武彦 ― 《北斗の海》": srBase(srStars()+srWave(),"多田武彦 北斗の海"),
+    "多田武彦 ― 《海に寄せる歌》": srBase(srShellWave(),"多田武彦 海に寄せる歌"),
+    "多田武彦 ― 《わがふるき日のうた》": srBase(srRoad(),"多田武彦 わがふるき日のうた"),
+    "多田武彦 ― 《雨》": srBase(srRain(),"多田武彦 雨"),
+    "多田武彦 ― 《蛙》": srBase(srFrog()+srWave(),"多田武彦 蛙"),
+    "多田武彦 ― 《吹雪の街を》": srBase(srBlizzard(),"多田武彦 吹雪の街を"),
+    "多田武彦 ― 《水墨集》": srBase(srInk(),"多田武彦 水墨集"),
+    "多田武彦 ― 《東京景物詩》": srBase(srCity(),"多田武彦 東京景物詩"),
+    "多田武彦 ― 《中原中也の詩から》": srBase(srBook()+'<path class="srLine" d="M34 25c4-7 28-7 32 0l-5 7H39z"/>',"多田武彦 中原中也の詩から"),
+    "多田武彦 ― 《白き花鳥図》": srBase(srBirdFlower(),"多田武彦 白き花鳥図"),
+    "多田武彦 ― 《月に寄せる歌》": srBase(srMoon(),"多田武彦 月に寄せる歌")
+  };
+  return map[name]||"";
+}
+
+function getSSRArt(card){
+  const name=card.name;
+  const map={
+    "J.S.バッハ ― 音楽の父": artWrap(artOrgan(), "J.S.バッハ 音楽の父"),
+    "モーツァルト ― 永遠の神童": artWrap(artStars(), "モーツァルト 永遠の神童"),
+    "ベートーヴェン ― 歓喜の歌": artWrap(artChoir(), "ベートーヴェン 歓喜の歌"),
+    "ブラームス ― 人間のためのレクイエム": artWrap(artCrossGlow(), "ブラームス 人間のためのレクイエム"),
+    "マーラー ― 千人の交響曲": artWrap(artChoir()+ '<path class="ssrThin" d="M20 18h60"/>', "マーラー 千人の交響曲"),
+    "ラフマニノフ ― 夜の祈り": artWrap(artBellNight(), "ラフマニノフ 夜の祈り"),
+    "プーランク ― 20世紀の合唱": artWrap(artGeometry(), "プーランク 20世紀の合唱"),
+    "三善晃 ― 日本合唱の巨匠": artWrap(artGeometry(), "三善晃 日本合唱の巨匠"),
+    "高田三郎 ― 《水のいのち》": artWrap(artWaterLife(), "高田三郎 水のいのち"),
+    "新実徳英 ― 合唱の世界": artWrap(artOrbit(), "新実徳英 合唱の世界"),
+    "木下牧子 ― 合唱と詩": artWrap(artFlowerBook(), "木下牧子 合唱と詩"),
+    "信長貴富 ― 現代日本合唱": artWrap(artSkyVoice(), "信長貴富 現代日本合唱"),
+    "多田武彦 ― 北原白秋": artWrap(artPoetMoon(), "多田武彦 北原白秋"),
+    "多田武彦 ― 草野心平": artWrap(artFrogGrass(), "多田武彦 草野心平"),
+    "多田武彦 ― 男声合唱の世界": artWrap(artChoirWorld(), "多田武彦 男声合唱の世界"),
+  };
+  return map[name]||"";
+}
+function getCardArt(card){
+  if(card.rarity==="SSR") return getSSRArt(card);
+  if(card.rarity==="SR") return getSRArt(card);
+  if(card.rarity==="R") return getRArt(card);
+  if(card.rarity==="N") return getNArt(card);
+  return "";
+}
 
 const COMPOSER_CARDS=[{"id":1,"name":"グレゴリオ聖歌","rarity":"N","theme":"中世"},{"id":2,"name":"レオニヌス","rarity":"N","theme":"ノートルダム楽派"},{"id":3,"name":"ペロティヌス","rarity":"N","theme":"オルガヌム"},{"id":4,"name":"ギヨーム・ド・マショー","rarity":"N","theme":"アルス・ノヴァ"},{"id":5,"name":"デュファイ","rarity":"N","theme":"ブルゴーニュ楽派"},{"id":6,"name":"オケゲム","rarity":"N","theme":"フランドル楽派"},{"id":7,"name":"ジョスカン・デ・プレ","rarity":"N","theme":"ルネサンス"},{"id":8,"name":"パレストリーナ","rarity":"N","theme":"宗教音楽"},{"id":9,"name":"オルランド・ディ・ラッソ","rarity":"N","theme":"多声合唱"},{"id":10,"name":"トマス・タリス","rarity":"N","theme":"イギリス教会音楽"},{"id":11,"name":"ウィリアム・バード","rarity":"N","theme":"ルネサンス英国"},{"id":12,"name":"モンテヴェルディ","rarity":"N","theme":"初期バロック"},{"id":13,"name":"コレッリ","rarity":"N","theme":"合奏協奏曲"},{"id":14,"name":"ヴィヴァルディ","rarity":"N","theme":"協奏曲"},{"id":15,"name":"テレマン","rarity":"N","theme":"ドイツ・バロック"},{"id":16,"name":"パーセル","rarity":"N","theme":"イギリス・バロック"},{"id":17,"name":"クープラン","rarity":"N","theme":"フランス・バロック"},{"id":18,"name":"ラモー","rarity":"N","theme":"フランス音楽"},{"id":19,"name":"D.スカルラッティ","rarity":"N","theme":"鍵盤音楽"},{"id":20,"name":"J.S.バッハ","rarity":"N","theme":"バロック"},{"id":21,"name":"ヘンデル","rarity":"N","theme":"オラトリオ"},{"id":22,"name":"C.P.E.バッハ","rarity":"N","theme":"前古典派"},{"id":23,"name":"グルック","rarity":"N","theme":"オペラ改革"},{"id":24,"name":"ハイドン","rarity":"N","theme":"古典派"},{"id":25,"name":"モーツァルト","rarity":"N","theme":"古典派"},{"id":26,"name":"ベートーヴェン","rarity":"N","theme":"古典派"},{"id":27,"name":"クレメンティ","rarity":"N","theme":"ピアノ"},{"id":28,"name":"ケルビーニ","rarity":"N","theme":"古典派"},{"id":29,"name":"ウェーバー","rarity":"N","theme":"ドイツ・ロマン派"},{"id":30,"name":"シューベルト","rarity":"N","theme":"歌曲"},{"id":31,"name":"メンデルスゾーン","rarity":"N","theme":"初期ロマン派"},{"id":32,"name":"シューマン","rarity":"N","theme":"ロマン派"},{"id":33,"name":"ショパン","rarity":"N","theme":"ピアノ"},{"id":34,"name":"リスト","rarity":"N","theme":"ヴィルトゥオーゾ"},{"id":35,"name":"ベルリオーズ","rarity":"N","theme":"標題音楽"},{"id":36,"name":"ブラームス","rarity":"N","theme":"ドイツ・ロマン派"},{"id":37,"name":"ワーグナー","rarity":"N","theme":"楽劇"},{"id":38,"name":"ヴェルディ","rarity":"N","theme":"イタリア・オペラ"},{"id":39,"name":"ブルックナー","rarity":"N","theme":"交響曲・宗教曲"},{"id":40,"name":"サン＝サーンス","rarity":"N","theme":"フランス"},{"id":41,"name":"ビゼー","rarity":"N","theme":"オペラ"},{"id":42,"name":"フォーレ","rarity":"N","theme":"フランス"},{"id":43,"name":"フランク","rarity":"N","theme":"後期ロマン派"},{"id":44,"name":"チャイコフスキー","rarity":"N","theme":"ロシア"},{"id":45,"name":"ドヴォルザーク","rarity":"N","theme":"民族主義"},{"id":46,"name":"グリーグ","rarity":"N","theme":"ノルウェー"},{"id":47,"name":"リムスキー＝コルサコフ","rarity":"N","theme":"ロシア"},{"id":48,"name":"ムソルグスキー","rarity":"N","theme":"ロシア"},{"id":49,"name":"マーラー","rarity":"N","theme":"後期ロマン派"},{"id":50,"name":"R.シュトラウス","rarity":"N","theme":"交響詩"},{"id":51,"name":"ドビュッシー","rarity":"N","theme":"印象主義"},{"id":52,"name":"ラヴェル","rarity":"N","theme":"フランス近代"},{"id":53,"name":"シベリウス","rarity":"N","theme":"フィンランド"},{"id":54,"name":"プッチーニ","rarity":"N","theme":"オペラ"},{"id":55,"name":"ラフマニノフ","rarity":"N","theme":"ロシア"},{"id":56,"name":"スクリャービン","rarity":"N","theme":"ロシア近代"},{"id":57,"name":"ホルスト","rarity":"N","theme":"イギリス"},{"id":58,"name":"ヴォーン・ウィリアムズ","rarity":"N","theme":"イギリス"},{"id":59,"name":"サティ","rarity":"N","theme":"フランス"},{"id":60,"name":"エルガー","rarity":"N","theme":"イギリス"},{"id":61,"name":"J.S.バッハ ― カンタータ","rarity":"R","theme":"声楽作品"},{"id":62,"name":"J.S.バッハ ― 受難曲","rarity":"R","theme":"宗教音楽"},{"id":63,"name":"ヘンデル ― 《メサイア》","rarity":"R","theme":"オラトリオ"},{"id":64,"name":"モーツァルト ― 神童","rarity":"R","theme":"生涯"},{"id":65,"name":"モーツァルト ― オペラ","rarity":"R","theme":"歌劇"},{"id":66,"name":"モーツァルト ― 《レクイエム》","rarity":"R","theme":"宗教曲"},{"id":67,"name":"ハイドン ― 交響曲の父","rarity":"R","theme":"古典派"},{"id":68,"name":"ハイドン ― 《天地創造》","rarity":"R","theme":"オラトリオ"},{"id":69,"name":"ベートーヴェン ― 《運命》","rarity":"R","theme":"交響曲"},{"id":70,"name":"ベートーヴェン ― 《第九》","rarity":"R","theme":"合唱付き交響曲"},{"id":71,"name":"シューベルト ― 歌曲王","rarity":"R","theme":"歌曲"},{"id":72,"name":"シューベルト ― 《魔王》","rarity":"R","theme":"歌曲"},{"id":73,"name":"メンデルスゾーン ― 《エリヤ》","rarity":"R","theme":"オラトリオ"},{"id":74,"name":"シューマン ― 詩人の恋","rarity":"R","theme":"歌曲"},{"id":75,"name":"ショパン ― ピアノの詩人","rarity":"R","theme":"ピアノ"},{"id":76,"name":"リスト ― 交響詩","rarity":"R","theme":"標題音楽"},{"id":77,"name":"ブラームス ― 《ドイツ・レクイエム》","rarity":"R","theme":"合唱"},{"id":78,"name":"ワーグナー ― 楽劇","rarity":"R","theme":"オペラ"},{"id":79,"name":"ヴェルディ ― 《レクイエム》","rarity":"R","theme":"合唱"},{"id":80,"name":"ブルックナー ― モテット","rarity":"R","theme":"合唱"},{"id":81,"name":"フォーレ ― 《レクイエム》","rarity":"R","theme":"合唱"},{"id":82,"name":"ドヴォルザーク ― 《スターバト・マーテル》","rarity":"R","theme":"合唱"},{"id":83,"name":"マーラー ― 《復活》","rarity":"R","theme":"交響曲"},{"id":84,"name":"ドビュッシー ― 印象主義","rarity":"R","theme":"近代"},{"id":85,"name":"ラヴェル ― 管弦楽法","rarity":"R","theme":"近代"},{"id":86,"name":"ラフマニノフ ― 《晩祷》","rarity":"R","theme":"合唱"},{"id":87,"name":"シェーンベルク","rarity":"R","theme":"十二音技法"},{"id":88,"name":"ストラヴィンスキー","rarity":"R","theme":"20世紀"},{"id":89,"name":"バルトーク","rarity":"R","theme":"民族音楽"},{"id":90,"name":"プロコフィエフ","rarity":"R","theme":"20世紀"},{"id":91,"name":"ショスタコーヴィチ","rarity":"R","theme":"ソ連"},{"id":92,"name":"ヒンデミット","rarity":"R","theme":"新即物主義"},{"id":93,"name":"メシアン","rarity":"R","theme":"現代音楽"},{"id":94,"name":"プーランク","rarity":"R","theme":"フランス合唱"},{"id":95,"name":"ブリテン","rarity":"R","theme":"イギリス"},{"id":96,"name":"コダーイ","rarity":"R","theme":"合唱教育"},{"id":97,"name":"オルフ","rarity":"R","theme":"《カルミナ・ブラーナ》"},{"id":98,"name":"バーバー","rarity":"R","theme":"アメリカ"},{"id":99,"name":"バーンスタイン","rarity":"R","theme":"アメリカ"},{"id":100,"name":"ペルト","rarity":"R","theme":"合唱・宗教"},{"id":101,"name":"ラウタヴァーラ","rarity":"R","theme":"北欧"},{"id":102,"name":"ラウリゼン","rarity":"R","theme":"現代合唱"},{"id":103,"name":"エリック・ウィテカー","rarity":"R","theme":"現代合唱"},{"id":104,"name":"ヤナーチェク","rarity":"R","theme":"チェコ"},{"id":105,"name":"スヴェーリンク","rarity":"R","theme":"オランダ"},{"id":106,"name":"瀧廉太郎","rarity":"SR","theme":"日本近代音楽"},{"id":107,"name":"山田耕筰","rarity":"SR","theme":"日本歌曲"},{"id":108,"name":"信時潔","rarity":"SR","theme":"日本合唱"},{"id":109,"name":"清水脩","rarity":"SR","theme":"日本合唱"},{"id":110,"name":"高田三郎","rarity":"SR","theme":"日本合唱"},{"id":111,"name":"間宮芳生","rarity":"SR","theme":"日本合唱"},{"id":112,"name":"三善晃","rarity":"SR","theme":"日本合唱"},{"id":113,"name":"池辺晋一郎","rarity":"SR","theme":"日本現代"},{"id":114,"name":"武満徹","rarity":"SR","theme":"日本現代"},{"id":115,"name":"新実徳英","rarity":"SR","theme":"日本合唱"},{"id":116,"name":"木下牧子","rarity":"SR","theme":"日本合唱"},{"id":117,"name":"千原英喜","rarity":"SR","theme":"日本合唱"},{"id":118,"name":"松下耕","rarity":"SR","theme":"日本合唱"},{"id":119,"name":"信長貴富","rarity":"SR","theme":"日本合唱"},{"id":120,"name":"多田武彦","rarity":"SR","theme":"男声合唱"},{"id":121,"name":"多田武彦 ― 《柳河風俗詩》","rarity":"SR","theme":"北原白秋"},{"id":122,"name":"多田武彦 ― 《富士山》","rarity":"SR","theme":"草野心平"},{"id":123,"name":"多田武彦 ― 《中勘助の詩から》","rarity":"SR","theme":"中勘助"},{"id":124,"name":"多田武彦 ― 《雪と花火》","rarity":"SR","theme":"北原白秋"},{"id":125,"name":"多田武彦 ― 《北斗の海》","rarity":"SR","theme":"草野心平"},{"id":126,"name":"多田武彦 ― 《海に寄せる歌》","rarity":"SR","theme":"三好達治"},{"id":127,"name":"多田武彦 ― 《わがふるき日のうた》","rarity":"SR","theme":"三好達治"},{"id":128,"name":"多田武彦 ― 《雨》","rarity":"SR","theme":"複数詩人"},{"id":129,"name":"多田武彦 ― 《蛙》","rarity":"SR","theme":"草野心平"},{"id":130,"name":"多田武彦 ― 《吹雪の街を》","rarity":"SR","theme":"伊藤整"},{"id":131,"name":"多田武彦 ― 《水墨集》","rarity":"SR","theme":"北原白秋"},{"id":132,"name":"多田武彦 ― 《東京景物詩》","rarity":"SR","theme":"北原白秋"},{"id":133,"name":"多田武彦 ― 《中原中也の詩から》","rarity":"SR","theme":"中原中也"},{"id":134,"name":"多田武彦 ― 《白き花鳥図》","rarity":"SR","theme":"北原白秋"},{"id":135,"name":"多田武彦 ― 《月に寄せる歌》","rarity":"SR","theme":"北原白秋"},{"id":136,"name":"J.S.バッハ ― 音楽の父","rarity":"SSR","theme":"特別版"},{"id":137,"name":"モーツァルト ― 永遠の神童","rarity":"SSR","theme":"特別版"},{"id":138,"name":"ベートーヴェン ― 歓喜の歌","rarity":"SSR","theme":"《第九》"},{"id":139,"name":"ブラームス ― 人間のためのレクイエム","rarity":"SSR","theme":"特別版"},{"id":140,"name":"マーラー ― 千人の交響曲","rarity":"SSR","theme":"声楽・交響曲"},{"id":141,"name":"ラフマニノフ ― 夜の祈り","rarity":"SSR","theme":"《晩祷》"},{"id":142,"name":"プーランク ― 20世紀の合唱","rarity":"SSR","theme":"合唱"},{"id":143,"name":"三善晃 ― 日本合唱の巨匠","rarity":"SSR","theme":"特別版"},{"id":144,"name":"高田三郎 ― 《水のいのち》","rarity":"SSR","theme":"日本合唱"},{"id":145,"name":"新実徳英 ― 合唱の世界","rarity":"SSR","theme":"特別版"},{"id":146,"name":"木下牧子 ― 合唱と詩","rarity":"SSR","theme":"特別版"},{"id":147,"name":"信長貴富 ― 現代日本合唱","rarity":"SSR","theme":"特別版"},{"id":148,"name":"多田武彦 ― 北原白秋","rarity":"SSR","theme":"詩人シリーズ"},{"id":149,"name":"多田武彦 ― 草野心平","rarity":"SSR","theme":"詩人シリーズ"},{"id":150,"name":"多田武彦 ― 男声合唱の世界","rarity":"SSR","theme":"コンプリート特別版"}];
 
@@ -741,6 +1562,50 @@ function pullCard(){
   }
   return {card,already,fragments,bonusXp,levelUp,afterLv};
 }
+
+function rarityVisualClass(card){
+  if(card.rarity==="SSR") return "rarity-ssr";
+  if(card.rarity==="SR") return "rarity-sr";
+  if(card.rarity==="R") return "rarity-r";
+  return "rarity-n";
+}
+function rarityBurstLabel(card){
+  if(card.rarity==="SSR") return "SSR!";
+  if(card.rarity==="SR") return "SR!";
+  if(card.rarity==="R") return "R";
+  return "N";
+}
+function highestRarity(results){
+  if(results.some(r=>r.card.rarity==="SSR")) return "SSR";
+  if(results.some(r=>r.card.rarity==="SR")) return "SR";
+  if(results.some(r=>r.card.rarity==="R")) return "R";
+  return "N";
+}
+function startGachaStage(topRarity,count){
+  const stage=$("gachaStage"), textEl=$("gachaStageText"), subEl=$("gachaStageSub");
+  const cls = topRarity==="SSR" ? "rarity-ssr" : topRarity==="SR" ? "rarity-sr" : topRarity==="R" ? "rarity-r" : "";
+  stage.className="gachaStage summoning "+cls;
+  stage.classList.remove("hidden");
+  textEl.textContent = count===10 ? "10連ガチャ演出" : "ガチャ演出";
+  subEl.textContent =
+    topRarity==="SSR" ? "強い輝きが…！" :
+    topRarity==="SR" ? "高レアの気配…！" :
+    topRarity==="R" ? "カードを召喚中…" :
+    "カードを生成中…";
+  $("gachaResult").innerHTML="";
+  $("gachaResult").classList.add("revealing");
+  $("gachaResultDone").textContent="";
+}
+function finishGachaStage(results){
+  const stage=$("gachaStage"), top=highestRarity(results);
+  stage.className="gachaStage " + (top==="SSR" ? "rarity-ssr" : top==="SR" ? "rarity-sr" : top==="R" ? "rarity-r" : "");
+  $("gachaResult").classList.remove("revealing");
+  $("gachaResultDone").textContent =
+    top==="SSR" ? "SSRを獲得しました。" :
+    top==="SR" ? "SR以上を獲得しました。" :
+    top==="R" ? "R以上を獲得しました。" :
+    "結果を表示しました。";
+}
 function cardTileHTML(card, extraClass=""){
   const owned=!!gameData.collection[card.id];
   const name=owned?card.name:"？？？";
@@ -753,10 +1618,16 @@ function cardTileHTML(card, extraClass=""){
     : "";
   const lvBadge=owned?`<div class="levelBadge">${evolved?"EVOLVED":"Lv."+lv}</div>`:"";
   const evoBadge=evolved?`<div class="evolvedBadge">EVOLVED</div>`:"";
-  return `<button class="cardTile ${card.rarity} ${owned?"":"locked"} ${evolved?"evolved":""} ${extraClass}" data-card-id="${card.id}">
+  const art=owned?getCardArt(card):"";
+  const musicIcon=art?"":`<div class="musicIcon">${owned?(evolved?"♫":"♪"):"?"}</div>`;
+  const visualClass=rarityVisualClass(card);
+  const burst=(card.rarity==="R"||card.rarity==="SR"||card.rarity==="SSR")?`<div class="cardBurst">${rarityBurstLabel(card)}</div>`:"";
+  return `<button class="cardTile ${card.rarity} ${visualClass} ${owned?"":"locked"} ${evolved?"evolved":""} ${extraClass}" data-card-id="${card.id}">
+    ${burst}
     ${lvBadge}
     <div class="rarity">${card.rarity} · No.${String(card.id).padStart(3,"0")}</div>
-    <div class="musicIcon">${owned?(evolved?"♫":"♪"):"?"}</div>
+    ${art}
+    ${musicIcon}
     <div class="cardName">${name}</div>
     <div class="cardTheme">${theme}</div>
     ${evoBadge}
@@ -765,18 +1636,26 @@ function cardTileHTML(card, extraClass=""){
 }
 function renderGachaResults(results){
   const box=$("gachaResult");box.innerHTML="";
-  results.forEach(({card,already,fragments,bonusXp,levelUp,afterLv})=>{
-    const wrap=document.createElement("div");
-    wrap.innerHTML=cardTileHTML(card,"gachaFlash");
-    const tile=wrap.firstElementChild;
-    tile.classList.remove("locked");
-    tile.querySelector(".cardName").textContent=card.name;
-    const evo=isEvolved(card.id);
-    tile.querySelector(".cardTheme").textContent=already
-      ? `重複 → かけら +${fragments} / CXP +${bonusXp}${levelUp?` / ${evo?"EVOLVED!":"Lv."+afterLv+"へ！"}`:""}`
-      : "NEW! Lv.1";
-    tile.onclick=()=>showCardDetail(card.id);
-    box.appendChild(tile);
+  startGachaStage(highestRarity(results), results.length);
+  const total=results.length;
+  results.forEach(({card,already,fragments,bonusXp,levelUp,afterLv}, idx)=>{
+    window.setTimeout(()=>{
+      const wrap=document.createElement("div");
+      wrap.className="revealWrap";
+      wrap.innerHTML=cardTileHTML(card,"gachaFlash revealCard "+rarityVisualClass(card));
+      const tile=wrap.firstElementChild;
+      tile.classList.remove("locked");
+      tile.querySelector(".cardName").textContent=card.name;
+      const evo=isEvolved(card.id);
+      tile.querySelector(".cardTheme").textContent=already
+        ? `重複 → かけら +${fragments} / CXP +${bonusXp}${levelUp?` / ${evo?"EVOLVED!":"Lv."+afterLv+"へ！"}`:""}`
+        : "NEW! Lv.1";
+      tile.onclick=()=>showCardDetail(card.id);
+      box.appendChild(tile);
+      if(idx===total-1){
+        window.setTimeout(()=>finishGachaStage(results), 180);
+      }
+    }, 220 + idx*140);
   });
 }
 function doGacha(count){
@@ -785,11 +1664,15 @@ function doGacha(count){
     alert("MPが足りません。");
     return;
   }
+  $("pullOneBtn").disabled=true;
+  $("pullTenBtn").disabled=true;
   gameData.mp-=cost;
   const results=[];
   for(let i=0;i<count;i++)results.push(pullCard());
   saveGame();
   renderGachaResults(results);
+  const delay = 420 + results.length*140;
+  window.setTimeout(()=>renderGameStats(), delay);
 }
 let collectionFilter="ALL";
 function renderCollection(){
@@ -828,10 +1711,18 @@ function showCardDetail(id){
     </div>`;
     action=`<div class="rewardNote">所持済み</div>`;
   }
-  d.innerHTML=`<div class="bigRarity">${card.rarity} · No.${String(card.id).padStart(3,"0")}</div>
-    <div class="bigIcon">${owned?"♫":"?"}</div>
-    <div class="bigName">${owned?card.name:"？？？"}</div>
-    <div class="bigTheme">${owned?card.theme:"未入手カード"}</div>
+  const art=owned?getCardArt(card):"";
+  const bigIcon=art?"":`<div class="bigIcon">${owned?"♫":"?"}</div>`;
+  const visualClass=rarityVisualClass(card);
+  const ribbon=owned?`<div class="detailRarityRibbon">${card.rarity}</div>`:"";
+  d.innerHTML=`<div class="bigCardStage ${visualClass}">
+      ${ribbon}
+      <div class="bigRarity">${card.rarity} · No.${String(card.id).padStart(3,"0")}</div>
+      ${art}
+      ${bigIcon}
+      <div class="bigName">${owned?card.name:"？？？"}</div>
+      <div class="bigTheme">${owned?card.theme:"未入手カード"}</div>
+    </div>
     ${growth}
     <div style="height:10px"></div>${action}`;
   if(!owned && (gameData.fragments||0)>=100){
