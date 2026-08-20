@@ -423,6 +423,79 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
   text-align:center;
 }
 
+
+/* ===== Ver.1.6.0 演奏会モード ===== */
+.concertIntro{padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(127,127,127,.035);font-size:12px;line-height:1.6}
+.concertSelectGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.concertSelectGrid .cardTile{cursor:pointer}
+.concertSelectGrid .cardTile.selected{outline:3px solid var(--accent);transform:translateY(-2px)}
+.concertSelectedBar{position:sticky;bottom:0;z-index:5;margin-top:12px;padding:10px;border:1px solid var(--line);border-radius:13px;background:var(--paper);box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+.concertSelectedList{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.concertChip{padding:5px 8px;border:1px solid var(--line);border-radius:999px;font-size:11px;font-weight:800;background:rgba(127,127,127,.035)}
+.concertResult{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,rgba(127,127,127,.035),transparent)}
+.concertTitle{font-size:20px;font-weight:900;line-height:1.35;text-align:center}.concertRank{font-size:42px;font-weight:1000;text-align:center;margin:8px 0 4px;letter-spacing:.04em}
+.scoreGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}.scoreBox{border:1px solid var(--line);border-radius:11px;padding:8px 5px;text-align:center}.scoreBox span{display:block;font-size:10px;color:var(--muted);font-weight:800}.scoreBox b{display:block;font-size:17px;margin-top:2px}
+.synergyList{margin-top:12px}.synergyItem{padding:8px 10px;border:1px solid var(--line);border-radius:10px;margin-top:6px;font-size:12px;line-height:1.45}.synergyItem b{display:block;margin-bottom:2px}
+.programList{margin-top:12px;padding:10px;border:1px solid var(--line);border-radius:11px}.programLine{font-size:12px;padding:5px 0;border-bottom:1px dashed var(--line)}.programLine:last-child{border-bottom:none}
+.rewardGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.rewardBox{padding:10px;border:1px solid var(--line);border-radius:11px;text-align:center}.rewardBox span{display:block;font-size:10px;color:var(--muted);font-weight:800}.rewardBox b{display:block;font-size:18px;margin-top:3px}
+.concertFilterRow{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.concertFilterRow button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.famePanel{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:11px;font-size:12px}
+@media(max-width:600px){.concertSelectGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.scoreGrid{grid-template-columns:repeat(2,1fr)}.scoreGrid .scoreBox:last-child{grid-column:span 2}}
+
+
+/* ===== Ver.1.7.0 ホール成長 ===== */
+.hallPanel{
+  margin-top:10px;padding:12px 13px;border:1px solid var(--line);
+  border-radius:13px;background:linear-gradient(180deg,rgba(127,127,127,.04),rgba(127,127,127,.015))
+}
+.hallTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.hallName{font-size:16px;font-weight:900;line-height:1.25}
+.hallLevel{
+  flex:none;padding:3px 8px;border:1px solid var(--line);border-radius:999px;
+  font-size:10px;font-weight:900
+}
+.hallMeta{margin-top:5px;font-size:11px;color:var(--muted);line-height:1.45}
+.hallProgress{height:9px;margin-top:9px;border-radius:999px;background:rgba(127,127,127,.13);overflow:hidden}
+.hallProgressFill{height:100%;border-radius:999px;background:currentColor;transition:width .3s ease}
+.hallNext{margin-top:5px;font-size:10px;color:var(--muted)}
+.hallBenefits{margin-top:7px;font-size:10px;line-height:1.45}
+.hallUpgrade{
+  margin:12px 0 0;padding:12px;border:2px solid var(--line);border-radius:13px;
+  text-align:center;font-weight:900;animation:hallUpgradePop .6s cubic-bezier(.2,.9,.2,1) both;
+  background:linear-gradient(180deg,rgba(201,167,77,.11),rgba(127,127,127,.025))
+}
+.venueResult{
+  margin-top:12px;padding:10px 12px;border:1px solid var(--line);border-radius:11px;
+  font-size:12px;line-height:1.55
+}
+.venueResult b{font-size:13px}
+.selloutBadge{
+  display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;
+  border:1px solid var(--line);font-size:10px;font-weight:900
+}
+.occupancyBar{height:7px;margin-top:7px;border-radius:999px;background:rgba(127,127,127,.13);overflow:hidden}
+.occupancyFill{height:100%;border-radius:999px;background:currentColor}
+@keyframes hallUpgradePop{
+  0%{transform:scale(.9);opacity:0}
+  60%{transform:scale(1.04);opacity:1}
+  100%{transform:scale(1);opacity:1}
+}
+
+
+/* ===== Ver.1.8.0 設備強化 ===== */
+.facilityGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+.facilityCard{padding:12px;border:1px solid var(--line);border-radius:13px;background:rgba(127,127,127,.025)}
+.facilityHead{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.facilityName{font-size:15px;font-weight:900}
+.facilityLv{flex:none;padding:3px 8px;border:1px solid var(--line);border-radius:999px;font-size:10px;font-weight:900}
+.facilityDesc{font-size:11px;color:var(--muted);line-height:1.5;margin-top:5px}
+.facilityEffect{font-size:11px;font-weight:800;margin-top:7px}
+.facilityCard button{width:100%;margin-top:9px}
+.facilitySummary{margin-top:10px;padding:10px;border:1px solid var(--line);border-radius:11px;font-size:11px;line-height:1.55}
+.facilityMax{font-size:11px;font-weight:900;margin-top:10px;text-align:center}
+.facilityBoost{margin-top:10px;padding:9px 10px;border:1px dashed var(--line);border-radius:10px;font-size:11px;line-height:1.5}
+@media(max-width:600px){.facilityGrid{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -432,7 +505,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成</div>
     <div class="small">クイズでMPを集め、作曲家カードを育てて進化させる音楽クイズゲーム</div>
   </div>
-  <span class="version">Ver. 1.5.2</span>
+  <span class="version">Ver. 1.8.0</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -494,7 +567,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <div class="gameActions">
       <button class="primary" id="openGachaBtn">作曲家ガチャ</button>
       <button id="openCollectionBtn">カード図鑑</button>
+      <button id="openConcertBtn">演奏会を開く</button>
+      <button id="openFacilityBtn">設備強化</button>
     </div>
+    <div class="famePanel">主催者名声：<b id="homeFame">0</b> ／ 開催回数：<b id="homeConcerts">0</b> ／ 最高評価：<b id="homeBestConcert">-</b></div>
+    <div id="homeHallPanel" class="hallPanel"></div>
     <div class="rewardNote">正解で10 MP。上級はさらに+5 MP。5問・10問連続正解で+20 MP、10問全問正解で+50 MP。</div>
   </div>
 
@@ -561,6 +638,41 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
   <div id="cardDetail" class="cardDetail hidden"></div>
   <div style="height:12px"></div>
   <button id="resetGameBtn">MP・カードデータをリセット</button>
+</section>
+
+
+<section class="card hidden" id="concertCard">
+  <div class="sectionHead"><h2>演奏会モード</h2><button id="concertHomeBtn">ホーム</button></div>
+  <div class="concertIntro">所持カードから3〜4枚を選んで演奏会を企画します。同じ作曲家・作品・詩人・時代・ジャンルなどのつながりでシナジーが発生します。レア度だけでなく、プログラムの意味とカード育成度が高得点の鍵です。</div>
+  <div id="concertHallPanel" class="hallPanel"></div>
+  <div class="concertFilterRow" id="concertFilters">
+    <button class="active" data-filter="ALL">すべて</button><button data-filter="N">N</button><button data-filter="R">R</button><button data-filter="SR">SR</button><button data-filter="SSR">SSR</button><button data-filter="EVOLVED">EVOLVED</button>
+  </div>
+  <div id="concertSelectGrid" class="concertSelectGrid"></div>
+  <div class="concertSelectedBar">
+    <div><b>選択中：<span id="concertSelectedCount">0</span> / 4枚</b>（3枚以上で開催可能）</div>
+    <div id="concertSelectedList" class="concertSelectedList"></div>
+    <div class="row" style="margin-top:9px"><button id="concertClearBtn">選択解除</button><button class="primary" id="holdConcertBtn" disabled>演奏会開催</button></div>
+  </div>
+  <div id="concertResult" class="concertResult hidden"></div>
+</section>
+
+
+<section class="card hidden" id="facilityCard">
+  <div class="sectionHead">
+    <h2>設備強化</h2>
+    <button id="facilityHomeBtn">ホーム</button>
+  </div>
+  <div class="concertIntro">
+    MPを使って演奏会設備を強化します。設備はホールが成長しても引き継がれます。各設備はLv.5まで強化できます。
+  </div>
+  <div class="gameHud" style="margin-top:12px">
+    <div class="gameStat"><span>MP</span><b id="facilityMP">0</b></div>
+    <div class="gameStat"><span>設備総Lv</span><b id="facilityTotalLv">0 / 20</b></div>
+    <div class="gameStat"><span>設備ランク</span><b id="facilityRank">D</b></div>
+  </div>
+  <div id="facilityGrid" class="facilityGrid"></div>
+  <div id="facilitySummary" class="facilitySummary"></div>
 </section>
 
 <section class="card hidden" id="quizCard">
@@ -1377,7 +1489,13 @@ function defaultGameData(){
     sinceSSR:0,
     totalMpEarned:0,
     duplicates:0,
-    cardXp:{}
+    cardXp:{},
+    fame:0,
+    concertCount:0,
+    bestConcertScore:0,
+    bestConcertRank:"-",
+    cardConcertUses:{},
+    facilities:{sound:0,lighting:0,stage:0,seating:0}
   };
 }
 let gameData=(()=>{
@@ -1388,6 +1506,12 @@ let gameData=(()=>{
 })();
 if(!gameData.collection||typeof gameData.collection!=="object")gameData.collection={};
 if(!gameData.cardXp||typeof gameData.cardXp!=="object")gameData.cardXp={};
+if(!gameData.cardConcertUses||typeof gameData.cardConcertUses!=="object")gameData.cardConcertUses={};
+if(!gameData.facilities||typeof gameData.facilities!=="object")gameData.facilities={sound:0,lighting:0,stage:0,seating:0};
+for(const k of ["sound","lighting","stage","seating"]){
+  if(!Number.isFinite(Number(gameData.facilities[k])))gameData.facilities[k]=0;
+  gameData.facilities[k]=Math.max(0,Math.min(5,Number(gameData.facilities[k]||0)));
+}
 
 function saveGame(){
   localStorage.setItem("ccq_game_v1",JSON.stringify(gameData));
@@ -1540,6 +1664,106 @@ function addMP(amount){
   gameData.totalMpEarned=(gameData.totalMpEarned||0)+amount;
   saveGame();
 }
+
+const HALLS=[
+  {level:1,name:"音楽サロン",fame:0,capacity:120,mpBonus:0},
+  {level:2,name:"小ホール",fame:50,capacity:300,mpBonus:10},
+  {level:3,name:"市民会館ホール",fame:150,capacity:600,mpBonus:20},
+  {level:4,name:"コンサートホール",fame:350,capacity:1000,mpBonus:35},
+  {level:5,name:"大ホール",fame:700,capacity:1800,mpBonus:50},
+  {level:6,name:"シンフォニーホール",fame:1200,capacity:3000,mpBonus:75},
+  {level:7,name:"国際音楽祭メインホール",fame:2000,capacity:5000,mpBonus:100}
+];
+function hallForFame(fame){
+  const f=Number(fame||0);
+  let hall=HALLS[0];
+  for(const h of HALLS)if(f>=h.fame)hall=h;
+  return hall;
+}
+function nextHallForFame(fame){
+  const current=hallForFame(fame);
+  return HALLS.find(h=>h.level===current.level+1)||null;
+}
+function hallPanelHTML(fame){
+  const current=hallForFame(fame), next=nextHallForFame(fame);
+  let pct=100,nextText="最高ランクのホールです。";
+  if(next){
+    const span=next.fame-current.fame;
+    pct=Math.max(0,Math.min(100,Math.round(((fame-current.fame)/span)*100)));
+    nextText=`次：${next.name}（名声 ${next.fame.toLocaleString()}）まであと ${Math.max(0,next.fame-fame).toLocaleString()}`;
+  }
+  return `<div class="hallTop">
+      <div><div class="hallName">${current.name}</div>
+      <div class="hallMeta">収容 ${current.capacity.toLocaleString()}人 ／ 会場ボーナス +${current.mpBonus} MP</div></div>
+      <div class="hallLevel">HALL Lv.${current.level}</div>
+    </div>
+    <div class="hallProgress"><div class="hallProgressFill" style="width:${pct}%"></div></div>
+    <div class="hallNext">${nextText}</div>
+    <div class="hallBenefits">満員になると追加で <b>+15 MP / +2 名声</b>。名声が一定値に達すると次のホールへ自動昇格します。</div>`;
+}
+function renderHallStats(){
+  const fame=Number(gameData.fame||0);
+  if($("homeHallPanel"))$("homeHallPanel").innerHTML=hallPanelHTML(fame);
+  if($("concertHallPanel"))$("concertHallPanel").innerHTML=hallPanelHTML(fame);
+}
+
+
+const FACILITY_DEFS={
+  sound:{name:"音響設備",desc:"ホールの響きと明瞭さを改善します。",effect:"芸術性",perLv:2},
+  lighting:{name:"照明設備",desc:"舞台演出を強化し、演奏会の注目度を高めます。",effect:"話題性",perLv:2},
+  stage:{name:"舞台設備",desc:"舞台環境を整え、演奏会の完成度を高めます。",effect:"完成度",perLv:2},
+  seating:{name:"客席設備",desc:"快適性と集客力を高め、観客需要を増やします。",effect:"観客需要",perLv:5}
+};
+const FACILITY_COSTS=[0,150,300,550,900,1400];
+
+function facilityLevel(key){return Math.max(0,Math.min(5,Number(gameData.facilities?.[key]||0)))}
+function facilityTotalLevel(){return ["sound","lighting","stage","seating"].reduce((s,k)=>s+facilityLevel(k),0)}
+function facilityRank(){const lv=facilityTotalLevel();if(lv>=20)return "S";if(lv>=16)return "A";if(lv>=11)return "B";if(lv>=6)return "C";return "D"}
+function facilityUpgradeCost(key){const lv=facilityLevel(key);return lv>=5?null:FACILITY_COSTS[lv+1]}
+function facilityEffectText(key){
+  const lv=facilityLevel(key),def=FACILITY_DEFS[key];
+  return key==="seating"?`観客需要 +${lv*def.perLv}%`:`${def.effect} +${lv*def.perLv}点`;
+}
+function facilitySummaryHTML(){
+  return `現在の設備補正：<br>
+  ・芸術性 +${facilityLevel("sound")*2}点<br>
+  ・話題性 +${facilityLevel("lighting")*2}点<br>
+  ・完成度 +${facilityLevel("stage")*2}点<br>
+  ・観客需要 +${facilityLevel("seating")*5}%<br>
+  <span class="rewardNote">設備補正後も各評価項目は100点を上限とします。</span>`;
+}
+function renderFacilities(){
+  const grid=$("facilityGrid");if(!grid)return;
+  grid.innerHTML=Object.entries(FACILITY_DEFS).map(([key,def])=>{
+    const lv=facilityLevel(key),cost=facilityUpgradeCost(key);
+    const action=lv>=5
+      ? `<div class="facilityMax">MAX</div>`
+      : `<button class="primary" data-upgrade-facility="${key}" ${(gameData.mp||0)<cost?"disabled":""}>Lv.${lv+1}へ強化　${cost.toLocaleString()} MP</button>`;
+    return `<div class="facilityCard">
+      <div class="facilityHead"><div class="facilityName">${def.name}</div><div class="facilityLv">Lv.${lv} / 5</div></div>
+      <div class="facilityDesc">${def.desc}</div>
+      <div class="facilityEffect">${facilityEffectText(key)}</div>
+      ${action}
+    </div>`;
+  }).join("");
+  grid.querySelectorAll("[data-upgrade-facility]").forEach(btn=>btn.onclick=()=>upgradeFacility(btn.dataset.upgradeFacility));
+  if($("facilityMP"))$("facilityMP").textContent=(gameData.mp||0).toLocaleString();
+  if($("facilityTotalLv"))$("facilityTotalLv").textContent=`${facilityTotalLevel()} / 20`;
+  if($("facilityRank"))$("facilityRank").textContent=facilityRank();
+  if($("facilitySummary"))$("facilitySummary").innerHTML=facilitySummaryHTML();
+}
+function upgradeFacility(key){
+  if(!FACILITY_DEFS[key])return;
+  const lv=facilityLevel(key),cost=facilityUpgradeCost(key);
+  if(lv>=5||cost===null)return;
+  if((gameData.mp||0)<cost){alert("MPが足りません。");return}
+  gameData.mp-=cost;
+  gameData.facilities[key]=lv+1;
+  saveGame();
+  renderFacilities();
+}
+function showFacility(){stopTimer();showScreen("facilityCard");renderFacilities()}
+
 function renderGameStats(){
   const owned=ownedCount(), mp=gameData.mp||0, fr=gameData.fragments||0;
   ["homeMP","gachaMP"].forEach(id=>{const e=$(id);if(e)e.textContent=mp.toLocaleString()});
@@ -1548,6 +1772,10 @@ function renderGameStats(){
   if($("collectionCount"))$("collectionCount").textContent=`${owned} / 150`;
   if($("collectionPulls"))$("collectionPulls").textContent=(gameData.pulls||0).toLocaleString();
   if($("evolvedCount"))$("evolvedCount").textContent=evolvedCount().toLocaleString();
+  if($("homeFame"))$("homeFame").textContent=(gameData.fame||0).toLocaleString();
+  if($("homeConcerts"))$("homeConcerts").textContent=(gameData.concertCount||0).toLocaleString();
+  if($("facilityMP"))$("facilityMP").textContent=(gameData.mp||0).toLocaleString();
+  if($("homeBestConcert"))$("homeBestConcert").textContent=gameData.bestConcertRank||"-";
   if($("pityInfo")){
     const srLeft=Math.max(1,30-(gameData.sinceSR||0));
     const ssrLeft=Math.max(1,100-(gameData.sinceSSR||0));
@@ -1555,6 +1783,7 @@ function renderGameStats(){
   }
   if($("pullOneBtn"))$("pullOneBtn").disabled=mp<GACHA_COST;
   if($("pullTenBtn"))$("pullTenBtn").disabled=mp<GACHA_TEN_COST;
+  renderHallStats();
 }
 function weightedRarity(){
   // 100回天井を最優先
@@ -1807,8 +2036,142 @@ function showCardDetail(id){
     };
   }
 }
+
+// ===== 演奏会モード =====
+let concertSelected=[];
+let concertFilter="ALL";
+const CONCERT_ERA={
+"グレゴリオ聖歌":"中世","レオニヌス":"中世","ペロティヌス":"中世","ギヨーム・ド・マショー":"中世","デュファイ":"ルネサンス","オケゲム":"ルネサンス","ジョスカン・デ・プレ":"ルネサンス","パレストリーナ":"ルネサンス","オルランド・ディ・ラッソ":"ルネサンス","トマス・タリス":"ルネサンス","ウィリアム・バード":"ルネサンス","スヴェーリンク":"ルネサンス",
+"モンテヴェルディ":"バロック","コレッリ":"バロック","ヴィヴァルディ":"バロック","テレマン":"バロック","パーセル":"バロック","クープラン":"バロック","ラモー":"バロック","D.スカルラッティ":"バロック","J.S.バッハ":"バロック","ヘンデル":"バロック","C.P.E.バッハ":"前古典派","グルック":"古典派","ハイドン":"古典派","モーツァルト":"古典派","ベートーヴェン":"古典派","クレメンティ":"古典派","ケルビーニ":"古典派",
+"ウェーバー":"ロマン派","シューベルト":"ロマン派","メンデルスゾーン":"ロマン派","シューマン":"ロマン派","ショパン":"ロマン派","リスト":"ロマン派","ベルリオーズ":"ロマン派","ブラームス":"ロマン派","ワーグナー":"ロマン派","ヴェルディ":"ロマン派","ブルックナー":"ロマン派","サン＝サーンス":"ロマン派","ビゼー":"ロマン派","フォーレ":"ロマン派","フランク":"ロマン派","チャイコフスキー":"ロマン派","ドヴォルザーク":"ロマン派","グリーグ":"ロマン派","リムスキー＝コルサコフ":"ロマン派","ムソルグスキー":"ロマン派","マーラー":"後期ロマン派","R.シュトラウス":"後期ロマン派",
+"ドビュッシー":"近代","ラヴェル":"近代","シベリウス":"近代","プッチーニ":"近代","ラフマニノフ":"近代","スクリャービン":"近代","ホルスト":"近代","ヴォーン・ウィリアムズ":"近代","サティ":"近代","エルガー":"近代",
+"シェーンベルク":"20世紀","ストラヴィンスキー":"20世紀","バルトーク":"20世紀","プロコフィエフ":"20世紀","ショスタコーヴィチ":"20世紀","ヒンデミット":"20世紀","メシアン":"20世紀","プーランク":"20世紀","ブリテン":"20世紀","コダーイ":"20世紀","オルフ":"20世紀","バーバー":"20世紀","バーンスタイン":"20世紀","ヤナーチェク":"20世紀","ペルト":"現代","ラウタヴァーラ":"現代","ラウリゼン":"現代","エリック・ウィテカー":"現代",
+"瀧廉太郎":"日本近代","山田耕筰":"日本近代","信時潔":"日本近代","清水脩":"日本現代","高田三郎":"日本現代","間宮芳生":"日本現代","三善晃":"日本現代","池辺晋一郎":"日本現代","武満徹":"日本現代","新実徳英":"日本現代","木下牧子":"日本現代","千原英喜":"日本現代","松下耕":"日本現代","信長貴富":"日本現代","多田武彦":"日本現代"};
+const CONCERT_COUNTRY={
+"トマス・タリス":"イギリス","ウィリアム・バード":"イギリス","パーセル":"イギリス","ブリテン":"イギリス","ホルスト":"イギリス","ヴォーン・ウィリアムズ":"イギリス","エルガー":"イギリス",
+"J.S.バッハ":"ドイツ","ヘンデル":"ドイツ","C.P.E.バッハ":"ドイツ","テレマン":"ドイツ","ベートーヴェン":"ドイツ","ウェーバー":"ドイツ","メンデルスゾーン":"ドイツ","シューマン":"ドイツ","ブラームス":"ドイツ","ワーグナー":"ドイツ","R.シュトラウス":"ドイツ","ヒンデミット":"ドイツ","オルフ":"ドイツ",
+"クープラン":"フランス","ラモー":"フランス","ベルリオーズ":"フランス","サン＝サーンス":"フランス","ビゼー":"フランス","フォーレ":"フランス","フランク":"フランス","ドビュッシー":"フランス","ラヴェル":"フランス","サティ":"フランス","メシアン":"フランス","プーランク":"フランス",
+"コレッリ":"イタリア","ヴィヴァルディ":"イタリア","D.スカルラッティ":"イタリア","モンテヴェルディ":"イタリア","ヴェルディ":"イタリア","プッチーニ":"イタリア","パレストリーナ":"イタリア",
+"ハイドン":"オーストリア","モーツァルト":"オーストリア","シューベルト":"オーストリア","ブルックナー":"オーストリア","マーラー":"オーストリア","シェーンベルク":"オーストリア",
+"チャイコフスキー":"ロシア","リムスキー＝コルサコフ":"ロシア","ムソルグスキー":"ロシア","ラフマニノフ":"ロシア","スクリャービン":"ロシア","ストラヴィンスキー":"ロシア","プロコフィエフ":"ロシア","ショスタコーヴィチ":"ロシア",
+"ドヴォルザーク":"チェコ","ヤナーチェク":"チェコ","グリーグ":"ノルウェー","シベリウス":"フィンランド","ラウタヴァーラ":"フィンランド","ショパン":"ポーランド","リスト":"ハンガリー","バルトーク":"ハンガリー","コダーイ":"ハンガリー","ペルト":"エストニア","バーバー":"アメリカ","バーンスタイン":"アメリカ","ラウリゼン":"アメリカ","エリック・ウィテカー":"アメリカ",
+"瀧廉太郎":"日本","山田耕筰":"日本","信時潔":"日本","清水脩":"日本","高田三郎":"日本","間宮芳生":"日本","三善晃":"日本","池辺晋一郎":"日本","武満徹":"日本","新実徳英":"日本","木下牧子":"日本","千原英喜":"日本","松下耕":"日本","信長貴富":"日本","多田武彦":"日本"};
+
+function concertComposer(card){return String(card.name||"").split(" ― ")[0].trim()}
+function concertMeta(card){
+ const composer=concertComposer(card), joined=(card.name+" "+(card.theme||"")), tags=[], poets=[];
+ const add=t=>{if(!tags.includes(t))tags.push(t)};
+ if(/合唱|カンタータ|受難曲|レクイエム|晩祷|オラトリオ|メサイア|エリヤ|モテット/.test(joined))add("合唱");
+ if(/多田武彦|男声合唱/.test(joined))add("男声合唱"); if(/オペラ|楽劇|歌劇/.test(joined))add("オペラ"); if(/ピアノ|鍵盤/.test(joined))add("ピアノ");
+ if(/宗教|レクイエム|受難曲|教会|晩祷|メサイア|エリヤ|モテット/.test(joined))add("宗教音楽"); if(/交響曲|第九|運命|復活/.test(joined))add("交響曲"); if(/歌曲|詩人の恋|魔王/.test(joined))add("歌曲");
+ if(/海|波/.test(joined))add("海"); if(/山|富士/.test(joined))add("山"); if(/月|夜/.test(joined))add("夜"); if(/雨|雪|水/.test(joined))add("水"); if(/星|宇宙|北斗/.test(joined))add("星空");
+ if(/富士山|北斗の海|蛙|草野心平/.test(card.name))poets.push("草野心平");
+ if(/柳河風俗詩|雪と花火|水墨集|東京景物詩|白き花鳥図|月に寄せる歌|北原白秋/.test(card.name))poets.push("北原白秋");
+ if(/海に寄せる歌|わがふるき日のうた/.test(card.name))poets.push("三好達治"); if(/中原中也/.test(card.name))poets.push("中原中也"); if(/中勘助/.test(card.name))poets.push("中勘助"); if(/吹雪の街を/.test(card.name))poets.push("伊藤整");
+ return {composer,era:CONCERT_ERA[composer]||"",country:CONCERT_COUNTRY[composer]||"",tags,poets};
+}
+function pairCohesion(a,b){const A=concertMeta(a),B=concertMeta(b);let p=0;if(A.composer===B.composer)p+=30;if(A.poets.some(x=>B.poets.includes(x)))p+=25;if(A.tags.some(x=>B.tags.includes(x)))p+=15;if(A.era&&A.era===B.era)p+=10;if(A.country&&A.country===B.country)p+=8;if(A.tags.includes("男声合唱")&&B.tags.includes("男声合唱"))p+=8;return Math.min(100,p)}
+function cohesionScore(cards){let sum=0,n=0;for(let i=0;i<cards.length;i++)for(let j=i+1;j<cards.length;j++){sum+=pairCohesion(cards[i],cards[j]);n++}return n?Math.min(100,Math.round(sum/n*1.55)):0}
+function artistryScore(cards){const base={N:40,R:55,SR:70,SSR:85};const raw=Math.round(cards.reduce((s,c)=>s+Math.min(100,base[c.rarity]+(isEvolved(c.id)?10:0)),0)/cards.length);return Math.min(100,raw+facilityLevel("sound")*2)}
+function completenessScore(cards){const raw=Math.round(cards.reduce((s,c)=>s+cardLevel(c.id)*10,0)/cards.length);return Math.min(100,raw+facilityLevel("stage")*2)}
+function diversityScore(cards){const m=cards.map(concertMeta),ratio=fn=>new Set(m.map(fn).filter(Boolean)).size/cards.length;const tags=new Set(m.flatMap(x=>x.tags)).size/Math.max(1,cards.length);return Math.max(20,Math.min(100,Math.round((ratio(x=>x.composer)+ratio(x=>x.era)+ratio(x=>x.country)+Math.min(1,tags))/4*100)))}
+function buzzScore(cards,synergies){let v=20;for(const c of cards){if(c.rarity==="R")v+=5;else if(c.rarity==="SR")v+=10;else if(c.rarity==="SSR")v+=20;if(isEvolved(c.id))v+=10;if(!(gameData.cardConcertUses?.[c.id]))v+=5}if(new Set(cards.map(concertComposer)).size===cards.length)v+=5;if(synergies.length)v+=10;v+=facilityLevel("lighting")*2;return Math.min(100,v)}
+function has(cards,re){return cards.some(c=>re.test(c.name))} function countComposer(cards,n){return cards.filter(c=>concertComposer(c)===n).length} function countPoet(cards,p){return cards.filter(c=>concertMeta(c).poets.includes(p)).length} function syn(name,pts,why){return {name,pts,why}}
+function detectSynergies(cards){
+ const out=[], comps={}; cards.forEach(c=>{const k=concertComposer(c);comps[k]=(comps[k]||0)+1});
+ Object.entries(comps).forEach(([k,n])=>{if(n===2)out.push(syn(`${k}特集`,8,`${k}のカード2枚`));if(n===3)out.push(syn(`${k}個展`,18,`${k}のカード3枚`));if(n>=4)out.push(syn(`オール・${k}`,32,`${k}のカード4枚`))});
+ ["草野心平","北原白秋","三好達治","中原中也","中勘助","伊藤整"].forEach(p=>{const n=countPoet(cards,p);if(n===2)out.push(syn("詩の響き",8,`${p}のカード2枚`));if(n>=3)out.push(syn(`${p}特集`,20,`${p}のカード${n}枚`))});
+ const metas=cards.map(concertMeta),sameEra=metas.every(x=>x.era&&x.era===metas[0].era),sameCountry=metas.every(x=>x.country&&x.country===metas[0].country),diffEra=new Set(metas.map(x=>x.era).filter(Boolean)).size===cards.length;
+ if(cards.length>=3&&sameEra)out.push(syn("時代を聴く",10,`${metas[0].era}で統一`)); if(cards.length>=3&&sameCountry)out.push(syn("音楽紀行",10,`${metas[0].country}で統一`)); if(cards.length===3&&diffEra)out.push(syn("時代を超えて",12,"3枚すべて異なる時代")); if(cards.length===4&&diffEra)out.push(syn("音楽史をめぐる旅",22,"4枚すべて異なる時代"));
+ if(cards.length===4&&new Set(cards.map(c=>c.rarity)).size===4)out.push(syn("四つの輝き",15,"N・R・SR・SSRを各1枚")); const evo=cards.filter(c=>isEvolved(c.id)).length;if(evo>=2)out.push(syn("熟成された響き",12,`EVOLVED ${evo}枚`));if(evo===4)out.push(syn("究極のプログラム",30,"全カードEVOLVED"));
+ if(countComposer(cards,"J.S.バッハ")>=3&&has(cards,/カンタータ/)&&has(cards,/受難曲/))out.push(syn("バッハ声楽の世界",28,"バッハ＋カンタータ＋受難曲"));
+ if(countComposer(cards,"J.S.バッハ")===4&&has(cards,/音楽の父/))out.push(syn("バッハ・フェスティバル",45,"バッハ4枚の特別編成"));
+ if(countComposer(cards,"モーツァルト")>=3&&has(cards,/オペラ/)&&has(cards,/レクイエム/))out.push(syn("モーツァルト・ガラ",42,"オペラとレクイエムを含むモーツァルト特集"));
+ if(countComposer(cards,"ベートーヴェン")>=3&&has(cards,/運命/)&&has(cards,/第九/))out.push(syn("ベートーヴェン交響世界",28,"《運命》と《第九》"));
+ if(has(cards,/モーツァルト.*レクイエム/)&&has(cards,/ヴェルディ.*レクイエム/)&&has(cards,/フォーレ.*レクイエム/))out.push(syn(cards.length===4&&has(cards,/ブラームス.*レクイエム/)?"レクイエムの諸相":"三つのレクイエム",cards.length===4?48:32,"複数のレクイエム作品"));
+ if(has(cards,/ドビュッシー/)&&has(cards,/ラヴェル/)&&has(cards,/フォーレ/))out.push(syn(cards.length===4&&has(cards,/プーランク/)?"フランス音楽祭":"フランスの響き",cards.length===4?38:25,"フランスの作曲家群"));
+ if(has(cards,/シェーンベルク/)&&has(cards,/ストラヴィンスキー/)&&has(cards,/バルトーク/))out.push(syn(cards.length===4&&has(cards,/メシアン/)?"20世紀音楽展":"20世紀への扉",cards.length===4?40:27,"20世紀音楽の多様な展開"));
+ if(has(cards,/高田三郎/)&&has(cards,/水のいのち/))out.push(syn("高田三郎と水のいのち",22,"高田三郎＋《水のいのち》"));
+ if(has(cards,/三善晃/)&&countComposer(cards,"三善晃")>=2)out.push(syn("三善晃特集",18,"三善晃カード2枚"));if(has(cards,/信長貴富/)&&countComposer(cards,"信長貴富")>=2)out.push(syn("信長貴富の合唱世界",18,"信長貴富カード2枚"));
+ const tada=countComposer(cards,"多田武彦");if(tada>=2)out.push(syn(tada>=4?"オール多田武彦":tada===3?"多田武彦演奏会":"多田武彦作品展",tada>=4?38:tada===3?24:12,`多田武彦カード${tada}枚`));
+ if(has(cards,/富士山/)&&has(cards,/北斗の海/)&&has(cards,/蛙/))out.push(syn("草野心平の詩",30,"《富士山》《北斗の海》《蛙》"));if(countPoet(cards,"草野心平")>=3&&has(cards,/多田武彦 ― 草野心平/))out.push(syn("草野心平×多田武彦",48,"草野心平作品＋SSR"));
+ if(countPoet(cards,"北原白秋")>=3)out.push(syn(has(cards,/多田武彦 ― 北原白秋/)?"北原白秋×多田武彦":"白秋を歌う",has(cards,/多田武彦 ― 北原白秋/)?45:28,"北原白秋の作品群"));
+ if(has(cards,/海に寄せる歌/)&&has(cards,/わがふるき日のうた/))out.push(syn("三好達治の詩",20,"《海に寄せる歌》《わがふるき日のうた》")); if(has(cards,/雨/)&&has(cards,/雪と花火/)&&has(cards,/吹雪の街を/))out.push(syn("雨・雪・風",24,"自然現象を題材にした3作品")); if(has(cards,/富士山/)&&has(cards,/北斗の海/)&&has(cards,/海に寄せる歌/))out.push(syn("山と海",24,"山と海をめぐるプログラム"));if(has(cards,/月に寄せる歌/)&&has(cards,/北斗の海/))out.push(syn("夜空を歌う",16,"月と北斗七星"));
+ const tc=t=>metas.filter(m=>m.tags.includes(t)).length; if(tc("合唱")>=3)out.push(syn("合唱の夕べ",18,"合唱系カード3枚以上"));if(tc("男声合唱")>=3)out.push(syn("男声合唱祭",22,"男声合唱系カード3枚以上"));if(tc("オペラ")>=3)out.push(syn("オペラ・ガラ",22,"オペラ系カード3枚以上"));if(tc("ピアノ")>=3)out.push(syn("ピアノ・フェスティバル",20,"ピアノ系カード3枚以上"));if(tc("夜")>=2)out.push(syn("月夜の演奏会",10,"夜・月のカード2枚以上"));if(tc("海")>=3)out.push(syn("海を聴く",18,"海・波カード3枚以上"));if(tc("山")>=3)out.push(syn("山の音楽祭",18,"山カード3枚以上"));if(tc("水")>=3)out.push(syn("水の記憶",20,"雨・雪・水カード3枚以上"));if(tc("星空")>=3)out.push(syn("星々の音楽",20,"星・宇宙カード3枚以上"));if(tc("宗教音楽")>=3)out.push(syn("聖堂に響く歌",22,"宗教音楽系3枚以上"));
+ const best={};out.forEach(x=>{if(!best[x.name]||best[x.name].pts<x.pts)best[x.name]=x});return Object.values(best);
+}
+function concertRank(score,synergies){if(score>=95&&synergies.length)return "SSS";if(score>=90)return "SS";if(score>=80)return "S";if(score>=70)return "A";if(score>=60)return "B";return "C"}
+function concertTitle(cards,synergies){const comps=cards.map(concertComposer),counts={};comps.forEach(x=>counts[x]=(counts[x]||0)+1);const topComp=Object.entries(counts).sort((a,b)=>b[1]-a[1])[0];if(topComp&&topComp[1]===cards.length)return `オール・${topComp[0]} 演奏会`;const top=[...synergies].sort((a,b)=>b.pts-a.pts)[0];if(top)return top.name;if(topComp&&topComp[1]>=2)return `${topComp[0]}を中心とした演奏会`;return "時代をつなぐカード・コンサート"}
+function concertRewards(score,rank,synergyPts){
+  const currentFame=Number(gameData.fame||0),hall=hallForFame(currentFame);
+  const baseFame={C:3,B:6,A:10,S:16,SS:24,SSS:35}[rank]||3;
+  const baseMp={C:60,B:90,A:130,S:180,SS:250,SSS:350}[rank]||60;
+  const seatingMultiplier=1+facilityLevel("seating")*.05;
+  const demand=Math.max(30,Math.round((50+score*5+synergyPts*3+currentFame*.45)*seatingMultiplier));
+  const audience=Math.min(demand,hall.capacity);
+  const sellout=demand>=hall.capacity;
+  const occupancy=Math.min(100,Math.round(audience/hall.capacity*100));
+  const selloutMp=sellout?15:0,selloutFame=sellout?2:0;
+  return {
+    audience,demand,occupancy,sellout,hall,
+    fame:baseFame+selloutFame,
+    mp:baseMp+Math.round(synergyPts*1.5)+hall.mpBonus+selloutMp,
+    hallMpBonus:hall.mpBonus,
+    selloutMp,selloutFame
+  };
+}
+function calculateConcert(cards){const synergies=detectSynergies(cards),synergyPts=synergies.reduce((s,x)=>s+x.pts,0),cohesion=cohesionScore(cards),artistry=artistryScore(cards),completeness=completenessScore(cards),diversity=diversityScore(cards),buzz=buzzScore(cards,synergies),synergyBonus=Math.min(15,synergyPts/4),total=Math.min(100,Math.round((cohesion*.35+artistry*.15+completeness*.20+diversity*.05+buzz*.10+synergyBonus)*10)/10),rank=concertRank(total,synergies);return {cohesion,artistry,completeness,diversity,buzz,synergies,synergyPts,synergyBonus,total,rank,rewards:concertRewards(total,rank,synergyPts),title:concertTitle(cards,synergies)}}
+function renderConcertCards(){const grid=$("concertSelectGrid");if(!grid)return;let cards=COMPOSER_CARDS.filter(c=>!!gameData.collection[c.id]);if(concertFilter==="EVOLVED")cards=cards.filter(c=>isEvolved(c.id));else if(concertFilter!=="ALL")cards=cards.filter(c=>c.rarity===concertFilter);if(!cards.length)grid.innerHTML='<div class="rewardNote" style="grid-column:1/-1">該当する所持カードがありません。</div>';else{grid.innerHTML=cards.map(c=>cardTileHTML(c,concertSelected.includes(c.id)?"selected":"")).join("");grid.querySelectorAll("[data-card-id]").forEach(el=>el.onclick=()=>toggleConcertCard(Number(el.dataset.cardId)))}renderConcertSelection()}
+function renderConcertSelection(){$("concertSelectedCount").textContent=concertSelected.length;$("concertSelectedList").innerHTML=concertSelected.map(id=>{const c=COMPOSER_CARDS.find(x=>x.id===id);return `<span class="concertChip">${c?c.name:""}</span>`}).join("");$("holdConcertBtn").disabled=concertSelected.length<3||concertSelected.length>4}
+function toggleConcertCard(id){const i=concertSelected.indexOf(id);if(i>=0)concertSelected.splice(i,1);else{if(concertSelected.length>=4){alert("演奏会に選べるカードは最大4枚です。");return}concertSelected.push(id)}renderConcertCards()}
+function clearConcertSelection(){concertSelected=[];$("concertResult").classList.add("hidden");renderConcertCards()}
+function showConcert(){stopTimer();showScreen("concertCard");concertSelected=[];concertFilter="ALL";$("concertFilters").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.filter==="ALL"));$("concertResult").classList.add("hidden");renderHallStats();renderConcertCards()}
+function holdConcert(){
+  if(concertSelected.length<3||concertSelected.length>4)return;
+  const cards=concertSelected.map(id=>COMPOSER_CARDS.find(c=>c.id===id)).filter(Boolean);
+  const fameBefore=Number(gameData.fame||0),hallBefore=hallForFame(fameBefore),r=calculateConcert(cards);
+  gameData.mp=(gameData.mp||0)+r.rewards.mp;
+  gameData.totalMpEarned=(gameData.totalMpEarned||0)+r.rewards.mp;
+  gameData.fame=fameBefore+r.rewards.fame;
+  gameData.concertCount=(gameData.concertCount||0)+1;
+  if(r.total>(gameData.bestConcertScore||0)){gameData.bestConcertScore=r.total;gameData.bestConcertRank=r.rank}
+  cards.forEach(c=>gameData.cardConcertUses[c.id]=(gameData.cardConcertUses[c.id]||0)+1);
+  const hallAfter=hallForFame(gameData.fame),hallUpgraded=hallAfter.level>hallBefore.level;
+  saveGame();
+
+  const result=$("concertResult");result.classList.remove("hidden");
+  const upgrade=hallUpgraded?`<div class="hallUpgrade">HALL UP!<br>${hallBefore.name} → ${hallAfter.name}<br><span style="font-size:11px">収容 ${hallAfter.capacity.toLocaleString()}人 / 会場ボーナス +${hallAfter.mpBonus} MP</span></div>`:"";
+  result.innerHTML=`<div class="concertTitle">${r.title}</div>
+    <div class="concertRank">${r.rank}</div>
+    <div class="rewardNote" style="text-align:center">総合評価 ${r.total}点 ／ シナジーPt ${r.synergyPts} ／ シナジー加点 +${r.synergyBonus.toFixed(1)}</div>
+    ${upgrade}
+    <div class="venueResult">
+      <b>会場：${r.rewards.hall.name}</b>${r.rewards.sellout?'<span class="selloutBadge">満員御礼</span>':""}<br>
+      観客 ${r.rewards.audience.toLocaleString()} / ${r.rewards.hall.capacity.toLocaleString()}人（稼働率 ${r.rewards.occupancy}%）
+      <div class="occupancyBar"><div class="occupancyFill" style="width:${r.rewards.occupancy}%"></div></div>
+      <div class="rewardNote">会場ボーナス +${r.rewards.hallMpBonus} MP${r.rewards.sellout?` ／ 満員ボーナス +${r.rewards.selloutMp} MP・+${r.rewards.selloutFame} 名声`:""}</div>
+    </div>
+    <div class="facilityBoost">設備補正：音響 +${facilityLevel("sound")*2} 芸術性 ／ 照明 +${facilityLevel("lighting")*2} 話題性 ／ 舞台 +${facilityLevel("stage")*2} 完成度 ／ 客席 +${facilityLevel("seating")*5}% 集客</div>
+    <div class="scoreGrid">
+      <div class="scoreBox"><span>統一感</span><b>${r.cohesion}</b></div>
+      <div class="scoreBox"><span>芸術性</span><b>${r.artistry}</b></div>
+      <div class="scoreBox"><span>完成度</span><b>${r.completeness}</b></div>
+      <div class="scoreBox"><span>多様性</span><b>${r.diversity}</b></div>
+      <div class="scoreBox"><span>話題性</span><b>${r.buzz}</b></div>
+    </div>
+    <div class="programList"><b>本日のカード構成</b>${cards.map((c,i)=>`<div class="programLine">${i+1}. ${c.name}　<span style="color:var(--muted)">${c.rarity} / Lv.${cardLevel(c.id)}${isEvolved(c.id)?" / EVOLVED":""}</span></div>`).join("")}</div>
+    <div class="synergyList"><b>発動シナジー</b>${r.synergies.length?r.synergies.sort((a,b)=>b.pts-a.pts).map(s=>`<div class="synergyItem"><b>${s.name}　+${s.pts} Pt</b>${s.why}</div>`).join(""):'<div class="rewardNote">特別シナジーなし</div>'}</div>
+    <div class="rewardGrid">
+      <div class="rewardBox"><span>観客</span><b>${r.rewards.audience.toLocaleString()}人</b></div>
+      <div class="rewardBox"><span>名声</span><b>+${r.rewards.fame}</b></div>
+      <div class="rewardBox"><span>獲得MP</span><b>+${r.rewards.mp}</b></div>
+    </div>`;
+  result.scrollIntoView({behavior:"smooth",block:"start"});
+  renderGameStats();
+}
+
 function showScreen(id){
-  ["homeCard","quizCard","resultCard","gachaCard","collectionCard"].forEach(x=>{
+  ["homeCard","quizCard","resultCard","gachaCard","collectionCard","concertCard","facilityCard"].forEach(x=>{
     const el=$(x);if(el)el.classList.toggle("hidden",x!==id);
   });
 }
@@ -2183,9 +2546,15 @@ function finish(){
 function home(){stopTimer();showScreen("homeCard");renderGameStats()}
 $("startBtn").onclick=start;$("retryBtn").onclick=start;$("homeBtn").onclick=home;$("nextBtn").onclick=next;
 $("playBtn").onclick=playCurrent;$("quitBtn").onclick=home;
-$("openGachaBtn").onclick=showGacha;$("openCollectionBtn").onclick=showCollection;
-$("gachaHomeBtn").onclick=home;$("collectionHomeBtn").onclick=home;$("resultGachaBtn").onclick=showGacha;
+$("openGachaBtn").onclick=showGacha;$("openCollectionBtn").onclick=showCollection;$("openConcertBtn").onclick=showConcert;$("openFacilityBtn").onclick=showFacility;
+$("gachaHomeBtn").onclick=home;$("collectionHomeBtn").onclick=home;$("concertHomeBtn").onclick=home;$("facilityHomeBtn").onclick=home;$("resultGachaBtn").onclick=showGacha;
 $("pullOneBtn").onclick=()=>doGacha(1);$("pullTenBtn").onclick=()=>doGacha(10);
+$("concertClearBtn").onclick=clearConcertSelection;
+$("holdConcertBtn").onclick=holdConcert;
+$("concertFilters").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
+  $("concertFilters").querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");concertFilter=String(btn.dataset.filter||"ALL").toUpperCase();renderConcertCards();
+});
 $("rarityFilters").querySelectorAll("button").forEach(btn=>btn.onclick=()=>{
   $("rarityFilters").querySelectorAll("button").forEach(b=>b.classList.remove("active"));
   btn.classList.add("active");
