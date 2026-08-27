@@ -527,6 +527,30 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 @media(max-width:600px){.synergyDexGrid{grid-template-columns:1fr}}
 
 
+/* ===== Ver.1.24.0 作曲家系譜・師弟図鑑 ===== */
+.lineageGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-top:12px}
+.lineageItem{padding:12px;border:1px solid var(--line);border-radius:13px;background:rgba(127,127,127,.025);min-height:126px}
+.lineageItem.discovered{background:linear-gradient(160deg,rgba(70,110,170,.07),rgba(127,127,127,.018))}
+.lineageNo{font-size:10px;color:var(--muted);font-weight:800}
+.lineageRoute{display:grid;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr);align-items:center;gap:4px;margin-top:8px}
+.lineagePerson{min-width:0;padding:8px 6px;border:1px solid var(--line);border-radius:10px;text-align:center;font-size:12px;font-weight:900;line-height:1.35}
+.lineageArrow{text-align:center;font-size:18px;font-weight:900;color:var(--muted)}
+.lineageRole{display:block;font-size:9px;color:var(--muted);font-weight:800;margin-bottom:2px}
+.lineageMeta{font-size:10px;color:var(--muted);line-height:1.55;margin-top:8px}
+.lineageUnknown .lineagePerson{letter-spacing:.12em}
+.lineageNotice{margin-top:10px;padding:9px 10px;border:1px dashed var(--line);border-radius:10px;font-size:10px;color:var(--muted);line-height:1.55}
+.lineageSectionTitle{font-size:15px;font-weight:900;margin-top:16px}
+.lineageChainGrid{display:grid;gap:10px;margin-top:10px}
+.lineageChain{padding:13px;border:1px solid var(--line);border-radius:13px;background:rgba(127,127,127,.025)}
+.lineageChain.discovered{background:linear-gradient(160deg,rgba(120,85,175,.08),rgba(127,127,127,.018))}
+.lineageChainTitle{font-size:13px;font-weight:900}
+.lineageChainRoute{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr) 24px minmax(0,1fr);align-items:center;gap:3px;margin-top:9px}
+.lineageChainNode{padding:9px 5px;border:1px solid var(--line);border-radius:10px;text-align:center;font-size:11px;font-weight:900;line-height:1.35}
+.lineageChainArrow{text-align:center;font-size:17px;color:var(--muted);font-weight:900}
+.lineageChainBonus{margin-top:8px;font-size:11px;font-weight:900}
+@media(max-width:600px){.lineageGrid{grid-template-columns:1fr}.lineageChainRoute{grid-template-columns:1fr}.lineageChainArrow{transform:rotate(90deg);height:20px}}
+
+
 /* ===== Ver.1.10.0 シナジー発見報酬 ===== */
 .discoveryReward{
   margin-top:12px;padding:12px 13px;border:2px solid var(--line);border-radius:13px;
@@ -679,7 +703,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成</div>
     <div class="small">クイズでMPを集め、作曲家カードを育てて進化させる音楽クイズゲーム</div>
   </div>
-  <span class="version">Ver. 1.23.2</span>
+  <span class="version">Ver. 1.24.1</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -771,6 +795,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
       <button id="openConcertBtn">演奏会を開く</button>
       <button id="openFacilityBtn">設備強化</button>
       <button id="openSynergyBtn">シナジー図鑑</button>
+      <button id="openLineageBtn">作曲家系譜</button>
       <button id="openConcertHistoryBtn">演奏会履歴</button>
       <button id="openSaveManagerBtn">セーブデータ</button>
     </div>
@@ -900,7 +925,10 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 <section class="card hidden" id="synergyCard">
   <div class="sectionHead">
     <h2>シナジー図鑑</h2>
-    <button id="synergyHomeBtn">ホーム</button>
+    <div class="row">
+      <button id="synergyLineageBtn">作曲家系譜</button>
+      <button id="synergyHomeBtn">ホーム</button>
+    </div>
   </div>
 
   <div class="gameHud">
@@ -922,6 +950,31 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
   </div>
 
   <div id="synergyDexGrid" class="synergyDexGrid"></div>
+</section>
+
+
+<section class="card hidden" id="lineageCard">
+  <div class="sectionHead">
+    <h2>作曲家系譜・師弟図鑑</h2>
+    <div class="row">
+      <button id="lineageSynergyBtn">シナジー図鑑</button>
+      <button id="lineageHomeBtn">ホーム</button>
+    </div>
+  </div>
+  <div class="gameHud">
+    <div class="gameStat"><span>発見した師弟関係</span><b id="lineageFoundCount">0 / 0</b></div>
+    <div class="gameStat"><span>3世代チェーン</span><b id="lineageChainCount">0 / 0</b></div>
+    <div class="gameStat"><span>称号</span><b id="lineageTitle">---</b></div>
+  </div>
+  <div class="lineageNotice">
+    師弟関係シナジーを演奏会で発動すると、その系譜が図鑑に登録されます。
+    未発見の関係は人物名・条件ともに「???」で表示します。
+    3世代を一度に組み合わせると、通常の師弟シナジーに加えて「師弟3世代チェーン」が発動します。
+  </div>
+  <div class="lineageSectionTitle">師弟関係</div>
+  <div id="lineageRelationGrid" class="lineageGrid"></div>
+  <div class="lineageSectionTitle">3世代チェーン</div>
+  <div id="lineageChainGrid" class="lineageChainGrid"></div>
 </section>
 
 
@@ -2912,6 +2965,19 @@ function completenessScore(cards){const raw=Math.round(cards.reduce((s,c)=>s+car
 function diversityScore(cards){const m=cards.map(concertMeta),ratio=fn=>new Set(m.map(fn).filter(Boolean)).size/cards.length;const tags=new Set(m.flatMap(x=>x.tags)).size/Math.max(1,cards.length);return Math.max(20,Math.min(100,Math.round((ratio(x=>x.composer)+ratio(x=>x.era)+ratio(x=>x.country)+Math.min(1,tags))/4*100)))}
 function buzzScore(cards,synergies){let v=20;for(const c of cards){if(c.rarity==="R")v+=5;else if(c.rarity==="SR")v+=10;else if(c.rarity==="SSR")v+=20;if(isEvolved(c.id))v+=10;if(!(gameData.cardConcertUses?.[c.id]))v+=5}if(new Set(cards.map(concertComposer)).size===cards.length)v+=5;if(synergies.length)v+=10;v+=facilityLevel("lighting")*2;return Math.min(100,v)}
 
+const LINEAGE_RELATIONSHIPS=[
+  {teacher:"三善晃",student:"鈴木輝昭",synergy:"三善晃から鈴木輝昭へ"},
+  {teacher:"清水脩",student:"多田武彦",synergy:"清水脩から多田武彦へ"},
+  {teacher:"三善晃",student:"新実徳英",synergy:"三善晃から新実徳英へ"},
+  {teacher:"間宮芳生",student:"新実徳英",synergy:"間宮芳生から新実徳英へ"},
+  {teacher:"間宮芳生",student:"荻久保和明",synergy:"間宮芳生から荻久保和明へ"},
+  {teacher:"間宮芳生",student:"千原英喜",synergy:"間宮芳生から千原英喜へ"},
+  {teacher:"鈴木輝昭",student:"土田豊貴",synergy:"鈴木輝昭から土田豊貴へ"}
+];
+const LINEAGE_CHAINS=[
+  {name:"受け継がれる作曲の系譜",nodes:["三善晃","鈴木輝昭","土田豊貴"],synergy:"受け継がれる作曲の系譜",pts:15}
+];
+
 const SYNERGY_FIXED_CATALOG=[
   ["詩の響き",8,"同じ詩人に関係するカード2枚"],
   ["草野心平特集",20,"草野心平に関係するカード3枚以上"],
@@ -2989,7 +3055,9 @@ const SYNERGY_FIXED_CATALOG=[
   ["三善晃から新実徳英へ",20,"三善晃と新実徳英の作品カードを含む（師弟関係）"],
   ["間宮芳生から新実徳英へ",20,"間宮芳生と新実徳英の作品カードを含む（師弟関係）"],
   ["間宮芳生から荻久保和明へ",20,"間宮芳生と荻久保和明の作品カードを含む（師弟関係）"],
+  ["間宮芳生から千原英喜へ",20,"間宮芳生と千原英喜の作品カードを含む（師弟関係）"],
   ["鈴木輝昭から土田豊貴へ",20,"鈴木輝昭と土田豊貴の作品カードを含む（師弟関係）"],
+  ["受け継がれる作曲の系譜",15,"三善晃・鈴木輝昭・土田豊貴を1枚ずつ含む（師弟3世代チェーン）"],
   ["日本語を歌う現在",20,"林光と上田真樹の作品カードを含む"],
   ["戦後日本合唱の系譜",44,"髙田三郎・清水脩・間宮芳生・新実徳英を1枚ずつ"],
   ["民謡の記憶",28,"民謡・民俗を軸にしたカード3枚以上"],
@@ -3179,6 +3247,68 @@ function showSynergyDex(){
   if($("synergyFilters"))$("synergyFilters").querySelectorAll("button").forEach(b=>b.classList.toggle("active",b.dataset.synergyFilter==="ALL"));
   renderSynergyDex();
 }
+
+function lineageRelationFound(rel){return Number(gameData.synergyHistory?.[rel.synergy]?.count||0)>0}
+function lineageChainFound(chain){return Number(gameData.synergyHistory?.[chain.synergy]?.count||0)>0}
+function lineageTitleFor(found,total,chainsFound){
+  if(total>0&&found>=total&&chainsFound>0)return "系譜マスター";
+  if(found>=5)return "合唱史ナビゲーター";
+  if(found>=3)return "師弟関係の探究者";
+  if(found>=1)return "系譜の芽";
+  return "---";
+}
+function composerOwnedCount(name){return COMPOSER_CARDS.filter(c=>concertComposer(c)===name&&isOwned(c.id)).length}
+function renderLineageDex(){
+  const history=gameData.synergyHistory||{};
+  const found=LINEAGE_RELATIONSHIPS.filter(lineageRelationFound).length;
+  const chainsFound=LINEAGE_CHAINS.filter(lineageChainFound).length;
+  if($("lineageFoundCount"))$("lineageFoundCount").textContent=`${found} / ${LINEAGE_RELATIONSHIPS.length}`;
+  if($("lineageChainCount"))$("lineageChainCount").textContent=`${chainsFound} / ${LINEAGE_CHAINS.length}`;
+  if($("lineageTitle"))$("lineageTitle").textContent=lineageTitleFor(found,LINEAGE_RELATIONSHIPS.length,chainsFound);
+
+  const relationGrid=$("lineageRelationGrid");
+  if(relationGrid)relationGrid.innerHTML=LINEAGE_RELATIONSHIPS.map((rel,i)=>{
+    const unlocked=lineageRelationFound(rel),no=String(i+1).padStart(2,"0");
+    if(!unlocked)return `<div class="lineageItem lineageUnknown">
+      <div class="lineageNo">LINEAGE No.${no}</div>
+      <div class="lineageRoute">
+        <div class="lineagePerson"><span class="lineageRole">師</span>???</div>
+        <div class="lineageArrow">→</div>
+        <div class="lineagePerson"><span class="lineageRole">弟子</span>???</div>
+      </div>
+      <div class="lineageMeta">師弟関係：???<br>未発見</div>
+    </div>`;
+    const h=history[rel.synergy]||{};
+    return `<div class="lineageItem discovered">
+      <div class="lineageNo">LINEAGE No.${no}</div>
+      <div class="lineageRoute">
+        <div class="lineagePerson"><span class="lineageRole">師</span>${rel.teacher}</div>
+        <div class="lineageArrow">→</div>
+        <div class="lineagePerson"><span class="lineageRole">弟子</span>${rel.student}</div>
+      </div>
+      <div class="lineageMeta">${rel.synergy}<br>発動回数 ${Number(h.count||0)}回 ／ 初発見 ${formatSynergyDate(h.firstAt)}<br>所持カード：${rel.teacher} ${composerOwnedCount(rel.teacher)}枚 ／ ${rel.student} ${composerOwnedCount(rel.student)}枚</div>
+    </div>`;
+  }).join("");
+
+  const chainGrid=$("lineageChainGrid");
+  if(chainGrid)chainGrid.innerHTML=LINEAGE_CHAINS.map((chain,i)=>{
+    const unlocked=lineageChainFound(chain);
+    if(!unlocked)return `<div class="lineageChain">
+      <div class="lineageChainTitle">CHAIN No.${String(i+1).padStart(2,"0")}　???</div>
+      <div class="lineageChainRoute"><div class="lineageChainNode">???</div><div class="lineageChainArrow">→</div><div class="lineageChainNode">???</div><div class="lineageChainArrow">→</div><div class="lineageChainNode">???</div></div>
+      <div class="lineageMeta">発動条件：???<br>未発見</div>
+    </div>`;
+    const h=history[chain.synergy]||{};
+    return `<div class="lineageChain discovered">
+      <div class="lineageChainTitle">CHAIN No.${String(i+1).padStart(2,"0")}　${chain.name}</div>
+      <div class="lineageChainRoute"><div class="lineageChainNode">${chain.nodes[0]}</div><div class="lineageChainArrow">→</div><div class="lineageChainNode">${chain.nodes[1]}</div><div class="lineageChainArrow">→</div><div class="lineageChainNode">${chain.nodes[2]}</div></div>
+      <div class="lineageChainBonus">師弟3世代チェーン　+${chain.pts} Pt</div>
+      <div class="lineageMeta">発動回数 ${Number(h.count||0)}回 ／ 初発見 ${formatSynergyDate(h.firstAt)}<br>通常の師弟シナジー2種も同時発動可能</div>
+    </div>`;
+  }).join("");
+}
+function showLineageDex(){stopTimer();showScreen("lineageCard");renderLineageDex()}
+
 function cardSynergyHTML(card,owned){
   if(!owned)return "";
   const history=gameData.synergyHistory||{};
@@ -3307,8 +3437,12 @@ function detectSynergies(cards){
    out.push(syn("間宮芳生から新実徳英へ",20,"師・間宮芳生と弟子・新実徳英の作品を組み合わせる"));
  if(countComposer(cards,"間宮芳生")>0&&countComposer(cards,"荻久保和明")>0)
    out.push(syn("間宮芳生から荻久保和明へ",20,"師・間宮芳生と弟子・荻久保和明の作品を組み合わせる"));
+ if(countComposer(cards,"間宮芳生")>0&&countComposer(cards,"千原英喜")>0)
+   out.push(syn("間宮芳生から千原英喜へ",20,"師・間宮芳生と弟子・千原英喜の作品を組み合わせる"));
  if(countComposer(cards,"鈴木輝昭")>0&&countComposer(cards,"土田豊貴")>0)
    out.push(syn("鈴木輝昭から土田豊貴へ",20,"師・鈴木輝昭と弟子・土田豊貴の作品を組み合わせる"));
+ if(countComposer(cards,"三善晃")>0&&countComposer(cards,"鈴木輝昭")>0&&countComposer(cards,"土田豊貴")>0)
+   out.push(syn("受け継がれる作曲の系譜",15,"三善晃→鈴木輝昭→土田豊貴の3世代を組み合わせる"));
  if(countComposer(cards,"林光")>0&&countComposer(cards,"上田真樹")>0)
    out.push(syn("日本語を歌う現在",20,"林光と上田真樹を組み合わせる"));
  const lineage=["高田三郎","清水脩","間宮芳生","新実徳英"].filter(n=>countComposer(cards,n)>0).length;
@@ -3588,7 +3722,7 @@ function holdConcert(){
 }
 
 function showScreen(id){
-  ["homeCard","quizCard","resultCard","gachaCard","collectionCard","concertCard","facilityCard","synergyCard","concertHistoryCard","saveManagerCard"].forEach(x=>{
+  ["homeCard","quizCard","resultCard","gachaCard","collectionCard","concertCard","facilityCard","synergyCard","lineageCard","concertHistoryCard","saveManagerCard"].forEach(x=>{
     const el=$(x);if(el)el.classList.toggle("hidden",x!==id);
   });
 }
@@ -4067,8 +4201,8 @@ function finish(){
 function home(){stopTimer();showScreen("homeCard");renderGameStats()}
 $("startBtn").onclick=start;$("retryBtn").onclick=start;$("homeBtn").onclick=home;$("nextBtn").onclick=next;
 $("playBtn").onclick=playCurrent;$("quitBtn").onclick=home;
-$("openGachaBtn").onclick=showGacha;$("openCollectionBtn").onclick=showCollection;$("openConcertBtn").onclick=showConcert;$("openFacilityBtn").onclick=showFacility;$("openSynergyBtn").onclick=showSynergyDex;$("openSynergyFromCollectionBtn").onclick=showSynergyDex;$("openConcertHistoryBtn").onclick=showConcertHistory;$("openSaveManagerBtn").onclick=showSaveManager;
-$("gachaHomeBtn").onclick=home;$("collectionHomeBtn").onclick=home;$("concertHomeBtn").onclick=home;$("facilityHomeBtn").onclick=home;$("synergyHomeBtn").onclick=home;$("concertHistoryHomeBtn").onclick=home;$("saveManagerHomeBtn").onclick=home;$("resultGachaBtn").onclick=showGacha;
+$("openGachaBtn").onclick=showGacha;$("openCollectionBtn").onclick=showCollection;$("openConcertBtn").onclick=showConcert;$("openFacilityBtn").onclick=showFacility;$("openSynergyBtn").onclick=showSynergyDex;$("openLineageBtn").onclick=showLineageDex;$("openSynergyFromCollectionBtn").onclick=showSynergyDex;$("openConcertHistoryBtn").onclick=showConcertHistory;$("openSaveManagerBtn").onclick=showSaveManager;
+$("gachaHomeBtn").onclick=home;$("collectionHomeBtn").onclick=home;$("concertHomeBtn").onclick=home;$("facilityHomeBtn").onclick=home;$("synergyHomeBtn").onclick=home;$("lineageHomeBtn").onclick=home;$("synergyLineageBtn").onclick=showLineageDex;$("lineageSynergyBtn").onclick=showSynergyDex;$("concertHistoryHomeBtn").onclick=home;$("saveManagerHomeBtn").onclick=home;$("resultGachaBtn").onclick=showGacha;
 $("pullOneBtn").onclick=()=>doGacha(1);$("pullTenBtn").onclick=()=>doGacha(10);
 $("concertClearBtn").onclick=clearConcertSelection;
 $("holdConcertBtn").onclick=holdConcert;
