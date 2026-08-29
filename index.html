@@ -719,7 +719,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-        <span class="version">Ver. 1.30.6</span>
+        <span class="version">Ver. 1.31.0</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -755,6 +755,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
         <option value="ikebe">池辺晋一郎クイズ</option>
         <option value="takemitsu">武満徹クイズ</option>
         <option value="harmony">和声クイズ</option>
+        <option value="solmization">ソルミゼーションクイズ（移動ド）</option>
         <option value="voice">発声・身体構造クイズ</option>
         <option value="ipaVowel">母音（IPA）クイズ</option>
         <option value="ipaConsonant">子音（IPA）クイズ</option>
@@ -1170,7 +1171,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 const NS="http://www.w3.org/2000/svg";
 const NOTE_NAMES_SHARP=["C","C♯","D","D♯","E","F","F♯","G","G♯","A","A♯","B"];
 const SOLFEGE={"C":"ド","D":"レ","E":"ミ","F":"ファ","G":"ソ","A":"ラ","B":"シ"};
-const COURSE_LABELS={note:"音名",history:"音楽史",japanChoral:"日本の合唱",worldChoral:"世界の合唱",tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",tormis:"トルミス",takata:"髙田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",harmony:"和声",ikebe:"池辺晋一郎",takemitsu:"武満徹",voice:"発声・身体構造",ipaVowel:"母音（IPA）",ipaConsonant:"子音（IPA）",german:"ドイツ語和訳",germanWords:"ドイツ語 単語・語句",germanFrohlich:"Fröhlich im Maien",germanVor:"Vor den Türen",germanTraumlicht:"Traumlicht",symbol:"音楽記号",key:"調号"};
+const COURSE_LABELS={note:"音名",history:"音楽史",japanChoral:"日本の合唱",worldChoral:"世界の合唱",tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",tormis:"トルミス",takata:"髙田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",harmony:"和声",solmization:"ソルミゼーション",ikebe:"池辺晋一郎",takemitsu:"武満徹",voice:"発声・身体構造",ipaVowel:"母音（IPA）",ipaConsonant:"子音（IPA）",german:"ドイツ語和訳",germanWords:"ドイツ語 単語・語句",germanFrohlich:"Fröhlich im Maien",germanVor:"Vor den Türen",germanTraumlicht:"Traumlicht",symbol:"音楽記号",key:"調号"};
 
 const ranges={
   treble:{
@@ -1228,14 +1229,6 @@ const historyQuestions=buildHistoryQuestions();
 
 
 const symbolTerms=[{"id":"sym01","level":1,"category":"記譜","display":"♯","meaning":"音を半音高くする","exp":"シャープ（嬰記号）はその音を半音高くします。","kind":"symbol"},{"id":"sym02","level":1,"category":"記譜","display":"♭","meaning":"音を半音低くする","exp":"フラット（変記号）はその音を半音低くします。","kind":"symbol"},{"id":"sym03","level":1,"category":"記譜","display":"♮","meaning":"臨時記号による変化を取り消す","exp":"ナチュラル（本位記号）はシャープやフラットなどによる変化を取り消します。","kind":"symbol"},{"id":"sym04","level":2,"category":"記譜","display":"𝄪","meaning":"音を全音高くする","exp":"ダブルシャープ（重嬰記号）はその音を全音高くします。","kind":"symbol"},{"id":"sym05","level":2,"category":"記譜","display":"𝄫","meaning":"音を全音低くする","exp":"ダブルフラット（重変記号）はその音を全音低くします。","kind":"symbol"},{"id":"sym06","level":1,"category":"音部記号","display":"𝄞","meaning":"ト音記号","exp":"ト音記号は第2線のG（ト）の位置を示します。","kind":"symbol"},{"id":"sym07","level":1,"category":"音部記号","display":"𝄢","meaning":"ヘ音記号","exp":"ヘ音記号は第4線のF（ヘ）の位置を示します。","kind":"symbol"},{"id":"sym08","level":2,"category":"音部記号","display":"𝄡","meaning":"ハ音記号","exp":"ハ音記号は中央の位置がC（ハ）を示し、アルト記号やテノール記号などに用いられます。","kind":"symbol"},{"id":"sym09","level":1,"category":"強弱","display":"ppp","meaning":"非常に非常に弱く","exp":"ppp は pianississimo で、pp よりさらに弱く演奏します。","kind":"term"},{"id":"sym10","level":1,"category":"強弱","display":"pp","meaning":"非常に弱く","exp":"pp は pianissimo で「非常に弱く」です。","kind":"term"},{"id":"sym11","level":1,"category":"強弱","display":"p","meaning":"弱く","exp":"p は piano で「弱く」です。","kind":"term"},{"id":"sym12","level":1,"category":"強弱","display":"mp","meaning":"やや弱く","exp":"mp は mezzo piano で「やや弱く」です。","kind":"term"},{"id":"sym13","level":1,"category":"強弱","display":"mf","meaning":"やや強く","exp":"mf は mezzo forte で「やや強く」です。","kind":"term"},{"id":"sym14","level":1,"category":"強弱","display":"f","meaning":"強く","exp":"f は forte で「強く」です。","kind":"term"},{"id":"sym15","level":1,"category":"強弱","display":"ff","meaning":"非常に強く","exp":"ff は fortissimo で「非常に強く」です。","kind":"term"},{"id":"sym16","level":1,"category":"強弱","display":"fff","meaning":"非常に非常に強く","exp":"fff は fortississimo とされ、ff よりさらに強く演奏します。","kind":"term"},{"id":"sym17","level":2,"category":"強弱","display":"fp","meaning":"強く奏した直後に弱くする","exp":"fp は forte-piano で、強く発音した直後に弱くします。","kind":"term"},{"id":"sym18","level":2,"category":"強弱","display":"sfz","meaning":"その音を突然強く強調する","exp":"sfz（sforzando）は特定の音や和音を急激に強調します。","kind":"term"},{"id":"sym19","level":3,"category":"強弱","display":"rfz","meaning":"急激に強く強調する","exp":"rfz（rinforzando）は音やフレーズを急に強めて強調する指示です。","kind":"term"},{"id":"sym20","level":2,"category":"強弱","display":"subito p","meaning":"突然弱く","exp":"subito は「突然に」。subito p は急に弱くする指示です。","kind":"term"},{"id":"sym21","level":1,"category":"強弱","display":"cresc.","meaning":"だんだん強く","exp":"cresc. は crescendo の略で、徐々に音量を増します。","kind":"term"},{"id":"sym22","level":1,"category":"強弱","display":"dim.","meaning":"だんだん弱く","exp":"dim. は diminuendo の略で、徐々に音量を弱めます。","kind":"term"},{"id":"sym23","level":1,"category":"速度","display":"Largo","meaning":"幅広く、非常にゆるやかに","exp":"Largo は非常に遅いテンポを示し、幅広い性格を伴うことがあります。","kind":"term"},{"id":"sym24","level":1,"category":"速度","display":"Lento","meaning":"ゆるやかに、遅く","exp":"Lento は「遅く、ゆるやかに」を意味します。","kind":"term"},{"id":"sym25","level":1,"category":"速度","display":"Adagio","meaning":"ゆるやかに","exp":"Adagio は遅めで落ち着いたテンポを示します。","kind":"term"},{"id":"sym26","level":1,"category":"速度","display":"Andante","meaning":"歩くような速さで","exp":"Andante は「歩くように」の意味で、中庸のゆったりしたテンポです。","kind":"term"},{"id":"sym27","level":1,"category":"速度","display":"Moderato","meaning":"中くらいの速さで","exp":"Moderato は「中程度の速さで」を意味します。","kind":"term"},{"id":"sym28","level":1,"category":"速度","display":"Allegretto","meaning":"やや速く","exp":"Allegretto は Allegro よりやや控えめな速さを示すことが多い指示です。","kind":"term"},{"id":"sym29","level":1,"category":"速度","display":"Allegro","meaning":"速く","exp":"Allegro は一般に「速く、生き生きと」を示します。","kind":"term"},{"id":"sym30","level":1,"category":"速度","display":"Vivace","meaning":"活発に、速く","exp":"Vivace は「活発に、生き生きと」を意味します。","kind":"term"},{"id":"sym31","level":1,"category":"速度","display":"Presto","meaning":"非常に速く","exp":"Presto は非常に速いテンポを示します。","kind":"term"},{"id":"sym32","level":2,"category":"速度","display":"Prestissimo","meaning":"できる限り非常に速く","exp":"Prestissimo は Presto よりさらに速いテンポを示します。","kind":"term"},{"id":"sym33","level":1,"category":"速度変化","display":"accel.","meaning":"だんだん速く","exp":"accel. は accelerando の略で、徐々に速度を上げます。","kind":"term"},{"id":"sym34","level":1,"category":"速度変化","display":"rit.","meaning":"だんだん遅く","exp":"rit. は ritardando の略として使われ、徐々に速度を落とします。","kind":"term"},{"id":"sym35","level":2,"category":"速度変化","display":"rall.","meaning":"だんだん遅く、幅広く","exp":"rall. は rallentando の略で、徐々に速度を落とす指示です。","kind":"term"},{"id":"sym36","level":2,"category":"速度変化","display":"allargando","meaning":"だんだん遅く、かつ幅広く","exp":"allargando は速度を落としながら音楽を広げるように演奏します。","kind":"term"},{"id":"sym37","level":1,"category":"速度変化","display":"a tempo","meaning":"元の速さに戻す","exp":"a tempo は速度変化の後に元のテンポへ戻す指示です。","kind":"term"},{"id":"sym38","level":2,"category":"速度変化","display":"Tempo I","meaning":"最初のテンポに戻す","exp":"Tempo I（Tempo primo）は曲の最初のテンポへ戻す指示です。","kind":"term"},{"id":"sym39","level":2,"category":"速度変化","display":"rubato","meaning":"表情のためテンポを柔軟に揺らす","exp":"tempo rubato は表情のために時間を柔軟に伸縮させる演奏法・指示です。","kind":"term"},{"id":"sym40","level":1,"category":"アーティキュレーション","display":"legato","meaning":"音を滑らかにつなげて","exp":"legato は音と音を切らず滑らかにつなげて演奏する指示です。","kind":"term"},{"id":"sym41","level":1,"category":"アーティキュレーション","display":"staccato","meaning":"音を短く切って","exp":"staccato は各音を短く分離して演奏します。","kind":"term"},{"id":"sym42","level":2,"category":"アーティキュレーション","display":"staccatissimo","meaning":"スタッカートよりさらに短く切って","exp":"staccatissimo は非常に短く鋭く分離する指示です。","kind":"term"},{"id":"sym43","level":2,"category":"アーティキュレーション","display":"tenuto","meaning":"音価を十分に保って","exp":"tenuto は音を十分な長さに保ち、場合によっては重みを持たせます。","kind":"term"},{"id":"sym44","level":2,"category":"アーティキュレーション","display":"marcato","meaning":"一音一音をはっきり強調して","exp":"marcato は音を明確に際立たせるよう演奏する指示です。","kind":"term"},{"id":"sym45","level":1,"category":"アーティキュレーション","display":">（accent）","meaning":"その音を強調して","exp":"アクセント記号はその音を周囲より強調して演奏することを示します。","kind":"term"},{"id":"sym46","level":3,"category":"アーティキュレーション","display":"portato","meaning":"各音を保ちながらやや分離して","exp":"portato はレガートとスタッカートの中間のように、音を保ちながら軽く分離します。","kind":"term"},{"id":"sym47","level":1,"category":"発想","display":"cantabile","meaning":"歌うように","exp":"cantabile は「歌うように」を意味します。","kind":"term"},{"id":"sym48","level":1,"category":"発想","display":"dolce","meaning":"柔らかく、甘く","exp":"dolce は「甘く、柔らかく」を意味します。","kind":"term"},{"id":"sym49","level":1,"category":"発想","display":"espressivo","meaning":"表情豊かに","exp":"espressivo は「表情豊かに」を意味します。","kind":"term"},{"id":"sym50","level":2,"category":"発想","display":"maestoso","meaning":"荘厳に、堂々と","exp":"maestoso は荘厳で堂々とした性格を示します。","kind":"term"},{"id":"sym51","level":2,"category":"発想","display":"grazioso","meaning":"優美に","exp":"grazioso は優雅・優美な性格で演奏する指示です。","kind":"term"},{"id":"sym52","level":2,"category":"発想","display":"agitato","meaning":"せき込むように、激しく","exp":"agitato は興奮した、落ち着かない性格を示します。","kind":"term"},{"id":"sym53","level":2,"category":"発想","display":"tranquillo","meaning":"静かに、穏やかに","exp":"tranquillo は穏やかで落ち着いた性格を示します。","kind":"term"},{"id":"sym54","level":3,"category":"発想","display":"morendo","meaning":"消え入るように","exp":"morendo は音量や速度を落とし、消え入るように演奏します。","kind":"term"},{"id":"sym55","level":3,"category":"発想","display":"smorzando","meaning":"次第に消えるように","exp":"smorzando は音量や勢いを徐々に弱め、消えていくように演奏します。","kind":"term"},{"id":"sym56","level":2,"category":"発想","display":"sotto voce","meaning":"声をひそめるように","exp":"sotto voce は控えめに、声をひそめるような表現を指示します。","kind":"term"},{"id":"sym57","level":1,"category":"発想","display":"con brio","meaning":"生き生きと、活気をもって","exp":"con brio は「活気をもって、生き生きと」を意味します。","kind":"term"},{"id":"sym58","level":2,"category":"発想","display":"con moto","meaning":"動きをもって","exp":"con moto は「動きをもって」、やや前進感を持たせる指示です。","kind":"term"},{"id":"sym59","level":3,"category":"発想","display":"sostenuto","meaning":"音を十分に保ち、落ち着いて","exp":"sostenuto は音を保ちながら持続的に演奏することを示します。","kind":"term"},{"id":"sym60","level":1,"category":"反復・進行","display":"D.C.","meaning":"曲の最初に戻る","exp":"D.C.（Da Capo）は曲の冒頭へ戻る指示です。","kind":"term"},{"id":"sym61","level":1,"category":"反復・進行","display":"D.S.","meaning":"セーニョ記号の位置へ戻る","exp":"D.S.（Dal Segno）はセーニョ記号の位置へ戻ります。","kind":"term"},{"id":"sym62","level":1,"category":"反復・進行","display":"Fine","meaning":"ここで曲を終える","exp":"Fine は「終わり」を示します。","kind":"term"},{"id":"sym63","level":2,"category":"反復・進行","display":"Coda","meaning":"終結部へ進むための目印","exp":"Coda は終結部を示し、To Coda などの指示と組み合わせて用います。","kind":"term"},{"id":"sym64","level":2,"category":"反復・進行","display":"Segno","meaning":"D.S.で戻る位置を示す目印","exp":"Segno は D.S.（Dal Segno）で戻る位置を示す記号です。","kind":"term"},{"id":"sym65","level":2,"category":"反復・進行","display":"To Coda","meaning":"指定されたコーダへ進む","exp":"To Coda は反復後などにコーダ記号の位置へ進む指示です。","kind":"term"},{"id":"sym66","level":1,"category":"反復・進行","display":"𝄆 𝄇","meaning":"囲まれた部分を反復する","exp":"反復記号は2つの記号に挟まれた部分を繰り返すことを示します。","kind":"symbol"},{"id":"sym67","level":2,"category":"反復・進行","display":"1. / 2.","meaning":"反復時に異なる結末へ進む","exp":"1番括弧・2番括弧は反復時に異なる終結部分を演奏するために使われます。","kind":"term"},{"id":"sym68","level":2,"category":"装飾","display":"tr","meaning":"トリル：隣接音と素早く交互に奏する","exp":"トリルは主音と上方隣接音などを素早く交互に反復する装飾です。","kind":"term"},{"id":"sym69","level":2,"category":"発想標語","display":"smorz.","meaning":"スモルツァンド：音を弱めながら消えるように","exp":"smorzando（smorz.）は、音量や響きを次第に弱め、消えるように演奏する指示です。","kind":"term"},{"id":"sym70","level":2,"category":"装飾","display":"turn","meaning":"ターン：主音の上下の隣接音を巡る装飾","exp":"ターンは主音の上下の音を含む回転的な装飾です。","kind":"term"},{"id":"sym71","level":2,"category":"装飾","display":"appoggiatura","meaning":"倚音：主要音に寄りかかる装飾音","exp":"アッポジャトゥーラ（倚音）は主要音の前に置かれ、表情的に寄りかかる装飾音です。","kind":"term"},{"id":"sym72","level":2,"category":"装飾","display":"acciaccatura","meaning":"短前打音：非常に短く奏する装飾音","exp":"アッチャッカトゥーラは主要音の直前に非常に短く奏する装飾音です。","kind":"term"},{"id":"sym73","level":1,"category":"記譜","display":"fermata","meaning":"その音・休符を通常より長く保つ","exp":"フェルマータは音符や休符を通常の音価を越えて適宜延長します。","kind":"term"},{"id":"sym74","level":1,"category":"記譜","display":"8va","meaning":"記譜より1オクターブ高く演奏する","exp":"8va は通常、記譜された音より1オクターブ高く演奏します。","kind":"term"},{"id":"sym75","level":2,"category":"記譜","display":"8vb","meaning":"記譜より1オクターブ低く演奏する","exp":"8vb は記譜された音より1オクターブ低く演奏する指示です。","kind":"term"},{"id":"sym76","level":1,"category":"記譜","display":"tie（タイ）","meaning":"同じ高さの音をつないで一つの長い音にする","exp":"タイは同音高の音符を結び、音価を合計して一続きに演奏します。","kind":"term"},{"id":"sym77","level":1,"category":"記譜","display":"slur（スラー）","meaning":"複数の異なる音を滑らかにひとまとまりで奏する","exp":"スラーは複数の音をフレーズとして滑らかにつなぐことを示します。","kind":"term"},{"id":"sym78","level":2,"category":"奏法","display":"arpeggio","meaning":"和音の各音をずらして順に奏する","exp":"アルペッジョは和音を同時ではなく順番に分散して奏します。","kind":"term"},{"id":"sym79","level":2,"category":"奏法","display":"glissando","meaning":"音の高さを連続的または段階的に滑らせる","exp":"グリッサンドはある音から別の音まで滑るように音高を移動します。","kind":"term"},{"id":"sym80","level":2,"category":"奏法","display":"tremolo","meaning":"同音または複数音を急速に反復する","exp":"トレモロは音や和音を急速に反復して持続的効果を作ります。","kind":"term"},{"id":"sym81","level":1,"category":"拍子","display":"2/4","meaning":"4分音符を1拍として2拍子","exp":"2/4拍子は4分音符を1拍として1小節に2拍あります。","kind":"term"},{"id":"sym82","level":1,"category":"拍子","display":"3/4","meaning":"4分音符を1拍として3拍子","exp":"3/4拍子は4分音符を1拍として1小節に3拍あります。","kind":"term"},{"id":"sym83","level":1,"category":"拍子","display":"4/4","meaning":"4分音符を1拍として4拍子","exp":"4/4拍子は4分音符を1拍として1小節に4拍あります。","kind":"term"},{"id":"sym84","level":2,"category":"拍子","display":"6/8","meaning":"8分音符6個から成る複合2拍子","exp":"6/8拍子は8分音符6個分で、通常は付点4分音符を1拍とする複合2拍子として感じます。","kind":"term"},{"id":"sym85","level":2,"category":"拍子","display":"9/8","meaning":"8分音符9個から成る複合3拍子","exp":"9/8拍子は通常、付点4分音符を1拍とする複合3拍子です。","kind":"term"},{"id":"sym86","level":2,"category":"拍子","display":"12/8","meaning":"8分音符12個から成る複合4拍子","exp":"12/8拍子は通常、付点4分音符を1拍とする複合4拍子です。","kind":"term"},{"id":"sym87","level":2,"category":"拍子","display":"C","meaning":"4/4拍子（共通拍子）","exp":"C は common time の記号として4/4拍子を表します。","kind":"term"},{"id":"sym88","level":2,"category":"拍子","display":"¢","meaning":"2/2拍子（アラ・ブレーヴェ）","exp":"縦線の入ったCは cut time / alla breve と呼ばれ、一般に2/2拍子を表します。","kind":"term"}];
-// Ver.1.30.5: 表示語から正解を推測しやすかった smorz. 問題を差し替え。
-Object.assign(symbolTerms.find(x=>x.id==="sym69"),{
-  category:"速度変化",
-  display:"più mosso",
-  meaning:"それまでより速く、動きを増して",
-  exp:"più mosso は、それまでより速く、動きを増して演奏する指示です。"
-});
-
 function buildSymbolQuestions(){
   const allMeanings=[...new Set(symbolTerms.map(x=>x.meaning))];
   return symbolTerms.map((s,i)=>{
@@ -1435,6 +1428,36 @@ const keyDefs=[
 {sig:-6,major:"変ト長調（G♭ major）",minor:"変ホ短調（E♭ minor）",level:3},
 {sig:-7,major:"変ハ長調（C♭ major）",minor:"変イ短調（A♭ minor）",level:3}
 ];
+
+// 移動ド・英語式。下方変化音は「日本におけるソルミゼーションのガイドライン」を基本とし、So♭のみ Sa とする。
+const SOLMIZATION_SYLLABLES=[
+  {degree:0,delta:0,name:"Do",level:1},{degree:1,delta:0,name:"Re",level:1},
+  {degree:2,delta:0,name:"Mi",level:1},{degree:3,delta:0,name:"Fa",level:1},
+  {degree:4,delta:0,name:"So",level:1},{degree:5,delta:0,name:"La",level:1},
+  {degree:6,delta:0,name:"Ti",level:1},
+  {degree:0,delta:1,name:"Di",level:2},{degree:1,delta:1,name:"Ri",level:2},
+  {degree:3,delta:1,name:"Fi",level:2},{degree:4,delta:1,name:"Si",level:2},
+  {degree:5,delta:1,name:"Li",level:2},
+  {degree:1,delta:-1,name:"Ro",level:2},{degree:2,delta:-1,name:"Ma",level:2},
+  {degree:4,delta:-1,name:"Sa",level:2},{degree:5,delta:-1,name:"Lo",level:2},
+  {degree:6,delta:-1,name:"Ta",level:2}
+];
+const TONIC_LETTER_BY_SIGNATURE={"-7":"C","-6":"G","-5":"D","-4":"A","-3":"E","-2":"B","-1":"F","0":"C","1":"G","2":"D","3":"A","4":"E","5":"B","6":"F","7":"C"};
+function signatureAccidentalMap(sig){
+  const map={C:0,D:0,E:0,F:0,G:0,A:0,B:0};
+  const order=sig>0?["F","C","G","D","A","E","B"]:["B","E","A","D","G","C","F"];
+  for(let i=0;i<Math.abs(sig);i++)map[order[i]]=sig>0?1:-1;
+  return map;
+}
+function accidentalGlyph(value){return ({"-2":"𝄫","-1":"♭","0":"","1":"♯","2":"𝄪"})[String(value)]||""}
+function solmizationPitch(key,syllable,clef){
+  const letters=["C","D","E","F","G","A","B"],tonic=TONIC_LETTER_BY_SIGNATURE[String(key.sig)];
+  const tonicIndex=letters.indexOf(tonic),absoluteIndex=tonicIndex+syllable.degree;
+  const note=letters[absoluteIndex%7],oct=(clef==="treble"?4:2)+Math.floor(absoluteIndex/7);
+  const baseAcc=signatureAccidentalMap(key.sig)[note],writtenAcc=baseAcc+syllable.delta;
+  const naturalMidi=midi(note,oct),pitchMidi=naturalMidi+writtenAcc;
+  return {note,oct,baseAcc,writtenAcc,pitchMidi,pitchName:note+accidentalGlyph(writtenAcc)};
+}
 
 
 function artWrap(inner,label=""){
@@ -2294,6 +2317,7 @@ function choirDifficultyExp(){const d=$("difficulty")?.value||"normal";return d=
 function choirGrowthMapForQuestion(q){
   const type=q?.type||"";
   if(type==="note")return {sight:3};
+  if(type==="solmization")return {sight:2,theory:1};
   if(type==="key")return {sight:2,theory:1};
   if(type==="harmony")return {theory:3};
   if(type==="symbol")return {sight:2,expression:1};
@@ -4180,7 +4204,7 @@ function renderStats(){
 }
 renderStats();
 renderGameStats();
-$("bankInfo").textContent=`収録：音楽史 ${historyQuestions.length}問 / 日本の合唱 ${japanChoralQuestions.length}問 / 世界の合唱 ${worldChoralQuestions.length}問 / 多田武彦 ${tadaQuestions.length}問 / 信長貴富 ${nobunagaQuestions.length}問 / 木下牧子 ${kinoshitaQuestions.length}問 / 千原英喜 ${chiharaQuestions.length}問 / 三善晃 ${miyoshiQuestions.length}問 / 松下耕 ${matsushitaQuestions.length}問 / 和声 ${harmonyQuestions.length}問 / 池辺晋一郎 ${ikebeQuestions.length}問 / 武満徹 ${takemitsuQuestions.length}問 / トルミス ${tormisQuestions.length}問 / 髙田三郎 ${takataQuestions.length}問 / 清水脩 ${shimizuQuestions.length}問 / 間宮芳生 ${mamiyaQuestions.length}問 / 新実徳英 ${niimiQuestions.length}問 / 相澤直人 ${aizawaQuestions.length}問 / 三宅悠太 ${miyakeQuestions.length}問 / 荻久保和明 ${ogikuboQuestions.length}問 / 鈴木輝昭 ${suzukiQuestions.length}問 / 発声・身体 ${voiceQuestions.length}問 / IPA母音 ${ipaVowelQuestions.length}問 / IPA子音 ${ipaConsonantQuestions.length}問 / Traumlicht ${traumlichtQuestions.length}問 / ドイツ語和訳 ${germanTranslationQuestions.length}問（単語・語句 ${germanWordQuestions.length}問） / 音楽記号・楽語 ${symbolQuestions.length}問 / 調号 ${keyDefs.length*4*2}パターン以上 / 音名は自動生成`;
+$("bankInfo").textContent=`収録：音楽史 ${historyQuestions.length}問 / 日本の合唱 ${japanChoralQuestions.length}問 / 世界の合唱 ${worldChoralQuestions.length}問 / 多田武彦 ${tadaQuestions.length}問 / 信長貴富 ${nobunagaQuestions.length}問 / 木下牧子 ${kinoshitaQuestions.length}問 / 千原英喜 ${chiharaQuestions.length}問 / 三善晃 ${miyoshiQuestions.length}問 / 松下耕 ${matsushitaQuestions.length}問 / 和声 ${harmonyQuestions.length}問 / ソルミゼーション ${keyDefs.length*SOLMIZATION_SYLLABLES.length*2}パターン / 池辺晋一郎 ${ikebeQuestions.length}問 / 武満徹 ${takemitsuQuestions.length}問 / トルミス ${tormisQuestions.length}問 / 髙田三郎 ${takataQuestions.length}問 / 清水脩 ${shimizuQuestions.length}問 / 間宮芳生 ${mamiyaQuestions.length}問 / 新実徳英 ${niimiQuestions.length}問 / 相澤直人 ${aizawaQuestions.length}問 / 三宅悠太 ${miyakeQuestions.length}問 / 荻久保和明 ${ogikuboQuestions.length}問 / 鈴木輝昭 ${suzukiQuestions.length}問 / 発声・身体 ${voiceQuestions.length}問 / IPA母音 ${ipaVowelQuestions.length}問 / IPA子音 ${ipaConsonantQuestions.length}問 / Traumlicht ${traumlichtQuestions.length}問 / ドイツ語和訳 ${germanTranslationQuestions.length}問（単語・語句 ${germanWordQuestions.length}問） / 音楽記号・楽語 ${symbolQuestions.length}問 / 調号 ${keyDefs.length*4*2}パターン以上 / 音名は自動生成`;
 
 function svgEl(name,attrs={}){
   const e=document.createElementNS(NS,name);
@@ -4224,8 +4248,8 @@ function drawBaseStaff(clef,variant="standard"){
   }else{
     // ヘ音記号：右の2点が第2線を上下から挟む。上端は第1線、下端は第4線を少し越える。
     const bassGroup=svgEl("g",{transform:"translate(-8 0)"});
-    const dotX=164,dotOffset=gap/2;
-    bassGroup.appendChild(svgEl("path",{d:`M116 ${secondLineY} C116 ${top} 143 ${top-6} 150 ${top+14} C158 ${top+34} 143 ${top+57} 111 ${top+71}`,fill:"none",stroke:"#24211e","stroke-width":"7","stroke-linecap":"round"}));
+    const dotX=174,dotOffset=gap/2;
+    bassGroup.appendChild(svgEl("path",{d:`M116 ${secondLineY} C116 ${top} 151 ${top-6} 160 ${top+14} C169 ${top+34} 151 ${top+57} 111 ${top+71}`,fill:"none",stroke:"#24211e","stroke-width":"7","stroke-linecap":"round"}));
     bassGroup.appendChild(svgEl("ellipse",{cx:122,cy:secondLineY,rx:10,ry:8,fill:"#24211e"}));
     bassGroup.appendChild(svgEl("circle",{cx:dotX,cy:secondLineY-dotOffset,r:4.5,fill:"#24211e"}));
     bassGroup.appendChild(svgEl("circle",{cx:dotX,cy:secondLineY+dotOffset,r:4.5,fill:"#24211e"}));
@@ -4236,7 +4260,7 @@ function drawBaseStaff(clef,variant="standard"){
 }
 function drawNoteQuestion(q){
   const {s,top,gap}=drawBaseStaff(q.clef,"note");
-  const y=noteY(q.note,q.oct,q.clef),x=380,bottom=top+gap*4;
+  const y=noteY(q.note,q.oct,q.clef),x=410,bottom=top+gap*4;
   if(y>bottom){
     for(let ly=bottom+gap;ly<=y+1;ly+=gap)s.appendChild(svgEl("line",{x1:x-30,y1:ly,x2:x+30,y2:ly,stroke:"#24211e","stroke-width":"1.7"}));
   }
@@ -4250,8 +4274,7 @@ function drawNoteQuestion(q){
     ?svgEl("line",{x1:x-11,y1:y+1,x2:x-11,y2:y+66,stroke:"#111","stroke-width":"3"})
     :svgEl("line",{x1:x+11,y1:y-1,x2:x+11,y2:y-66,stroke:"#111","stroke-width":"3"}));
 }
-function drawKeySignature(q){
-  const {s,top}=drawBaseStaff(q.clef);
+function drawKeySignatureMarks(s,q){
   const sharpTreble=[["F",5],["C",5],["G",5],["D",5],["A",4],["E",5],["B",4]];
   const flatTreble =[["B",4],["E",5],["A",4],["D",5],["G",4],["C",5],["F",4]];
   const sharpBass=[["F",3],["C",3],["G",3],["D",3],["A",2],["E",3],["B",2]];
@@ -4259,26 +4282,52 @@ function drawKeySignature(q){
   const isSharp=q.sig>0,count=Math.abs(q.sig);
   const list=q.clef==="treble"?(isSharp?sharpTreble:flatTreble):(isSharp?sharpBass:flatBass);
   for(let i=0;i<count;i++){
-    const [n,o]=list[i],x=185+i*22,y=noteY(n,o,q.clef)+(isSharp?14:10);
+    const [n,o]=list[i],x=197+i*26,y=noteY(n,o,q.clef)+10;
     drawText(s,isSharp?"♯":"♭",x,y,{
-      "font-size":34,
+      "font-size":38,
       "font-family":"'Noto Music','Segoe UI Symbol',serif",
       "text-anchor":"middle",fill:"#24211e"
     });
   }
+}
+function drawKeySignature(q){
+  const {s}=drawBaseStaff(q.clef);
+  drawKeySignatureMarks(s,q);
+  const count=Math.abs(q.sig);
   if(count===0){
     drawText(s,"（調号なし）",345,220,{"font-size":18,"font-family":"sans-serif",fill:"#697386"});
   }
+}
+function drawSolmizationQuestion(q){
+  const {s,top,gap}=drawBaseStaff(q.clef,"note");
+  drawKeySignatureMarks(s,q);
+  const y=noteY(q.note,q.oct,q.clef),x=430,bottom=top+gap*4;
+  if(y>bottom){
+    for(let ly=bottom+gap;ly<=y+1;ly+=gap)s.appendChild(svgEl("line",{x1:x-30,y1:ly,x2:x+30,y2:ly,stroke:"#24211e","stroke-width":"1.7"}));
+  }
+  if(y<top){
+    for(let ly=top-gap;ly>=y-1;ly-=gap)s.appendChild(svgEl("line",{x1:x-30,y1:ly,x2:x+30,y2:ly,stroke:"#24211e","stroke-width":"1.7"}));
+  }
+  if(q.accidental){
+    drawText(s,q.accidental,x-31,y+11,{"font-size":36,"font-family":"'Noto Music','Segoe UI Symbol',serif","text-anchor":"middle",fill:"#24211e"});
+  }
+  const g=svgEl("g",{transform:`translate(${x} ${y}) rotate(-18)`});
+  g.appendChild(svgEl("ellipse",{cx:0,cy:0,rx:13,ry:9,fill:"#111"}));s.appendChild(g);
+  const stemDown=y<=top+gap*2;
+  s.appendChild(stemDown
+    ?svgEl("line",{x1:x-11,y1:y+1,x2:x-11,y2:y+66,stroke:"#111","stroke-width":"3"})
+    :svgEl("line",{x1:x+11,y1:y-1,x2:x+11,y2:y-66,stroke:"#111","stroke-width":"3"}));
 }
 function midi(note,oct){
   const idx={"C":0,"D":2,"E":4,"F":5,"G":7,"A":9,"B":11}[note];
   return 12*(oct+1)+idx;
 }
 function playCurrent(){
-  if(!session.q||session.q.type!=="note")return;
+  if(!session.q||!["note","solmization"].includes(session.q.type))return;
   const AudioCtx=window.AudioContext||window.webkitAudioContext;
   const ctx=new AudioCtx(),osc=ctx.createOscillator(),gain=ctx.createGain();
-  const f=440*Math.pow(2,(midi(session.q.note,session.q.oct)-69)/12);
+  const pitch=Number.isFinite(session.q.pitchMidi)?session.q.pitchMidi:midi(session.q.note,session.q.oct);
+  const f=440*Math.pow(2,(pitch-69)/12);
   osc.type="sine";osc.frequency.value=f;
   gain.gain.setValueAtTime(.0001,ctx.currentTime);
   gain.gain.exponentialRampToValueAtTime(.32,ctx.currentTime+.02);
@@ -4305,6 +4354,27 @@ function makeNoteQuestion(){
   return {type:"note",clef,note,oct,correct:note,choices:shuffle([...choices]),
     question:"この音は何でしょう？",
     explanation:`${clef==="treble"?"ト音記号":"ヘ音記号"}で、この音は ${note}${oct}（${SOLFEGE[note]}）です。`};
+}
+function makeSolmizationQuestion(){
+  const keys=keyDefs.filter(x=>x.level<=levelLimit());
+  const syllables=SOLMIZATION_SYLLABLES.filter(x=>x.level<=levelLimit());
+  const mode=$("clefMode").value,clefs=mode==="mix"?["treble","bass"]:[mode];
+  const all=[];
+  keys.forEach(key=>syllables.forEach(syllable=>clefs.forEach(clef=>{
+    all.push({key,syllable,clef,token:`sm:${key.sig}:${syllable.degree}:${syllable.delta}:${clef}`});
+  })));
+  const candidates=all.filter(x=>!session.used.has(x.token)),chosen=pick(candidates.length?candidates:all);
+  session.used.add(chosen.token);
+  const {key,syllable,clef}=chosen,pitch=solmizationPitch(key,syllable,clef);
+  const choicePool=shuffle(SOLMIZATION_SYLLABLES.filter(x=>x.level<=levelLimit()&&x.name!==syllable.name).map(x=>x.name));
+  const change=syllable.delta>0?"上方変化音":syllable.delta<0?"下方変化音":"基本音";
+  return {
+    type:"solmization",sig:key.sig,clef,note:pitch.note,oct:pitch.oct,pitchMidi:pitch.pitchMidi,
+    accidental:syllable.delta?(pitch.writtenAcc===0?"♮":accidentalGlyph(pitch.writtenAcc)):"",correct:syllable.name,
+    choices:shuffle([syllable.name,...choicePool.slice(0,3)]),
+    question:`${key.major}で、この音を移動ド（英語式）で読むと？`,
+    explanation:`${key.major}では ${pitch.pitchName} は第${syllable.degree+1}音の${change}なので、${syllable.name} と読みます。`
+  };
 }
 function makeHistoryQuestion(){
   const x=uniqueBankPick(historyQuestions,"h");
@@ -4453,10 +4523,11 @@ function makeKeyQuestion(){
 function makeQuestion(){
   let type=session.course;
   if(type==="mix"){
-    const pattern=["note","history","harmony","japanChoral","worldChoral","tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata","voice","ipaVowel","ipaConsonant","german","symbol","key"];
+    const pattern=["note","solmization","history","harmony","japanChoral","worldChoral","tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata","voice","ipaVowel","ipaConsonant","german","symbol","key"];
     type=pattern[session.index % pattern.length];
   }
   if(type==="note")return makeNoteQuestion();
+  if(type==="solmization")return makeSolmizationQuestion();
   if(type==="history")return makeHistoryQuestion();
   if(type==="japanChoral")return makeJapanChoralQuestion();
   if(type==="worldChoral")return makeWorldChoralQuestion();
@@ -4501,6 +4572,8 @@ function setQuestionVisual(q){
   $("audioRow").classList.add("hidden");
   if(q.type==="note"){
     $("staffWrap").classList.remove("hidden");$("audioRow").classList.remove("hidden");drawNoteQuestion(q);
+  }else if(q.type==="solmization"){
+    $("staffWrap").classList.remove("hidden");$("audioRow").classList.remove("hidden");drawSolmizationQuestion(q);
   }else if(q.type==="key"){
     $("staffWrap").classList.remove("hidden");drawKeySignature(q);
   }else if(q.type==="symbol"){
