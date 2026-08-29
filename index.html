@@ -719,7 +719,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-        <span class="version">Ver. 1.30.5</span>
+        <span class="version">Ver. 1.30.6</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -4236,7 +4236,7 @@ function drawBaseStaff(clef,variant="standard"){
 }
 function drawNoteQuestion(q){
   const {s,top,gap}=drawBaseStaff(q.clef,"note");
-  const y=noteY(q.note,q.oct,q.clef),x=410,bottom=top+gap*4;
+  const y=noteY(q.note,q.oct,q.clef),x=380,bottom=top+gap*4;
   if(y>bottom){
     for(let ly=bottom+gap;ly<=y+1;ly+=gap)s.appendChild(svgEl("line",{x1:x-30,y1:ly,x2:x+30,y2:ly,stroke:"#24211e","stroke-width":"1.7"}));
   }
