@@ -719,7 +719,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-  <span class="version">Ver. 1.30.1</span>
+        <span class="version">Ver. 1.30.2</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -4207,7 +4207,7 @@ function drawBaseStaff(clef,variant="standard"){
     // ト音記号：上下とも五線からはみ出し、書き始め側が第4線の少し下に来る寸法。
     const size=180;
     const x=84;
-    const y=secondLineY+(noteMode?90:82);
+    const y=secondLineY+82;
     drawText(s,"𝄞",x,y,{
       "font-size":size,
       "font-family":"'Noto Music','Segoe UI Symbol',serif",
@@ -4246,7 +4246,7 @@ function drawKeySignature(q){
   const isSharp=q.sig>0,count=Math.abs(q.sig);
   const list=q.clef==="treble"?(isSharp?sharpTreble:flatTreble):(isSharp?sharpBass:flatBass);
   for(let i=0;i<count;i++){
-    const [n,o]=list[i],x=205+i*34,y=noteY(n,o,q.clef)+10;
+    const [n,o]=list[i],x=205+i*30,y=noteY(n,o,q.clef)+10;
     drawText(s,isSharp?"♯":"♭",x,y,{
       "font-size":38,
       "font-family":"'Noto Music','Segoe UI Symbol',serif",
