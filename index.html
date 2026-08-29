@@ -719,7 +719,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-        <span class="version">Ver. 1.30.2</span>
+        <span class="version">Ver. 1.30.3</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -4226,7 +4226,7 @@ function drawBaseStaff(clef,variant="standard"){
 }
 function drawNoteQuestion(q){
   const {s,top,gap}=drawBaseStaff(q.clef,"note");
-  const y=noteY(q.note,q.oct,q.clef),x=440,bottom=top+gap*4;
+  const y=noteY(q.note,q.oct,q.clef),x=410,bottom=top+gap*4;
   if(y>bottom){
     for(let ly=bottom+gap;ly<=y+1;ly+=gap)s.appendChild(svgEl("line",{x1:x-30,y1:ly,x2:x+30,y2:ly,stroke:"#24211e","stroke-width":"1.7"}));
   }
@@ -4235,7 +4235,10 @@ function drawNoteQuestion(q){
   }
   const g=svgEl("g",{transform:`translate(${x} ${y}) rotate(-18)`});
   g.appendChild(svgEl("ellipse",{cx:0,cy:0,rx:13,ry:9,fill:"#111"}));s.appendChild(g);
-  s.appendChild(svgEl("line",{x1:x+11,y1:y-1,x2:x+11,y2:y-66,stroke:"#111","stroke-width":"3"}));
+  const stemDown=y<=top+gap*2;
+  s.appendChild(stemDown
+    ?svgEl("line",{x1:x-11,y1:y+1,x2:x-11,y2:y+66,stroke:"#111","stroke-width":"3"})
+    :svgEl("line",{x1:x+11,y1:y-1,x2:x+11,y2:y-66,stroke:"#111","stroke-width":"3"}));
 }
 function drawKeySignature(q){
   const {s,top}=drawBaseStaff(q.clef);
@@ -4246,7 +4249,7 @@ function drawKeySignature(q){
   const isSharp=q.sig>0,count=Math.abs(q.sig);
   const list=q.clef==="treble"?(isSharp?sharpTreble:flatTreble):(isSharp?sharpBass:flatBass);
   for(let i=0;i<count;i++){
-    const [n,o]=list[i],x=205+i*30,y=noteY(n,o,q.clef)+10;
+    const [n,o]=list[i],x=205+i*26,y=noteY(n,o,q.clef)+10;
     drawText(s,isSharp?"♯":"♭",x,y,{
       "font-size":38,
       "font-family":"'Noto Music','Segoe UI Symbol',serif",
