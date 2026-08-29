@@ -719,7 +719,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-  <span class="version">Ver. 1.29.1</span>
+  <span class="version">Ver. 1.29.2</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -4091,7 +4091,7 @@ function drawBaseStaff(clef,variant="standard"){
     // ト音記号：上下とも五線からはみ出し、書き始め側が第4線の少し下に来る寸法。
     const size=158;
     const x=84;
-    const y=secondLineY+50;
+    const y=secondLineY+66;
     drawText(s,"𝄞",x,y,{
       "font-size":size,
       "font-family":"'Noto Music','Segoe UI Symbol',serif",
@@ -4101,7 +4101,7 @@ function drawBaseStaff(clef,variant="standard"){
     // ヘ音記号：右の2点が第2線を上下から挟む。上端は第1線、下端は第4線を少し越える。
     const dotX=174,dotOffset=gap/2;
     s.appendChild(svgEl("path",{d:`M116 ${secondLineY} C116 ${top} 151 ${top-6} 160 ${top+14} C169 ${top+34} 151 ${top+57} 111 ${top+71}`,fill:"none",stroke:"#24211e","stroke-width":"7","stroke-linecap":"round"}));
-    s.appendChild(svgEl("ellipse",{cx:116,cy:secondLineY,rx:10,ry:8,fill:"#24211e"}));
+    s.appendChild(svgEl("ellipse",{cx:122,cy:secondLineY,rx:10,ry:8,fill:"#24211e"}));
     s.appendChild(svgEl("circle",{cx:dotX,cy:secondLineY-dotOffset,r:4.5,fill:"#24211e"}));
     s.appendChild(svgEl("circle",{cx:dotX,cy:secondLineY+dotOffset,r:4.5,fill:"#24211e"}));
   }
