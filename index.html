@@ -720,7 +720,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-      <span class="version">Ver. 1.35.1</span>
+      <span class="version">Ver. 1.37.0</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -743,6 +743,9 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
         <option value="fujishima">藤嶋美穂クイズ</option>
         <option value="matsumotoNozomi">松本望クイズ</option>
         <option value="tanakaTatsuya">田中達也クイズ</option>
+        <option value="tanikawa">谷川俊太郎クイズ</option>
+        <option value="minazuki">みなづきみのりクイズ</option>
+        <option value="yamashitaYuka">山下祐加クイズ</option>
         <option value="tormis">トルミスクイズ</option>
         <option value="takata">髙田三郎クイズ</option>
         <option value="shimizu">清水脩クイズ</option>
@@ -813,7 +816,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 <div class="gamePanel">
     <div class="gameHud">
       <div class="gameStat"><span>MP</span><b id="homeMP">0</b></div>
-      <div class="gameStat"><span>カード</span><b id="homeCards">0 / 390</b></div>
+      <div class="gameStat"><span>カード</span><b id="homeCards">0 / 396</b></div>
       <div class="gameStat"><span>音符のかけら</span><b id="homeFragments">0</b></div>
     </div>
     <div class="gameActions">
@@ -866,7 +869,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
   </div>
   <div class="gameHud">
     <div class="gameStat"><span>MP</span><b id="gachaMP">0</b></div>
-    <div class="gameStat"><span>カード</span><b id="gachaCards">0 / 390</b></div>
+    <div class="gameStat"><span>カード</span><b id="gachaCards">0 / 396</b></div>
     <div class="gameStat"><span>音符のかけら</span><b id="gachaFragments">0</b></div>
   </div>
   <div style="height:12px"></div>
@@ -897,7 +900,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     </div>
   </div>
   <div class="gameHud">
-    <div class="gameStat"><span>収集率</span><b id="collectionCount">0 / 390</b></div>
+    <div class="gameStat"><span>収集率</span><b id="collectionCount">0 / 396</b></div>
     <div class="gameStat"><span>音符のかけら</span><b id="collectionFragments">0</b></div>
     <div class="gameStat"><span>ガチャ回数</span><b id="collectionPulls">0</b></div>
   </div>
@@ -1193,7 +1196,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 const NS="http://www.w3.org/2000/svg";
 const NOTE_NAMES_SHARP=["C","C♯","D","D♯","E","F","F♯","G","G♯","A","A♯","B"];
 const SOLFEGE={"C":"ド","D":"レ","E":"ミ","F":"ファ","G":"ソ","A":"ラ","B":"シ"};
-const COURSE_LABELS={note:"音名",history:"音楽史",japanChoral:"日本の合唱",worldChoral:"世界の合唱",tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",nakata:"中田喜直",nishimura:"西村朗",fujishima:"藤嶋美穂",matsumotoNozomi:"松本望",tanakaTatsuya:"田中達也",tormis:"トルミス",takata:"髙田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",harmony:"和声",solmization:"ソルミゼーション",ikebe:"池辺晋一郎",takemitsu:"武満徹",voice:"発声・身体構造",ipaVowel:"母音（IPA）",ipaConsonant:"子音（IPA）",german:"ドイツ語和訳",germanWords:"ドイツ語 単語・語句",germanFrohlich:"Fröhlich im Maien",germanVor:"Vor den Türen",germanTraumlicht:"Traumlicht",symbol:"音楽記号",key:"調号"};
+const COURSE_LABELS={note:"音名",history:"音楽史",japanChoral:"日本の合唱",worldChoral:"世界の合唱",tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",nakata:"中田喜直",nishimura:"西村朗",fujishima:"藤嶋美穂",matsumotoNozomi:"松本望",tanakaTatsuya:"田中達也",tanikawa:"谷川俊太郎",minazuki:"みなづきみのり",yamashitaYuka:"山下祐加",tormis:"トルミス",takata:"髙田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",harmony:"和声",solmization:"ソルミゼーション",ikebe:"池辺晋一郎",takemitsu:"武満徹",voice:"発声・身体構造",ipaVowel:"母音（IPA）",ipaConsonant:"子音（IPA）",german:"ドイツ語和訳",germanWords:"ドイツ語 単語・語句",germanFrohlich:"Fröhlich im Maien",germanVor:"Vor den Türen",germanTraumlicht:"Traumlicht",symbol:"音楽記号",key:"調号"};
 
 const ranges={
   treble:{
@@ -2300,6 +2303,7 @@ function getExpansionCardArt(card){
   if(n.startsWith("藤嶋美穂 ― "))return card.rarity==="SSR"?artWrap(artFlowerBook()+artSkyVoice(),"藤嶋美穂 春がここに"):srBase(srFlower()+srMusic()+srBook(),n);
   if(n.startsWith("松本望 ― "))return card.rarity==="SSR"?artWrap(artSkyVoice()+artGeometry(),"松本望 天使のいる構図"):srBase(srMusic()+srStars()+srGeometry2(),n);
   if(n.startsWith("田中達也 ― "))return card.rarity==="SSR"?artWrap(artGeometry()+artSkyVoice(),"田中達也 The Tyger"):srBase(srMusic()+srBook()+srStars(),n);
+  if(n.startsWith("山下祐加 ― "))return card.rarity==="SSR"?artWrap(artStars()+artFlowerBook()+artSkyVoice(),"山下祐加 ねむりのもりのはなし"):srBase(srForestRain()+srBook()+srMusic(),n);
   return "";
 }
 function getCardArt(card){
@@ -2467,6 +2471,92 @@ const tanakaTatsuyaQuestions=pairedComposerQuiz("tt",[
  [1,"もっと強く","《もっと強く》の詩人は？","《わたしが一番きれいだったとき》《倚りかからず》を含む女声合唱作品の詩を書いたのは？","茨木のり子","高橋順子","新川和江","みなづきみのり","《もっと強く》は茨木のり子の詩によります。"]
 ]);
 
+// ===== Ver.1.36.0 詩人クイズ（各50問） =====
+const tanikawaQuestions=pairedComposerQuiz("tg",[
+ [1,"経歴","谷川俊太郎の生年は？","詩人・谷川俊太郎が生まれたのは何年？","1931年","1921年","1941年","1951年","谷川俊太郎は1931年生まれです。"],
+ [1,"経歴","谷川俊太郎の出生地は？","谷川俊太郎が生まれた都市は？","東京","大阪","京都","札幌","谷川俊太郎は東京に生まれました。"],
+ [2,"経歴","谷川俊太郎の父・谷川徹三の職業は？","谷川俊太郎が哲学者の父として挙げられる人物の専門は？","哲学者","作曲家","画家","建築家","父の谷川徹三は哲学者です。"],
+ [1,"経歴","谷川俊太郎が詩作を始めた年齢は？","谷川俊太郎が詩を書き始めたのは何歳頃？","16歳","10歳","21歳","30歳","谷川俊太郎は16歳から詩作を始めました。"],
+ [1,"詩集","谷川俊太郎の第1詩集は？","1952年に刊行された谷川俊太郎のデビュー詩集は？","《二十億光年の孤独》","《定義》","《世間知ラズ》","《夜中に台所でぼくはきみに話しかけたかった》","第1詩集は《二十億光年の孤独》です。"],
+ [2,"詩集","《二十億光年の孤独》が刊行された年は？","谷川俊太郎が第1詩集を刊行してデビューしたのは何年？","1952年","1945年","1963年","1975年","《二十億光年の孤独》は1952年に刊行されました。"],
+ [2,"詩活動","谷川俊太郎が1953年に同人となった詩誌は？","茨木のり子や大岡信らと活動した詩誌は？","《櫂》","《明星》","《白樺》","《青鞜》","1953年に詩誌《櫂》の同人となりました。"],
+ [1,"経歴","谷川俊太郎が亡くなった年は？","92歳で逝去した谷川俊太郎の没年は？","2024年","2014年","2019年","2026年","谷川俊太郎は2024年に92歳で亡くなりました。"],
+ [1,"翻訳","谷川俊太郎が長年日本語訳を手がけた海外コミックは？","スヌーピーが登場する、谷川俊太郎訳のコミックは？","《PEANUTS》","《ムーミン》","《タンタンの冒険》","《ガーフィールド》","谷川俊太郎はチャールズ・M・シュルツの《PEANUTS》を長年翻訳しました。"],
+ [1,"作詞","谷川俊太郎が主題歌を作詞したアニメは？","高井達雄の曲に谷川俊太郎が詞を付けた主題歌は？","《鉄腕アトム》","《宇宙戦艦ヤマト》","《銀河鉄道999》","《ドラえもん》","谷川俊太郎はアニメ《鉄腕アトム》の主題歌を作詞しました。"],
+ [1,"地平線のかなたへ","谷川俊太郎の詩による《地平線のかなたへ》の作曲者は？","《春に》《サッカーによせて》《二十億光年の孤独》をまとめた合唱曲集の作曲者は？","木下牧子","三善晃","信長貴富","松下耕","《地平線のかなたへ》は木下牧子の作曲です。"],
+ [1,"どこかで朝が","《どこかで朝が》の作曲者は？","谷川俊太郎の《朝のリレー》《朝ゆえに》を含む組曲を書いた作曲家は？","相澤直人","上田真樹","松本望","三宅悠太","《どこかで朝が》は相澤直人の作曲です。"],
+ [2,"どこかで朝が","《どこかで朝が》は何曲からなる？","《朝のリレー》から《さようなら》までを収める組曲の曲数は？","5曲","3曲","4曲","6曲","《どこかで朝が》は全5曲です。"],
+ [1,"そのあと","谷川俊太郎の詩による男声合唱組曲《そのあと》の作曲者は？","首都大学東京グリークラブが委嘱した無伴奏男声合唱組曲を書いたのは？","上田真樹","信長貴富","松下耕","鈴木輝昭","《そのあと》は上田真樹の作曲です。"],
+ [1,"天使のいる構図","《天使のいる構図》の作曲者は？","谷川俊太郎『クレーの天使』からテキストを再構成した合唱組曲を書いたのは？","松本望","木下牧子","北川昇","高嶋みどり","《天使のいる構図》は松本望の作曲です。"],
+ [1,"そのひとがうたうとき","谷川俊太郎の詩による《そのひとがうたうとき》の作曲者は？","同名の詩を題材にした男声合唱曲集を書いた作曲家は？","松下耕","新実徳英","信長貴富","上田真樹","《そのひとがうたうとき》は松下耕の作曲です。"],
+ [1,"ことばあそびうた","《ことばあそびうたII》の作曲者は？","谷川俊太郎の言葉遊びを男声合唱とピアノの作品にした作曲家は？","新実徳英","三善晃","荻久保和明","千原英喜","《ことばあそびうたII》は新実徳英の作曲です。"],
+ [1,"雨よ降れ","無伴奏混声合唱組曲《雨よ降れ》の作曲者は？","谷川俊太郎の《渇き》《雨よ降れ》《遠くへ》をまとめた作曲家は？","三宅悠太","相澤直人","鈴木輝昭","国枝春恵","《雨よ降れ》は三宅悠太の作曲です。"],
+ [2,"雨よ降れ","《雨よ降れ》の伴奏形態は？","《渇き》《雨よ降れ》《遠くへ》の3曲に共通する伴奏形態は？","無伴奏","ピアノ伴奏","弦楽四重奏","管弦楽伴奏","《雨よ降れ》は無伴奏混声合唱組曲です。"],
+ [2,"あたしとあなた","《あたしとあなた》で女声合唱と組み合わされる編成は？","信長貴富が谷川俊太郎の詩に作曲した《あたしとあなた》の伴奏は？","弦楽四重奏","ピアノ連弾","打楽器三重奏","管弦楽","《あたしとあなた》は女声合唱と弦楽四重奏のための作品です。"],
+ [2,"じゅうにつき","《じゅうにつき》の作曲者は？","同声合唱と弦楽オーケストラのための谷川俊太郎作品を書いたのは？","鈴木輝昭","信長貴富","萩京子","木下牧子","《じゅうにつき》は鈴木輝昭の作曲です。"],
+ [1,"After...","無伴奏混声合唱のための《After...》の作曲者は？","《言葉》《絶望》《遠くへ》《そのあと》からなる作品を書いたのは？","信長貴富","上田真樹","三宅悠太","松下耕","《After...》は信長貴富の作曲です。"],
+ [1,"魂のいちばんおいしいところ","《魂のいちばんおいしいところ》の作曲者は？","谷川俊太郎の《はる》《帰郷》《今日》《生きる》を含む合唱曲集を書いたのは？","萩京子","鈴木輝昭","国枝春恵","相澤直人","《魂のいちばんおいしいところ》は萩京子の作曲です。"],
+ [2,"魂のいちばんおいしいところ","《魂のいちばんおいしいところ》は何曲からなる？","《はる》から表題曲までを収める混声合唱曲集の曲数は？","5曲","4曲","6曲","9曲","《魂のいちばんおいしいところ》は全5曲です。"],
+ [1,"ミライノコドモ","谷川俊太郎の詩による《ミライノコドモ》の作曲者は？","《あのひとが来て》《断片》《子どもと本》を含む組曲を書いたのは？","田中達也","松本望","土田豊貴","北川昇","《ミライノコドモ》は田中達也の作曲です。"]
+]);
+
+const minazukiQuestions=pairedComposerQuiz("mz",[
+ [1,"活動","みなづきみのりが作詩・作詞活動を始めた時期は？","公式プロフィールで作詩活動の開始時期とされるのは？","2006年頃","1986年頃","1996年頃","2016年頃","2006年頃から作詩・作詞活動を始めました。"],
+ [1,"活動","みなづきみのりの在住地は？","公式プロフィールに記されている居住地は？","京都","東京","札幌","福岡","みなづきみのりは京都在住です。"],
+ [1,"活動","みなづきみのりの趣味として紹介されているのは？","公式プロフィールで本人の趣味とされる音楽活動は？","合唱指揮","オペラ演出","ヴァイオリン製作","ジャズピアノ","趣味は合唱指揮と紹介されています。"],
+ [1,"ゆうやけ","2014年に合唱連盟コンクール課題曲となった、みなづきみのり作詞の作品は？","松本望が作曲した2014年の課題曲は？","《ゆうやけ》","《葡萄の樹》","《雪の子守唄》","《歌よ飛び立て》","松本望作曲《ゆうやけ》が2014年の合唱連盟コンクール課題曲となりました。"],
+ [1,"創作物語","合唱ミュージカル《夢にこだまする～あるボスざるの物語》の作曲者は？","みなづきみのりが物語テキストと構成を担当した合唱ミュージカルを書いたのは？","高嶋みどり","松本望","北川昇","信長貴富","《夢にこだまする～あるボスざるの物語》は高嶋みどりの作曲です。"],
+ [2,"創作物語","歌と語りのためのシアターピース《戻り橋》の作曲者は？","みなづきみのりがテキストと構成を担当した《戻り橋》を書いたのは？","増田真結","山下祐加","松波千映子","大田桜子","《戻り橋》は増田真結の作曲です。"],
+ [2,"創作物語","混声合唱とピアノのためのメルヒェン《夢見る翼の歌》の作曲者は？","みなづきみのりが創作物語を担当した《夢見る翼の歌》を書いたのは？","山下祐加","高嶋みどり","松下耕","森山至貴","《夢見る翼の歌》は山下祐加の作曲です。"],
+ [2,"創作物語","合唱物語《さびしがりやのサンタクロース》の作曲者は？","みなづきみのりが物語テキストと構成を担当した合唱作品を書いたのは？","松波千映子","瑞慶覧尚子","北川昇","土田豊貴","《さびしがりやのサンタクロース》は松波千映子の作曲です。"],
+ [2,"訳詞","みなづきみのりが日本語訳詞を手がけたシューベルトの連作歌曲集は？","千原英喜の混声合唱編曲版で創作ナレーションも担当した作品は？","《美しき水車小屋の娘》","《冬の旅》","《白鳥の歌》","《詩人の恋》","《美しき水車小屋の娘》の日本語訳詞と創作ナレーションを手がけました。"],
+ [1,"小学生作品","《僕のドラゴン》《歌声はどこに行くの》の作曲者は？","みなづきみのりが小学生向けに作詞した2作品を書いたのは？","松下耕","相澤直人","松本望","信長貴富","《僕のドラゴン》《歌声はどこに行くの》は松下耕の作曲です。"],
+ [1,"葡萄の樹","混声合唱曲集《葡萄の樹》の作曲者は？","みなづきみのりの《歌を翼に》《三角定規》に作曲したのは？","信長貴富","北川昇","高嶋みどり","土田豊貴","《葡萄の樹》は信長貴富の作曲です。"],
+ [2,"葡萄の樹","混声合唱曲集《葡萄の樹》は何曲からなる？","《歌を翼に》《三角定規》と表題曲を収める曲集の曲数は？","3曲","4曲","5曲","7曲","《葡萄の樹》は全3曲です。"],
+ [1,"私は空に手を触れる","混声合唱組曲《私は空に手を触れる》の作曲者は？","《私は誰？》《海よ、風よ》《友達だから》を含む組曲を書いたのは？","高嶋みどり","北川昇","森山至貴","山下祐加","《私は空に手を触れる》は高嶋みどりの作曲です。"],
+ [2,"私は空に手を触れる","《私は空に手を触れる》は何曲からなる？","《私は誰？》から《友達だから》までを収める組曲の曲数は？","8曲","5曲","6曲","10曲","《私は空に手を触れる》は全8曲です。"],
+ [1,"さびしい魚のおはなし","《さびしい魚のおはなし》の作曲者は？","みなづきみのりの《ひとり》《どうして？》《ゆうひがしずむ》に作曲したのは？","土田豊貴","松本望","北川昇","大田桜子","《さびしい魚のおはなし》は土田豊貴の作曲です。"],
+ [2,"さびしい魚のおはなし","《さびしい魚のおはなし》は何曲からなる？","《ひとり》から《ふたたび、さよなら》までを収める作品の曲数は？","5曲","3曲","4曲","8曲","《さびしい魚のおはなし》は全5曲です。"],
+ [1,"かなでるからだ","《かなでるからだ》の作曲者は？","みなづきみのりの《皮膚、肌》《膝》《骨》《肩》に作曲したのは？","森山至貴","北川昇","高嶋みどり","瑞慶覧尚子","《かなでるからだ》は森山至貴の作曲です。"],
+ [2,"かなでるからだ","《かなでるからだ》は何曲からなる？","《皮膚、肌》《膝》《骨》《肩》で構成される作品の曲数は？","4曲","3曲","5曲","6曲","《かなでるからだ》は全4曲です。"],
+ [1,"花々の記憶","女声合唱組曲《花々の記憶》の作曲者は？","《朝顔》《ひまわり》《仙人掌》《パンジー》《紫陽花》に作曲したのは？","北川昇","松本望","山下祐加","森山至貴","《花々の記憶》は北川昇の作曲です。"],
+ [2,"花々の記憶","《花々の記憶》は何曲からなる？","《朝顔》から《紫陽花》までを収める女声合唱組曲の曲数は？","5曲","4曲","6曲","8曲","《花々の記憶》は全5曲です。"],
+ [1,"Ten songs","《Ten songs―世界のエレメント―》の作曲者は？","《時の音》《樹の音》《地の音》などに作曲したのは？","山下祐加","高嶋みどり","土田豊貴","北川昇","《Ten songs―世界のエレメント―》は山下祐加の作曲です。"],
+ [2,"Ten songs","《Ten songs―世界のエレメント―》は何曲からなる？","《時の音》から《生命の音～歌声》までを収める曲集の曲数は？","10曲","5曲","8曲","12曲","題名どおり全10曲です。"],
+ [1,"歌う身体たち","混声合唱組曲《歌う身体たち》の作曲者は？","《耳》《まぶた》《アキレス腱》《背中》を含む組曲を書いたのは？","北川昇","森山至貴","松本望","信長貴富","《歌う身体たち》は北川昇の作曲です。"],
+ [2,"私はちっとも悪くない","《私はちっとも悪くない》の作曲者は？","《流れ星に乗って》《ねえ、もう2月なの》《向日葵の歌》を含む合唱ポップスを書いたのは？","松本望","北川昇","瑞慶覧尚子","大田桜子","《私はちっとも悪くない》は松本望の作曲です。"],
+ [2,"ごんぎつね","音楽物語《ごんぎつね》の作曲者は？","新美南吉の原作を基に、みなづきみのりが作詩した音楽物語を書いたのは？","山下祐加","松波千映子","高嶋みどり","土田豊貴","音楽物語《ごんぎつね》は山下祐加の作曲です。"]
+]);
+
+// ===== Ver.1.37.0 山下祐加クイズ（50問） =====
+const yamashitaYukaQuestions=pairedComposerQuiz("yy",[
+ [1,"経歴","山下祐加の生年は？","山下祐加が東京に生まれたのは何年？","1987年","1977年","1992年","1997年","山下祐加は1987年に東京で生まれました。"],
+ [1,"経歴","山下祐加が作曲を学んだ大学は？","作曲科に入学し、大学院まで学んだ大学は？","東京藝術大学","東京学芸大学","国立音楽大学","桐朋学園大学","東京藝術大学作曲科と同大学院で学びました。"],
+ [2,"経歴","山下祐加が作曲を師事した人物の組み合わせは？","公式プロフィールに記された作曲の師は？","尾高惇忠・日野原秀彦","三善晃・武満徹","林光・間宮芳生","池辺晋一郎・新実徳英","作曲を尾高惇忠、日野原秀彦に師事しました。"],
+ [1,"経歴","山下祐加が2011年に大学内で初演した新作オラトリオは？","東京藝術大学在学中に初演したオラトリオの題名は？","《李陵》","《火の鳥》","《月光とピエロ》","《縄文》","2011年6月、大学内で新作オラトリオ《李陵》を初演しました。"],
+ [1,"受賞","山下祐加が2014年度朝日作曲賞を受賞した作品は？","2015年度全日本合唱コンクール課題曲を終曲に含む受賞作は？","《ねむりのもりのはなし》","《私たちは一人ではない》","《Ten songs》","《いわかがみ》","混声合唱組曲《ねむりのもりのはなし》が2014年度朝日作曲賞を受賞しました。"],
+ [2,"ねむりのもりのはなし","《ねむりのもりのはなし》の詩人は？","《ひとはねこを理解できない》《ライ麦の話》を含む組曲の詩を書いたのは？","長田弘","寺山修司","みなづきみのり","野呂昶","《ねむりのもりのはなし》は長田弘の詩によります。"],
+ [2,"ねむりのもりのはなし","混声合唱組曲《ねむりのもりのはなし》は何曲からなる？","《ひとはねこを理解できない》から表題曲までの収載曲数は？","3曲","5曲","7曲","10曲","《ひとはねこを理解できない》《ライ麦の話》《ねむりのもりのはなし》の全3曲です。"],
+ [1,"ねむりのもりのはなし","《ねむりのもりのはなし》の終曲が課題曲に選ばれた年度は？","全日本合唱コンクール課題曲となったのは何年度？","2015年度","2012年度","2019年度","2023年度","終曲は2015年度の全日本合唱コンクール課題曲に選定されました。"],
+ [2,"ねむりのもりのはなし","《ねむりのもりのはなし》の編成は？","山下祐加の朝日作曲賞受賞組曲の演奏編成は？","混声4部合唱とピアノ","無伴奏男声合唱","女声3部合唱とハープ","混声合唱と弦楽四重奏","《ねむりのもりのはなし》は混声4部合唱とピアノのための組曲です。"],
+ [1,"私たちは一人ではない","《私たちは一人ではない》の詩人は？","《立ちつくす》《春のはじまる日》を含む組曲の詩を書いたのは？","長田弘","工藤直子","桜井信夫","寺山修司","《私たちは一人ではない》は長田弘の詩によります。"],
+ [2,"私たちは一人ではない","《私たちは一人ではない》は何曲からなる？","《立ちつくす》から表題曲までの収載曲数は？","3曲","4曲","5曲","6曲","《立ちつくす》《春のはじまる日》《私たちは一人ではない》の全3曲です。"],
+ [2,"私たちは一人ではない","《私たちは一人ではない》が初演された企画は？","2012年3月に名古屋で初演された催しは？","The Premiere vol.2","Tokyo Cantat","Nコン","国民文化祭","2012年3月、名古屋のThe Premiere vol.2で初演されました。"],
+ [1,"世界でいちばん孤独な歌","《世界でいちばん孤独な歌》の詩人は？","《だいせんじがけだらなよさ》から《さすらいの途上だったら》までの詩を書いたのは？","寺山修司","長田弘","谷川俊太郎","宮沢賢治","《世界でいちばん孤独な歌》は寺山修司の詩によります。"],
+ [1,"世界でいちばん孤独な歌","《世界でいちばん孤独な歌》の編成は？","山下祐加が寺山修司の詩に作曲した組曲の声種と伴奏形態は？","無伴奏男声合唱","混声合唱とピアノ","無伴奏女声合唱","児童合唱とピアノ","《世界でいちばん孤独な歌》は無伴奏男声合唱組曲です。"],
+ [2,"世界でいちばん孤独な歌","《世界でいちばん孤独な歌》は何曲からなる？","寺山修司の5編の詩を選んだ組曲の収載曲数は？","5曲","3曲","7曲","10曲","《世界でいちばん孤独な歌》は全5曲です。"],
+ [2,"世界でいちばん孤独な歌","《世界でいちばん孤独な歌》を委嘱初演した合唱団は？","2022年5月に伊東恵司の指揮で初演した団体は？","なにわコラリアーズ","合唱団うぃろう","松原混声合唱団","浜松少年少女合唱団","なにわコラリアーズが委嘱し、2022年5月に初演しました。"],
+ [1,"Ten songs","《Ten songs―世界のエレメント―》の詩人は？","世界の“音”を描く10編の詩を書いたのは？","みなづきみのり","長田弘","野呂昶","立原道造","《Ten songs―世界のエレメント―》はみなづきみのりの詩によります。"],
+ [1,"Ten songs","《Ten songs―世界のエレメント―》の伴奏形態は？","世界の“音”を歌う10曲に共通する伴奏形態は？","無伴奏","ピアノ伴奏","弦楽五重奏伴奏","打楽器伴奏","《Ten songs―世界のエレメント―》は無伴奏混声合唱曲集です。"],
+ [2,"Ten songs","《Ten songs―世界のエレメント―》は何曲からなる？","《時の音》《樹の音》《地の音》などを収める曲集の曲数は？","10曲","5曲","8曲","12曲","題名どおり全10曲からなる曲集です。"],
+ [2,"Ten songs","《Ten songs―世界のエレメント―》を委嘱初演した団体は？","2019年5月12日に豊田市コンサートホールで初演したのは？","合唱団うぃろう","なにわコラリアーズ","やちまた混声合唱団","コーラス・和音","合唱団うぃろうが第10回演奏会を記念して委嘱し、初演しました。"],
+ [1,"いわかがみ","混声合唱とピアノのための組曲《いわかがみ》の詩人は？","《水仙》《案山子》《はるしおん》《ふくろう》を含む組曲の詩を書いたのは？","野呂昶","桜井信夫","工藤直子","村瀬保子","《いわかがみ》は野呂昶の詩によります。"],
+ [2,"いわかがみ","《いわかがみ》は何曲からなる？","《水仙》から表題曲までを収める組曲の曲数は？","5曲","3曲","7曲","10曲","《いわかがみ》は全5曲からなる混声合唱組曲です。"],
+ [1,"きみがすき","児童合唱組曲《きみがすき》の詩人は？","《けずらないえんぴつ》《なぜ？》《こえ》を含む組曲の詩を書いたのは？","桜井信夫","野呂昶","長田弘","工藤直子","《きみがすき》は桜井信夫の詩によります。"],
+ [2,"きみがすき","《きみがすき》を委嘱した団体は？","2018年4月の創立20周年記念演奏会で初演したのは？","浜松少年少女合唱団","合唱団うぃろう","なにわコラリアーズ","やちまた混声合唱団","浜松少年少女合唱団が委嘱し、創立20周年記念演奏会で初演しました。"],
+ [2,"きみがすき","児童合唱組曲《きみがすき》は何曲からなる？","《けずらないえんぴつ》から《かぜのこえ》までの収載曲数は？","7曲","5曲","8曲","10曲","《きみがすき》は全7曲からなる児童合唱組曲です。"]
+]);
+
 COMPOSER_CARDS.push(
   {id:343,name:"瀧廉太郎 ― 《荒城の月》",rarity:"SSR",theme:"日本近代・歌曲・土井晩翠・城跡・月"},
   {id:344,name:"瀧廉太郎 ― 《花》",rarity:"SR",theme:"日本近代・二部合唱・武島羽衣・隅田川・春"},
@@ -2515,7 +2605,13 @@ COMPOSER_CARDS.push(
   {id:387,name:"田中達也 ― 《光のかたち》",rarity:"SR",theme:"日本現代・混声合唱・ピアノ連弾・原田勇男・光"},
   {id:388,name:"田中達也 ― 《はじまりの木》",rarity:"SR",theme:"日本現代・混声合唱・ピアノ・和合亮一・木"},
   {id:389,name:"田中達也 ― 《レモンイエローの夏》",rarity:"R",theme:"日本現代・無伴奏混声合唱・みなづきみのり・夏"},
-  {id:390,name:"田中達也 ― 《消印》",rarity:"N",theme:"日本現代・混声合唱・峯澤典子・記憶"}
+  {id:390,name:"田中達也 ― 《消印》",rarity:"N",theme:"日本現代・混声合唱・峯澤典子・記憶"},
+  {id:391,name:"山下祐加 ― 《ねむりのもりのはなし》",rarity:"SSR",theme:"日本現代・混声合唱・ピアノ・長田弘・朝日作曲賞・物語"},
+  {id:392,name:"山下祐加 ― 《世界でいちばん孤独な歌》",rarity:"SR",theme:"日本現代・無伴奏男声合唱・寺山修司・孤独"},
+  {id:393,name:"山下祐加 ― 《Ten songs―世界のエレメント―》",rarity:"SR",theme:"日本現代・無伴奏混声合唱・みなづきみのり・音"},
+  {id:394,name:"山下祐加 ― 《いわかがみ》",rarity:"SR",theme:"日本現代・混声合唱・ピアノ・野呂昶・生命"},
+  {id:395,name:"山下祐加 ― 《きみがすき》",rarity:"R",theme:"日本現代・児童合唱・ピアノ・桜井信夫・思い"},
+  {id:396,name:"山下祐加 ― 《私たちは一人ではない》",rarity:"N",theme:"日本現代・混声合唱・ピアノ・長田弘・四季"}
 );
 Object.assign(CARD_DESCRIPTIONS,{
   "343":"瀧廉太郎《荒城の月》を題材にしたSSRカードです。土井晩翠の詩に、城跡と月が喚起する盛衰と郷愁を刻んだ代表的な歌曲です。",
@@ -2565,7 +2661,13 @@ Object.assign(CARD_DESCRIPTIONS,{
   "387":"原田勇男の詩による混声合唱とピアノ連弾のための《光のかたち》のSRカードです。闇、変わらない海、光を3曲で描きます。",
   "388":"和合亮一の詩による混声合唱とピアノのための《はじまりの木》のSRカードです。福島市の街路樹と人々の暮らしを背景にしています。",
   "389":"みなづきみのりの詩による無伴奏混声合唱曲集《レモンイエローの夏》のRカードです。表題曲を含む5曲で多様な風景を描きます。",
-  "390":"峯澤典子の詩による混声合唱曲《消印》のNカードです。記憶や時間を越えて受け継がれる思いを歌います。"
+  "390":"峯澤典子の詩による混声合唱曲《消印》のNカードです。記憶や時間を越えて受け継がれる思いを歌います。",
+  "391":"長田弘の3編の詩による混声合唱組曲《ねむりのもりのはなし》のSSRカードです。2014年度朝日作曲賞受賞作で、終曲は2015年度全日本合唱コンクール課題曲に選定されました。",
+  "392":"寺山修司の詩による無伴奏男声合唱組曲《世界でいちばん孤独な歌》のSRカードです。別れや孤独をめぐる5編を、各曲の性格が際立つ男声合唱で描きます。",
+  "393":"みなづきみのりの詩による無伴奏混声合唱曲集《Ten songs―世界のエレメント―》のSRカードです。世界を構成する“音”を題材にした10曲が、オノマトペと歌声で響き合います。",
+  "394":"野呂昶の詩による混声合唱とピアノのための組曲《いわかがみ》のSRカードです。動物・植物・人間への優しい眼差しを通して、いのちの輝きを全5曲で歌います。",
+  "395":"桜井信夫の詩による児童合唱組曲《きみがすき》のRカードです。大切なものを思う普遍的な気持ちを、児童合唱とピアノによる全7曲で描きます。",
+  "396":"長田弘の詩による混声合唱組曲《私たちは一人ではない》のNカードです。冬から秋へ移る風景の記憶を通して、人が孤独ではないというメッセージを歌います。"
 });
 
 const GACHA_COST=100;
@@ -2627,7 +2729,7 @@ function choirGrowthMapForQuestion(q){
   if(["ipaVowel","ipaConsonant","german","germanWords","germanFrohlich","germanVor","germanTraumlicht"].includes(type))return {language:3};
   if(type==="history")return {knowledge:2,expression:1};
   if(type==="japanChoral"||type==="worldChoral")return {repertoire:2,knowledge:1};
-  const composerTypes=["tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","nakata","nishimura","fujishima","matsumotoNozomi","tanakaTatsuya","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata"];
+  const composerTypes=["tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","nakata","nishimura","fujishima","matsumotoNozomi","tanakaTatsuya","yamashitaYuka","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata"];
   if(composerTypes.includes(type))return {repertoire:2,knowledge:1};
   return {expression:2,knowledge:1};
 }
@@ -2795,7 +2897,7 @@ function relatedOwnedCards(q){
     }
 
     // 作曲家別クイズでは、その作曲家の所持カードを関連候補にする
-    const composerQuizMap={tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",nakata:"中田喜直",nishimura:"西村朗",fujishima:"藤嶋美穂",matsumotoNozomi:"松本望",tanakaTatsuya:"田中達也",tormis:"トルミス",takata:"高田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",ikebe:"池辺晋一郎",takemitsu:"武満徹"};
+    const composerQuizMap={tada:"多田武彦",nobunaga:"信長貴富",kinoshita:"木下牧子",chihara:"千原英喜",miyoshi:"三善晃",matsushita:"松下耕",nakata:"中田喜直",nishimura:"西村朗",fujishima:"藤嶋美穂",matsumotoNozomi:"松本望",tanakaTatsuya:"田中達也",yamashitaYuka:"山下祐加",tormis:"トルミス",takata:"高田三郎",shimizu:"清水脩",mamiya:"間宮芳生",niimi:"新実徳英",aizawa:"相澤直人",miyake:"三宅悠太",ogikubo:"荻久保和明",suzuki:"鈴木輝昭",kodaly:"コダーイ",poulenc:"プーランク",hayashi:"林光",ueda:"上田真樹",tsuchida:"土田豊貴",shibata:"柴田南雄",ikebe:"池辺晋一郎",takemitsu:"武満徹"};
     if(composerQuizMap[q?.type]===base)score+=1;
 
     // 日本の合唱クイズでカード名が明示されていれば関連
@@ -3691,8 +3793,8 @@ const CONCERT_COUNTRY={
 "瀧廉太郎":"日本","山田耕筰":"日本","信時潔":"日本","清水脩":"日本","高田三郎":"日本","間宮芳生":"日本","三善晃":"日本","池辺晋一郎":"日本","武満徹":"日本","新実徳英":"日本","木下牧子":"日本","千原英喜":"日本","松下耕":"日本","信長貴富":"日本","多田武彦":"日本","トルミス":"エストニア","相澤直人":"日本","三宅悠太":"日本","荻久保和明":"日本","鈴木輝昭":"日本","コダーイ":"ハンガリー","プーランク":"フランス","林光":"日本","上田真樹":"日本","土田豊貴":"日本","柴田南雄":"日本"};
 
 function concertComposer(card){return String(card.name||"").split(" ― ")[0].trim()}
-Object.assign(CONCERT_ERA,{"伊福部昭":"日本現代","中田喜直":"日本現代","西村朗":"日本現代","藤嶋美穂":"日本現代","松本望":"日本現代","田中達也":"日本現代"});
-Object.assign(CONCERT_COUNTRY,{"伊福部昭":"日本","中田喜直":"日本","西村朗":"日本","藤嶋美穂":"日本","松本望":"日本","田中達也":"日本"});
+Object.assign(CONCERT_ERA,{"伊福部昭":"日本現代","中田喜直":"日本現代","西村朗":"日本現代","藤嶋美穂":"日本現代","松本望":"日本現代","田中達也":"日本現代","山下祐加":"日本現代"});
+Object.assign(CONCERT_COUNTRY,{"伊福部昭":"日本","中田喜直":"日本","西村朗":"日本","藤嶋美穂":"日本","松本望":"日本","田中達也":"日本","山下祐加":"日本"});
 
 function concertMeta(card){
  const composer=concertComposer(card), joined=(card.name+" "+(card.theme||"")), tags=[], poets=[];
@@ -3751,6 +3853,11 @@ function concertMeta(card){
  if(/田中達也 ― 《はじまりの木》/.test(card.name))poets.push("和合亮一");
  if(/田中達也 ― 《レモンイエローの夏》/.test(card.name))poets.push("みなづきみのり");
  if(/田中達也 ― 《消印》/.test(card.name))poets.push("峯澤典子");
+ if(/山下祐加 ― 《ねむりのもりのはなし》|山下祐加 ― 《私たちは一人ではない》/.test(card.name))poets.push("長田弘");
+ if(/山下祐加 ― 《世界でいちばん孤独な歌》/.test(card.name))poets.push("寺山修司");
+ if(/山下祐加 ― 《Ten songs―世界のエレメント―》/.test(card.name))poets.push("みなづきみのり");
+ if(/山下祐加 ― 《いわかがみ》/.test(card.name))poets.push("野呂昶");
+ if(/山下祐加 ― 《きみがすき》/.test(card.name))poets.push("桜井信夫");
  return {composer,era:CONCERT_ERA[composer]||"",country:CONCERT_COUNTRY[composer]||"",tags,poets};
 }
 function pairCohesion(a,b){const A=concertMeta(a),B=concertMeta(b);let p=0;if(A.composer===B.composer)p+=30;if(A.poets.some(x=>B.poets.includes(x)))p+=25;if(A.tags.some(x=>B.tags.includes(x)))p+=15;if(A.era&&A.era===B.era)p+=10;if(A.country&&A.country===B.country)p+=8;if(A.tags.includes("男声合唱")&&B.tags.includes("男声合唱"))p+=8;return Math.min(100,p)}
@@ -3871,6 +3978,8 @@ const SYNERGY_FIXED_CATALOG=[
   ["戦後日本合唱の系譜",44,"髙田三郎・清水脩・間宮芳生・新実徳英を1枚ずつ"],
   ["民謡の記憶",28,"民謡・民俗を軸にしたカード3枚以上"],
   ["谷川俊太郎を歌う",28,"谷川俊太郎に関係する作品カード3枚以上"],
+  ["みなづきみのりを歌う",28,"みなづきみのりに関係する作品カード3枚以上"],
+  ["山下祐加・声と物語",38,"《ねむりのもりのはなし》《世界でいちばん孤独な歌》《Ten songs》《いわかがみ》"],
   ["現代日本合唱の交差",24,"対象5作曲家のうち3人を組み合わせる"],
   ["現代日本合唱カルテット",42,"対象5作曲家のうち4人を組み合わせる"]
 ];
@@ -4140,7 +4249,7 @@ function has(cards,re){return cards.some(c=>re.test(c.name))} function countComp
 function detectSynergies(cards){
  const out=[], comps={}; cards.forEach(c=>{const k=concertComposer(c);comps[k]=(comps[k]||0)+1});
  Object.entries(comps).forEach(([k,n])=>{if(n===2)out.push(syn(`${k}特集`,8,`${k}のカード2枚`));if(n===3)out.push(syn(`${k}個展`,18,`${k}のカード3枚`));if(n>=4)out.push(syn(`オール・${k}`,32,`${k}のカード4枚`))});
- ["草野心平","北原白秋","三好達治","中原中也","中勘助","伊藤整","谷川俊太郎","寺山修司","大岡信","吉原幸子","池澤夏樹","吉野弘","高野喜久雄","堀口大學","井伏鱒二","川崎洋","木島始","谷川雁","工藤直子","さくらももこ","栗原寛","和合亮一","鶴見正夫","伊藤海彦","宗左近","宮沢賢治","土井晩翠","武島羽衣","鳥居忱","東くめ","三木露風","江間章子","サトウハチロー","内村直也","阪田寛夫","茶木滋","田中ナナ"].forEach(p=>{const n=countPoet(cards,p);if(n===2)out.push(syn("詩の響き",8,`${p}のカード2枚`));if(n>=3)out.push(syn(`${p}特集`,20,`${p}のカード${n}枚`))});
+ ["草野心平","北原白秋","三好達治","中原中也","中勘助","伊藤整","谷川俊太郎","寺山修司","大岡信","吉原幸子","池澤夏樹","吉野弘","高野喜久雄","堀口大學","井伏鱒二","川崎洋","木島始","谷川雁","工藤直子","さくらももこ","栗原寛","和合亮一","鶴見正夫","伊藤海彦","宗左近","宮沢賢治","土井晩翠","武島羽衣","鳥居忱","東くめ","三木露風","江間章子","サトウハチロー","内村直也","阪田寛夫","茶木滋","田中ナナ","長田弘","みなづきみのり","野呂昶","桜井信夫"].forEach(p=>{const n=countPoet(cards,p);if(n===2)out.push(syn("詩の響き",8,`${p}のカード2枚`));if(n>=3)out.push(syn(`${p}特集`,20,`${p}のカード${n}枚`))});
  const metas=cards.map(concertMeta),sameEra=metas.every(x=>x.era&&x.era===metas[0].era),sameCountry=metas.every(x=>x.country&&x.country===metas[0].country),diffEra=new Set(metas.map(x=>x.era).filter(Boolean)).size===cards.length;
  if(cards.length>=3&&sameEra)out.push(syn("時代を聴く",10,`${metas[0].era}で統一`)); if(cards.length>=3&&sameCountry)out.push(syn("音楽紀行",10,`${metas[0].country}で統一`)); if(cards.length===3&&diffEra)out.push(syn("時代を超えて",12,"3枚すべて異なる時代")); if(cards.length===4&&diffEra)out.push(syn("音楽史をめぐる旅",22,"4枚すべて異なる時代"));
  if(cards.length===4&&new Set(cards.map(c=>c.rarity)).size===4)out.push(syn("四つの輝き",15,"N・R・SR・SSRを各1枚")); const evo=cards.filter(c=>isEvolved(c.id)).length;if(evo>=2)out.push(syn("熟成された響き",12,`EVOLVED ${evo}枚`));if(evo===4)out.push(syn("究極のプログラム",30,"全カードEVOLVED"));
@@ -4288,6 +4397,13 @@ function detectSynergies(cards){
 
  if(countPoet(cards,"谷川俊太郎")>=3)
    out.push(syn("谷川俊太郎を歌う",28,"谷川俊太郎に関係する作品カード3枚以上"));
+ if(countPoet(cards,"みなづきみのり")>=3)
+   out.push(syn("みなづきみのりを歌う",28,"みなづきみのりに関係する作品カード3枚以上"));
+ if(has(cards,/山下祐加 ― 《ねむりのもりのはなし》/)
+   &&has(cards,/山下祐加 ― 《世界でいちばん孤独な歌》/)
+   &&has(cards,/山下祐加 ― 《Ten songs―世界のエレメント―》/)
+   &&has(cards,/山下祐加 ― 《いわかがみ》/))
+   out.push(syn("山下祐加・声と物語",38,"異なる詩世界と合唱編成を結ぶ山下祐加4作品"));
 
  const tada=countComposer(cards,"多田武彦");if(tada>=2)out.push(syn(tada>=4?"オール多田武彦":tada===3?"多田武彦演奏会":"多田武彦作品展",tada>=4?38:tada===3?24:12,`多田武彦カード${tada}枚`));
  if(has(cards,/富士山/)&&has(cards,/北斗の海/)&&has(cards,/蛙/))out.push(syn("草野心平の詩",30,"《富士山》《北斗の海》《蛙》"));if(countPoet(cards,"草野心平")>=3&&has(cards,/多田武彦 ― 草野心平/))out.push(syn("草野心平×多田武彦",48,"草野心平作品＋SSR"));
@@ -4632,7 +4748,7 @@ renderStats();
 renderGameStats();
 $("bankInfo").textContent=`収録：音楽史 ${historyQuestions.length}問 / 日本の合唱 ${japanChoralQuestions.length}問 / 世界の合唱 ${worldChoralQuestions.length}問 / 多田武彦 ${tadaQuestions.length}問 / 信長貴富 ${nobunagaQuestions.length}問 / 木下牧子 ${kinoshitaQuestions.length}問 / 千原英喜 ${chiharaQuestions.length}問 / 三善晃 ${miyoshiQuestions.length}問 / 松下耕 ${matsushitaQuestions.length}問 / 和声 ${harmonyQuestions.length}問 / ソルミゼーション ${keyDefs.length*SOLMIZATION_SYLLABLES.length*2}パターン / 池辺晋一郎 ${ikebeQuestions.length}問 / 武満徹 ${takemitsuQuestions.length}問 / トルミス ${tormisQuestions.length}問 / 髙田三郎 ${takataQuestions.length}問 / 清水脩 ${shimizuQuestions.length}問 / 間宮芳生 ${mamiyaQuestions.length}問 / 新実徳英 ${niimiQuestions.length}問 / 相澤直人 ${aizawaQuestions.length}問 / 三宅悠太 ${miyakeQuestions.length}問 / 荻久保和明 ${ogikuboQuestions.length}問 / 鈴木輝昭 ${suzukiQuestions.length}問 / 発声・身体 ${voiceQuestions.length}問 / IPA母音 ${ipaVowelQuestions.length}問 / IPA子音 ${ipaConsonantQuestions.length}問 / Traumlicht ${traumlichtQuestions.length}問 / ドイツ語和訳 ${germanTranslationQuestions.length}問（単語・語句 ${germanWordQuestions.length}問） / 音楽記号・楽語 ${symbolQuestions.length}問 / 調号 ${keyDefs.length*4*2}パターン以上 / 音名は自動生成`;
 
-$("bankInfo").textContent += ` / 中田喜直 ${nakataQuestions.length}問 / 西村朗 ${nishimuraQuestions.length}問 / 藤嶋美穂 ${fujishimaQuestions.length}問 / 松本望 ${matsumotoNozomiQuestions.length}問 / 田中達也 ${tanakaTatsuyaQuestions.length}問`;
+$("bankInfo").textContent += ` / 中田喜直 ${nakataQuestions.length}問 / 西村朗 ${nishimuraQuestions.length}問 / 藤嶋美穂 ${fujishimaQuestions.length}問 / 松本望 ${matsumotoNozomiQuestions.length}問 / 田中達也 ${tanakaTatsuyaQuestions.length}問 / 谷川俊太郎 ${tanikawaQuestions.length}問 / みなづきみのり ${minazukiQuestions.length}問 / 山下祐加 ${yamashitaYukaQuestions.length}問`;
 
 function svgEl(name,attrs={}){
   const e=document.createElementNS(NS,name);
@@ -4849,6 +4965,9 @@ function makeNishimuraQuestion(){const x=uniqueBankPick(nishimuraQuestions,"na")
 function makeFujishimaQuestion(){const x=uniqueBankPick(fujishimaQuestions,"fj");return {type:"fujishima",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
 function makeMatsumotoNozomiQuestion(){const x=uniqueBankPick(matsumotoNozomiQuestions,"mn");return {type:"matsumotoNozomi",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
 function makeTanakaTatsuyaQuestion(){const x=uniqueBankPick(tanakaTatsuyaQuestions,"tt");return {type:"tanakaTatsuya",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
+function makeTanikawaQuestion(){const x=uniqueBankPick(tanikawaQuestions,"tg");return {type:"tanikawa",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
+function makeMinazukiQuestion(){const x=uniqueBankPick(minazukiQuestions,"mz");return {type:"minazuki",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
+function makeYamashitaYukaQuestion(){const x=uniqueBankPick(yamashitaYukaQuestions,"yy");return {type:"yamashitaYuka",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
 function makeTakataQuestion(){const x=uniqueBankPick(takataQuestions,"tk");return {type:"takata",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
 function makeShimizuQuestion(){const x=uniqueBankPick(shimizuQuestions,"sz");return {type:"shimizu",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
 function makeMamiyaQuestion(){const x=uniqueBankPick(mamiyaQuestions,"mm");return {type:"mamiya",correct:x.correct,choices:shuffle(x.choices),question:x.q,explanation:x.exp,section:x.section};}
@@ -4956,7 +5075,7 @@ function makeKeyQuestion(){
 function makeQuestion(){
   let type=session.course;
   if(type==="mix"){
-    const pattern=["note","solmization","history","harmony","japanChoral","worldChoral","tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","nakata","nishimura","fujishima","matsumotoNozomi","tanakaTatsuya","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata","voice","ipaVowel","ipaConsonant","german","symbol","key"];
+    const pattern=["note","solmization","history","harmony","japanChoral","worldChoral","tada","nobunaga","kinoshita","chihara","miyoshi","matsushita","nakata","nishimura","fujishima","matsumotoNozomi","tanakaTatsuya","tanikawa","minazuki","yamashitaYuka","ikebe","takemitsu","tormis","takata","shimizu","mamiya","niimi","aizawa","miyake","ogikubo","suzuki","kodaly","poulenc","hayashi","ueda","tsuchida","shibata","voice","ipaVowel","ipaConsonant","german","symbol","key"];
     type=pattern[session.index % pattern.length];
   }
   if(type==="note")return makeNoteQuestion();
@@ -4975,6 +5094,9 @@ function makeQuestion(){
   if(type==="fujishima")return makeFujishimaQuestion();
   if(type==="matsumotoNozomi")return makeMatsumotoNozomiQuestion();
   if(type==="tanakaTatsuya")return makeTanakaTatsuyaQuestion();
+  if(type==="tanikawa")return makeTanikawaQuestion();
+  if(type==="minazuki")return makeMinazukiQuestion();
+  if(type==="yamashitaYuka")return makeYamashitaYukaQuestion();
   if(type==="tormis")return makeTormisQuestion();
   if(type==="takata")return makeTakataQuestion();
   if(type==="shimizu")return makeShimizuQuestion();
@@ -5017,7 +5139,7 @@ function setQuestionVisual(q){
   }else if(q.type==="symbol"){
     const v=$("visualArea");v.classList.remove("hidden");
     v.innerHTML=`<div class="${q.kind==="symbol"?"symbolBig":"termBig"}">${q.display}</div>`;
-  }else if(q.type==="japanChoral"||q.type==="worldChoral"||q.type==="harmony"||q.type==="tada"||q.type==="nobunaga"||q.type==="kinoshita"||q.type==="chihara"||q.type==="miyoshi"||q.type==="matsushita"||q.type==="nakata"||q.type==="nishimura"||q.type==="fujishima"||q.type==="matsumotoNozomi"||q.type==="tanakaTatsuya"||q.type==="ikebe"||q.type==="takemitsu"||q.type==="tormis"||q.type==="takata"||q.type==="shimizu"||q.type==="mamiya"||q.type==="niimi"||q.type==="aizawa"||q.type==="miyake"||q.type==="ogikubo"||q.type==="suzuki"||q.type==="kodaly"||q.type==="poulenc"||q.type==="hayashi"||q.type==="ueda"||q.type==="tsuchida"||q.type==="shibata"||q.type==="voice"||q.type==="ipaVowel"||q.type==="ipaConsonant"){
+  }else if(q.type==="japanChoral"||q.type==="worldChoral"||q.type==="harmony"||q.type==="tada"||q.type==="nobunaga"||q.type==="kinoshita"||q.type==="chihara"||q.type==="miyoshi"||q.type==="matsushita"||q.type==="nakata"||q.type==="nishimura"||q.type==="fujishima"||q.type==="matsumotoNozomi"||q.type==="tanakaTatsuya"||q.type==="tanikawa"||q.type==="minazuki"||q.type==="yamashitaYuka"||q.type==="ikebe"||q.type==="takemitsu"||q.type==="tormis"||q.type==="takata"||q.type==="shimizu"||q.type==="mamiya"||q.type==="niimi"||q.type==="aizawa"||q.type==="miyake"||q.type==="ogikubo"||q.type==="suzuki"||q.type==="kodaly"||q.type==="poulenc"||q.type==="hayashi"||q.type==="ueda"||q.type==="tsuchida"||q.type==="shibata"||q.type==="voice"||q.type==="ipaVowel"||q.type==="ipaConsonant"){
     const v=$("visualArea");v.classList.remove("hidden");
     const title=COURSE_LABELS[q.type]||"発声・身体";
     const sectionLabel=q.type==="voice"?"発声・身体構造":q.type==="ipaVowel"?"International Phonetic Alphabet":q.type==="ipaConsonant"?"International Phonetic Alphabet":(q.section||"合唱");
