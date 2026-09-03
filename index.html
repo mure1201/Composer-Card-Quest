@@ -141,6 +141,16 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
 .cardDetail .bigIcon{font-size:44px;margin:8px 0}
 .cardDetail .bigName{font-size:18px;font-weight:900;line-height:1.3}
 .cardDetail .bigTheme{font-size:12px;color:var(--muted);margin-top:6px}
+.ssrLore{margin-top:12px;text-align:left;border:1px solid #ead8a8;border-radius:14px;background:linear-gradient(180deg,#fffdf7,#fff9e8);overflow:hidden}
+.ssrLoreHead{padding:11px 13px;background:linear-gradient(90deg,#fff1bd,#fff8df);font-size:14px;font-weight:950;color:#78550f}
+.ssrLoreSection{padding:12px 13px;border-top:1px solid #efe4c8}
+.ssrLoreLabel{font-size:11px;font-weight:950;color:#8a681f;letter-spacing:.04em;margin-bottom:5px}
+.ssrLoreText{font-size:13px;line-height:1.75;color:var(--ink)}
+.ssrLoreFacts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}
+.ssrLoreFact{padding:8px 9px;border-radius:10px;background:rgba(255,255,255,.78);border:1px solid #eee2c3;font-size:11px;line-height:1.45}
+.ssrLoreFact b{display:block;color:#80601c;font-size:10px;margin-bottom:2px}
+.ssrLoreTags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.ssrLoreTag{padding:4px 7px;border-radius:999px;background:#fff;border:1px solid #e6d39e;color:#745718;font-size:10px;font-weight:850}
+@media(max-width:480px){.ssrLoreFacts{grid-template-columns:1fr}}
 .rewardNote{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
 .mpGain{font-weight:900;color:var(--ok)}
 .gachaFlash{animation:gachaPop .35s ease both}
@@ -721,7 +731,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:10px 0 20px}
     <h1>Composer Card Quest</h1><div class="sub">クイズ × ガチャ × カード育成 × 合唱団育成</div>
     <div class="small">クイズでMPを集め、作曲家カードと自分の合唱団を育てる音楽クイズゲーム</div>
   </div>
-      <span class="version">Ver. 1.40.2</span>
+      <span class="version">Ver. 1.40.4</span>
 </header>
 
 <section class="card" id="homeCard">
@@ -4770,6 +4780,20 @@ Object.assign(CARD_DESCRIPTIONS,{
   "395":"桜井信夫の詩による児童合唱組曲《きみがすき》のRカードです。大切なものを思う普遍的な気持ちを、児童合唱とピアノによる全7曲で描きます。",
   "396":"長田弘の詩による混声合唱組曲《私たちは一人ではない》のNカードです。冬から秋へ移る風景の記憶を通して、人が孤独ではないというメッセージを歌います。"
 });
+// Ver.1.40.4: ID332〜342の解説ずれ・未登録を修正
+Object.assign(CARD_DESCRIPTIONS,{
+  "332":"柴田南雄《萬歳流し》を題材にしたSRカードです。民俗芸能の「萬歳」を素材とし、男声合唱に語りや掛け声、小鼓を交えながら、演奏者の動きも含むシアター・ピースとして構成されています。伝承の型を舞台空間の中で組み替える、柴田南雄らしい作品です。",
+  "333":"柴田南雄《宇宙について》を題材にしたSRカードです。各地の天地創造神話や祈り、華厳経など多様なテキストを扱う全7章の大規模な混声合唱作品です。異なる時代・地域の宇宙観を、多様な作曲技法と合唱表現によって結びつけています。",
+  "334":"柴田南雄《遠野遠音》を題材にしたSRカードです。柳田國男『遠野物語』と東北地方の民謡を素材にした、無伴奏混声合唱のミュージック・シアターです。語り、歌、身体の配置を通して、遠野の伝承が遠くから響いてくるような空間を作ります。",
+  "335":"池辺晋一郎《六つの子守歌》を題材にしたSSRカードです。別役実の詞による6曲からなる混声合唱曲集で、ピアノを伴います。一般的な子守歌の穏やかさだけでなく、別役作品特有のユーモアや逆説を、しゃれた旋律と柔軟な合唱書法で描いています。",
+  "336":"池辺晋一郎《東洋民謡集》を題材にしたSRカードです。アジアをはじめとする非西欧圏の多様な民謡を素材にし、その旋律やリズムを池辺独自の合唱語法で再構成したシリーズです。原曲の地域性を生かしながら、発声、反復、音響の変化によって人間の祈りや躍動を引き出します。",
+  "337":"池辺晋一郎《夜来香》を題材にしたSRカードです。江間章子の詩による女声合唱曲集《花の四季》の一曲で、ピアノ伴奏を伴います。夜に香る花の気配を、繊細な言葉の運びと色彩的な女声合唱の響きで描いています。",
+  "338":"池辺晋一郎《この世界のぜんぶ》を題材にしたSRカードです。池澤夏樹の詩集から選ばれた6編による女声合唱曲集で、親しみやすいソング形式を基礎にしています。身近な風景から世界や時間の広がりへ目を向ける言葉を、明快な旋律と多彩な響きで歌います。",
+  "339":"武満徹《うた》を題材にしたSSRカードです。1979年から1992年にかけてまとめられた無伴奏混声合唱のための12の小品からなり、武満自身、谷川俊太郎、川路明、井沢満、秋山邦晴らの詞と日本古謡を含みます。親しみやすい旋律の中に、繊細な和声、間、言葉の余韻が息づく合唱曲集です。",
+  "340":"武満徹《小さな空》を題材にしたSRカードです。武満徹自身の詞による歌で、幼い日の記憶や空を見上げる感覚を、素朴でありながら陰影の深い旋律に託しています。さまざまな編成で演奏され、無伴奏混声合唱曲集《うた》にも収められています。",
+  "341":"武満徹《死んだ男の残したものは》を題材にしたSRカードです。谷川俊太郎の詞による反戦の歌で、死者が残したものを一つずつ挙げる簡潔な言葉が、次第に大きな問いへ広がります。抑制された旋律と反復が喪失を際立たせ、無伴奏混声合唱曲集《うた》にも収められています。",
+  "342":"武満徹《翼》を題材にしたSRカードです。武満徹自身の詞による歌で、空や飛翔への憧れを、透明感のある旋律に重ねています。軽やかさの中に静かな孤独と希望が共存し、無伴奏混声合唱曲集《うた》の一曲としても親しまれています。"
+});
 
 const GACHA_COST=100;
 const GACHA_TEN_COST=900;
@@ -5902,6 +5926,35 @@ function cardExplanationHTML(card,owned){
     <div class="cardExplanationText">${getCardDescription(card)}</div>
   </div>`;
 }
+function ssrListeningGuide(card){
+  const text=`${card.name} ${card.theme}`;
+  if(/無伴奏|ア・カペラ|40声|二重合唱|多声音楽/.test(text))return "声部どうしの受け渡し、響きが重なる位置、言葉の明瞭さに注目すると、合唱の立体的な構造を捉えやすくなります。";
+  if(/民謡|民俗|民族|島唄|カレワラ|シアター|追分/.test(text))return "原資料となった歌や物語と、作曲者が加えたリズム・発声・空間表現を聴き分けると、伝承が現代作品へ変わる過程が見えてきます。";
+  if(/宗教|祈り|レクイエム|Te Deum|ミサ|受難|詩編|Psalm|Vigilia/.test(text))return "典礼文や祈りの言葉が、声部配置・和声・静寂・器楽の色彩によってどのように強調されるかが鑑賞の要点です。";
+  if(/平和|反戦|戦争|原爆|いのち|生命|鎮魂/.test(text))return "言葉が示す歴史的・社会的背景と、緊張から祈りや希望へ向かう音楽の流れを結びつけて聴くことができます。";
+  if(/星|空|光|夢|夜|森|水|自然|飛翔/.test(text))return "題材となる情景が、音域、響きの密度、テンポ、音色の変化によってどのように描かれるかに注目してください。";
+  if(/詩|ことば|白秋|心平|谷川|吉野弘|堀口|エリュアール|ヘルダーリン/.test(text))return "詩の話者、言葉の反復、子音と母音の扱いを追うと、作曲者が詩をどのように読み替えたかを味わえます。";
+  if(/管弦楽|交響曲|オラトリオ|カンタータ/.test(text))return "合唱・独唱・器楽が担う役割の違いと、大規模な構成の中で主題が回帰・変容する過程が聴きどころです。";
+  return "カードのテーマを手がかりに、言葉、声部の重なり、和声、リズム、音色のどこに作曲者の個性が表れているかを聴き比べてください。";
+}
+function ssrLoreHTML(card,owned){
+  if(!owned||card.rarity!=="SSR")return "";
+  const parts=String(card.name||"").split(" ― "),composer=parts[0]||card.name,work=parts.length>1?parts.slice(1).join(" ― "):"";
+  const meta=typeof concertMeta==="function"?concertMeta(card):{};
+  const tags=String(card.theme||"").split(/[・／]/).map(x=>x.trim()).filter(Boolean);
+  const facts=[];
+  facts.push([work&&/[《》]/.test(work)?"作曲者":"人物・作曲家",composer]);
+  if(work)facts.push([/[《》]/.test(work)?"作品・焦点":"カードの焦点",work]);
+  if(meta?.era)facts.push(["時代",meta.era]);
+  if(meta?.country)facts.push(["国・地域",meta.country]);
+  if(Array.isArray(meta?.poets)&&meta.poets.length)facts.push(["詩・テキスト",meta.poets.join("、")]);
+  return `<div class="ssrLore">
+    <div class="ssrLoreHead">SSRプレミアム解説</div>
+    <div class="ssrLoreSection"><div class="ssrLoreLabel">概要</div><div class="ssrLoreText">${getCardDescription(card)}</div></div>
+    <div class="ssrLoreSection"><div class="ssrLoreLabel">作品・テーマ情報</div><div class="ssrLoreFacts">${facts.map(([k,v])=>`<div class="ssrLoreFact"><b>${k}</b>${v}</div>`).join("")}</div>${tags.length?`<div class="ssrLoreTags">${tags.map(t=>`<span class="ssrLoreTag">${t}</span>`).join("")}</div>`:""}</div>
+    <div class="ssrLoreSection"><div class="ssrLoreLabel">鑑賞の手がかり</div><div class="ssrLoreText">${ssrListeningGuide(card)}</div></div>
+  </div>`;
+}
 function showCardDetail(id){
   const card=COMPOSER_CARDS.find(c=>c.id===Number(id));
   if(!card)return;
@@ -5938,7 +5991,7 @@ function showCardDetail(id){
       <div class="bigTheme">${owned?card.theme:"未入手カード"}</div>
     </div>
     ${growth}
-    ${cardExplanationHTML(card,owned)}
+    ${card.rarity==="SSR"?ssrLoreHTML(card,owned):cardExplanationHTML(card,owned)}
     ${cardSynergyHTML(card,owned)}
     <div style="height:10px"></div>${action}`;
   if(!owned && (gameData.fragments||0)>=100){
